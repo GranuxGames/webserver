@@ -1,0 +1,7 @@
+tools:
+  url: tools
+server:
+  port: 12345
+  https:
+    key: ''
+    certificate: ''
