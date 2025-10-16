@@ -88,7 +88,8 @@ function checkHttps(https) {
   }
 
   if (https.certificate.startsWith('.')) {
-    global.__config.server.https.certificate = global.__path.root + https.certificate.slice(1);
+    global.__config.server.https.certificate = global.__path.root
+                                               + https.certificate.slice(1);
     https.certificate = global.__config.server.https.certificate;
   }
 

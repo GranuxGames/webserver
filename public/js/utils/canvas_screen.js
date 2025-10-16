@@ -79,6 +79,9 @@ class CanvasScreen {
   }
 
   onScrollRaw(e) {
+    if (e.srcElement != this.canvas)
+      return;
+
     var mouse = this.getMousePos(e);
     var mouseBefore = this.screenToCanvas(mouse);
     this.zoom = Math.max(Math.min(this.zoom - Math.round(e.deltaY / 100),
@@ -102,6 +105,9 @@ class CanvasScreen {
   }
 
   onMouseDownRaw(e) {
+    if (e.srcElement != this.canvas)
+      return;
+    
     e.preventDefault();
     this.mouseButtons[e.button] = true;
     var modifier = [];
@@ -143,10 +149,12 @@ class CanvasScreen {
     var move = new Vector(e.movementX, e.movementY);
     var start = end.sub(move);
     
-    this.onMouseMove(start, end);
-    this.mouseMoveListeners.forEach((listener) => {
-      listener.callback(start, end);
-    });
+    if (e.srcElement == this.canvas) {
+      this.onMouseMove(start, end);
+      this.mouseMoveListeners.forEach((listener) => {
+        listener.callback(start, end);
+      });
+    }
 
     for (var i = 0; i < this.mouseButtons.length; i++) {
       if (this.mouseButtons[i]) {

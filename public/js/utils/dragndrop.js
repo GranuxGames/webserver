@@ -2,11 +2,12 @@ class DragNDrop {
 
   constructor(dropZone) {
     this.dropZone = dropZone;
+    this.dropZone.style.display = 'none';
 
-    this.dropZone.addEventListener('dragover', this.onDragOver.bind(this));
-    this.dropZone.addEventListener('dragenter', this.onDragEnter.bind(this));
-    this.dropZone.addEventListener('dragleave', this.onDragLeave.bind(this));
-    this.dropZone.addEventListener('drop', this.onDrop.bind(this));
+    document.body.addEventListener('dragover', this.onDragOver.bind(this));
+    document.body.addEventListener('dragenter', this.onDragEnter.bind(this));
+    document.body.addEventListener('dragleave', this.onDragLeave.bind(this));
+    document.body.addEventListener('drop', this.onDrop.bind(this));
   }
 
   onDragOver(e) {
@@ -18,7 +19,7 @@ class DragNDrop {
       return;
 
     e.preventDefault();
-    this.dropZone.style.opacity = 1;
+    this.dropZone.style.display = 'block';
   }
 
   onDragLeave(e) {
@@ -26,12 +27,12 @@ class DragNDrop {
       return;
 
     e.preventDefault();
-    this.dropZone.style.opacity = 0;
+    this.dropZone.style.display = 'none';
   }
 
   onDrop(e) {
     e.preventDefault();
-    this.dropZone.style.opacity = 0;
+    this.dropZone.style.display = 'none';
 
     var files = [...e.dataTransfer.items];
     files = files.filter((file) => {

@@ -40,6 +40,14 @@ class Vector {
     return this.scale(1 / length);
   }
 
+  toJSON() {
+    return { x: this.x, y: this.y };
+  }
+
+  static fromJSON(json) {
+    return new Vector(json.x, json.y);
+  }
+
   static DIAG(value) {
     return new Vector(value, value);
   }

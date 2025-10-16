@@ -1,5 +1,6 @@
 const TRACKER_CANVAS_SCREEN_HTML_IDS = {
-  canvas: 'canvas'
+  canvas: 'canvas',
+  scale_input: 'scale-input'
 };
 
 class TrackerCanvasScreen extends CanvasScreen {
@@ -7,25 +8,65 @@ class TrackerCanvasScreen extends CanvasScreen {
   constructor() {
     super(document.getElementById(TRACKER_CANVAS_SCREEN_HTML_IDS.canvas));
 
+    this.scaleInput = document.getElementById(TRACKER_CANVAS_SCREEN_HTML_IDS
+                                              .scale_input);
+
+    this.interactDistance = 3;
+
     this.p1 = null;
     this.p2 = null;
 
+    this.topLeftBorder = new Vector(-20, -20);
+    this.bottomRightBorder = new Vector(20, 20);
+    this.movingBorders = [false, false, false, false];
+
     this.bgImgs = defaultList(2, null);
 
-    this.addMouseDownListener(CanvasScreen.MOUSE_BUTTON.left,
-                              [],
-                              this.onSetPoint1.bind(this));
+    this.addMouseMoveListener(this.onMove.bind(this));
+    this.addMouseDownListener(CanvasScreen.MOUSE_BUTTON.left, [],
+                              this.onLeft.bind(this));
+    this.addMouseUpListener(CanvasScreen.MOUSE_BUTTON.left, [],
+                            this.onLeftUp.bind(this));
     this.addMouseDownListener(CanvasScreen.MOUSE_BUTTON.left,
                               [CanvasScreen.MOUSE_MODIFIER.alt],
-                              this.onRemovePoint1.bind(this));
-    this.addMouseDownListener(CanvasScreen.MOUSE_BUTTON.right,
-                              [],
-                              this.onSetPoint2.bind(this));
+                              this.onAltLeft.bind(this));
+    this.addMouseDragListener(CanvasScreen.MOUSE_BUTTON.left, [],
+                              this.onLeftDrag.bind(this));
+    this.addMouseDownListener(CanvasScreen.MOUSE_BUTTON.right, [],
+                              this.onRight.bind(this));
     this.addMouseDownListener(CanvasScreen.MOUSE_BUTTON.right,
                               [CanvasScreen.MOUSE_MODIFIER.alt],
-                              this.onRemovePoint2.bind(this));
+                              this.onAltRight.bind(this));
     this.addMouseDragListener(CanvasScreen.MOUSE_BUTTON.middle, [],
                               this.onMoveScreen.bind(this));
+    this.scaleInput.addEventListener('input', this.onScaleInput.bind(this));
+    
+    if (window.localStorage
+              .getItem('tools.insect_tracker.border.top_left') == null) {
+      window.localStorage.setItem('tools.insect_tracker.border.top_left',
+                                  JSON.stringify(this.topLeftBorder.toJSON()));
+    }
+    if (window.localStorage
+              .getItem('tools.insect_tracker.border.bottom_right') == null) {
+      window.localStorage.setItem('tools.insect_tracker.border.bottom_right',
+                                  JSON.stringify(this.bottomRightBorder
+                                                     .toJSON()));
+    }
+    if (window.localStorage.getItem('tools.insect_tracker.scale') == null) {
+      window.localStorage.setItem('tools.insect_tracker.scale', '' + 20);
+    }
+
+    this.topLeftBorder = Vector.fromJSON(JSON.parse(window.localStorage
+                         .getItem('tools.insect_tracker.border.top_left')));
+    this.bottomRightBorder = Vector.fromJSON(JSON.parse(window.localStorage
+                             .getItem('tools.insect_tracker.border.bottom_right')));
+    this.scaleInput.value = parseFloat(window.localStorage
+                            .getItem('tools.insect_tracker.scale'));
+  }
+
+  onScaleInput() {
+    var value = parseFloat(this.scaleInput.value);
+    window.localStorage.setItem('tools.insect_tracker.scale', '' + value);
   }
 
   addImage(img) {
@@ -44,9 +85,11 @@ class TrackerCanvasScreen extends CanvasScreen {
       if (size.y > currentSize.y)
         currentSize.y = size.y;
     });
-    var targetSize = new Vector(this.canvas.width, this.canvas.width / currentSize.x * currentSize.y);
+    var targetSize = new Vector(this.canvas.width, this.canvas.width
+                                / currentSize.x * currentSize.y);
     if (targetSize.y > this.canvas.height)
-      targetSize = new Vector(this.canvas.height / currentSize.y * currentSize.x, this.canvas.height);
+      targetSize = new Vector(this.canvas.height / currentSize.y
+                              * currentSize.x, this.canvas.height);
     var scale = targetSize.x / currentSize.x;
     var targetZoom = Math.log(scale) / Math.log(this.zoomSpeed);
     this.zoom = Math.floor(targetZoom);
@@ -55,19 +98,76 @@ class TrackerCanvasScreen extends CanvasScreen {
     this.p2 = null;
   }
 
-  onSetPoint1(mouse, button, modifier) {
-    this.p1 = this.screenToCanvas(mouse);
+  onMove(start, end) {
+    var mouse = end;
+    var topLeft = this.canvasToScreen(this.topLeftBorder);
+    var bottomRight = this.canvasToScreen(this.bottomRightBorder);
+
+    window.localStorage.setItem('tools.insect_tracker.border.top_left',
+                                JSON.stringify(this.topLeftBorder.toJSON()));
+    window.localStorage.setItem('tools.insect_tracker.border.bottom_right',
+                                JSON.stringify(this.bottomRightBorder
+                                                   .toJSON()));
+    if (Math.abs(mouse.x - topLeft.x) < this.interactDistance) {
+      this.canvas.style.cursor = 'w-resize';
+    } else if (Math.abs(mouse.x - bottomRight.x) < this.interactDistance) {
+      this.canvas.style.cursor = 'e-resize';
+    // } else if (Math.abs(mouse.y - topLeft.y) < this.interactDistance) {
+    //   this.canvas.style.cursor = 'n-resize';
+    // } else if (Math.abs(mouse.y - bottomRight.y) < this.interactDistance) {
+    //   this.canvas.style.cursor = 's-resize';
+    } else {
+      this.canvas.style.cursor = 'default';
+    }
   }
 
-  onRemovePoint1(mouse, button, modifier) {
+  onLeft(mouse, button, modifier) {
+    var mouseCanvas = this.screenToCanvas(mouse);
+    var topLeft = this.canvasToScreen(this.topLeftBorder);
+    var bottomRight = this.canvasToScreen(this.bottomRightBorder);
+
+    if (Math.abs(mouse.x - topLeft.x) < this.interactDistance) {
+      this.movingBorders[0] = true;
+    } else if (Math.abs(mouse.x - bottomRight.x) < this.interactDistance) {
+      this.movingBorders[2] = true;
+    // } else if (Math.abs(mouse.y - topLeft.y) < this.interactDistance) {
+    //   this.movingBorders[1] = true;
+    // } else if (Math.abs(mouse.y - bottomRight.y) < this.interactDistance) {
+    //   this.movingBorders[3] = true;
+    } else {
+     this.p1 = mouseCanvas;
+    }
+  }
+
+  onLeftUp(mouse, button, modifier) {
+    this.movingBorders = this.movingBorders.map((element) => {
+      return false;
+    });
+  }
+
+  onAltLeft(mouse, button, modifier) {
     this.p1 = null;
   }
 
-  onSetPoint2(mouse, button, modifier) {
-    this.p2 = this.screenToCanvas(mouse);
+  onLeftDrag(start, end, button, modifier) {
+    var d = end.sub(start).scale(this.zoomSpeed ** (-this.zoom));
+    if (this.movingBorders[0]) {
+      this.topLeftBorder.x += d.x;
+    } else if (this.movingBorders[2]) {
+      this.bottomRightBorder.x += d.x;
+    } else if (this.movingBorders[1]) {
+      this.topLeftBorder.y += d.y;
+    } else if (this.movingBorders[3]) {
+      this.bottomRightBorder.y += d.y;
+    }
   }
 
-  onRemovePoint2(mouse, button, modifier) {
+  onRight(mouse, button, modifier) {
+    var mouseCanvas = this.screenToCanvas(mouse);
+    this.p2 = mouseCanvas;
+  }
+
+  onAltRight(mouse, button, modifier) {
     this.p2 = null;
   }
 
@@ -76,8 +176,16 @@ class TrackerCanvasScreen extends CanvasScreen {
                     .sub(start).scale(this.zoomSpeed ** (-this.zoom)));
   }
 
+  pixToLengthString(len, scale, digits) {
+    var text = '' + Math.round(len * scale * 10 ** digits) / 10 ** digits;
+    return text + ' mm';
+  }
+
   repaint() {
     super.repaint();
+
+    var scale = Math.abs(parseFloat(this.scaleInput.value)
+                / (this.topLeftBorder.x - this.bottomRightBorder.x));
 
     var middle = this.canvasToScreen(Vector.ZERO.clone());
     this.ctx.strokeStyle = 'rgb(0 0 0 / 25%)';
@@ -125,7 +233,9 @@ class TrackerCanvasScreen extends CanvasScreen {
       this.ctx.fillStyle = '#000';
       this.ctx.font = 'bold ' + (200 * (this.zoomSpeed ** this.zoom))
                               + 'px calibri';
-      this.ctx.fillText(Math.round(this.p1.distance(this.p2) * 100) / 100, 0, -20 * (this.zoomSpeed ** this.zoom));
+      this.ctx.fillText(this.pixToLengthString(this.p1.distance(this.p2),
+                                               scale, 2),
+                        0, -20 * (this.zoomSpeed ** this.zoom));
       this.ctx.restore();
     }
 
@@ -140,6 +250,22 @@ class TrackerCanvasScreen extends CanvasScreen {
       this.ctx.fillStyle = '#C2E5DF';
       circle.fillAbsoluteSize(this, CanvasScreen.ANCHOR.m);
     }
+
+    var topLeft = this.canvasToScreen(this.topLeftBorder);
+    var bottomRight = this.canvasToScreen(this.bottomRightBorder);
+    this.ctx.strokeStyle = 'rgb(150 0 0 / 50%)';
+    this.ctx.setLineDash([5, 15]);
+    this.ctx.lineWidth = 2;
+    this.ctx.beginPath();
+    // this.ctx.moveTo(0, topLeft.y);
+    // this.ctx.lineTo(this.canvas.width, topLeft.y);
+    // this.ctx.moveTo(0, bottomRight.y);
+    // this.ctx.lineTo(this.canvas.width, bottomRight.y);
+    this.ctx.moveTo(topLeft.x, 0);
+    this.ctx.lineTo(topLeft.x, this.canvas.height);
+    this.ctx.moveTo(bottomRight.x, 0);
+    this.ctx.lineTo(bottomRight.x, this.canvas.height);
+    this.ctx.stroke();
   }
 
 }
