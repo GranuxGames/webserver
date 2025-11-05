@@ -73,7 +73,7 @@ class ServerManager {
   connectSocket(socket, url) {
     for (var server of this.servers) {
       if (url.startsWith(server.url)) {
-        return server.connectSocket(socket, url);
+        return server.connectSocket(socket, url.substring(server.url.length));
       }
     }
     return false;

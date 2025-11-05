@@ -23,8 +23,24 @@ class Vector {
     return new Vector(this.x * scalar, this.y * scalar);
   }
 
+  scaleInverted(scalar) {
+    return new Vector(this.x / scalar, this.y / scalar);
+  }
+
   scaleIndividual(vector) {
     return new Vector(this.x * vector.x, this.y * vector.y);
+  }
+
+  scaleIndividualInverted(vector) {
+    return new Vector(this.x / vector.x, this.y / vector.y);
+  }
+
+  floor() {
+    return new Vector(Math.floor(this.x), Math.floor(this.y));
+  }
+
+  round() {
+    return new Vector(Math.round(this.x), Math.round(this.y));
   }
 
   length() {
@@ -50,6 +66,18 @@ class Vector {
 
   static DIAG(value) {
     return new Vector(value, value);
+  }
+
+  equal(vector) {
+    return this.x == vector.x && this.y == vector.y;
+  }
+
+  min(vector) {
+    return new Vector(Math.min(this.x, vector.x), Math.min(this.y, vector.y));
+  }
+
+  max(vector) {
+    return new Vector(Math.max(this.x, vector.x), Math.max(this.y, vector.y));
   }
 
 }

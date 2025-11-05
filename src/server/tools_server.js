@@ -1,5 +1,7 @@
 const _PATH = require('path');
 const _SERVER = require(_PATH.join(global.__path.src, 'server', 'server'));
+const _UUID = require('uuid');
+const _CANVAS_SOCKET = require(_PATH.join(global.__path.src, 'socket', 'tools', 'canvas_socket'));
 
 
 /**
@@ -33,8 +35,17 @@ class ToolsServer extends _SERVER.Server {
                                  'insect_tracker.html'));
     });
 
-    expressServer.all('/' + this.url + '{/*path}', (request, result, next) => {
-      result.redirect('/' + this.url + '/insect-tracker');
+    expressServer.all('/' + this.url + '/canvas', (request, result) => {
+      result.redirect('/' + this.url + '/canvas/' + _UUID.v4());
+    });
+
+    expressServer.all('/' + this.url + '/canvas{/*path}', (request, result) => {
+      result.sendFile(_PATH.join(global.__path.html, 'tools', 'canvas',
+                                 'canvas.html'));
+    });
+
+    expressServer.all('/' + this.url, (request, result) => {
+      result.sendFile(_PATH.join(global.__path.html, 'tools', 'tools.html'));
     });
   }
 
@@ -49,6 +60,10 @@ class ToolsServer extends _SERVER.Server {
    *                    in any other case.
    */
   connectSocket(socket, url) {
+    if (url == '/canvas') {
+      new _CANVAS_SOCKET.CanvasSocket(socket);
+      return true;
+    }
     return false;
   }
 

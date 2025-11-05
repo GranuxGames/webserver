@@ -1,0 +1,22 @@
+body {
+  margin: 0;
+  padding: 0;
+}
+
+#canvas {
+  position: fixed;
+  top: 0px;
+  left: 0px;
+  width: 100%;
+  height: 100%;
+}
+
+#canvas:focus {
+  outline: 0px solid black;
+}
+
+.tile {
+  image-rendering: pixelated;
+  user-select: none;
+  pointer-events: none;
+}

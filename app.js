@@ -9,6 +9,7 @@ const _FS = require('fs');
 const _SOCKET = require('socket.io');
 const _SERVER_MANAGER = require(_PATH.join(global.__path.src, 'server', 'server_manager'));
 const _TOOLS_SERVER = require(_PATH.join(global.__path.src, 'server', 'tools_server'));
+const _INDEX_SERVER = require(_PATH.join(global.__path.src, 'server', 'index_server'));
 
 _LOGGER.log('Loading Config...');
 
@@ -60,6 +61,7 @@ EXPRESS_SERVER.use((req, res, next) => {
 
 var serverManager = new _SERVER_MANAGER.ServerManager(EXPRESS_SERVER);
 serverManager.addServer(new _TOOLS_SERVER.ToolsServer());
+serverManager.addServer(new _INDEX_SERVER.IndexServer());
 
 // callback for socket connections
 IO_SERVER.on('connection', (socket) => {
@@ -69,6 +71,7 @@ IO_SERVER.on('connection', (socket) => {
     } else {
       _LOGGER.warn('Socket ' + socket.id + ' tried to connect to ' + url);
     }
+    socket.emit('request-connection-response');
   });
 });
 

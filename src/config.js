@@ -8,7 +8,11 @@ const _UTILS = require(_PATH.join(global.__path.src, 'utils'));
  */
 const DEFAULT_CONFIG = {
   tools: {
-    url: 'tools'
+    url: 'tools',
+    canvas: {
+      history_length: 32,
+      tile_size: 512
+    }
   },
   server: {
     port: 12345,

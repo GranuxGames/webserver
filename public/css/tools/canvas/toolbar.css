@@ -1,0 +1,75 @@
+#toolbar {
+ position: fixed;
+ display: flex;
+ flex-direction: row;
+ height: 100%;
+ right: 0px;
+}
+
+#tools {
+  display: flex;
+  flex-direction: column;
+  gap: calc(var(--size-unit) * 0.25);
+  padding: calc(var(--size-unit) * 0.25);
+  width: calc(var(--size-unit) * (3 - 0.5));
+  height: calc(100% - var(--size-unit) * 0.5);
+  background-color: #3B3C43;
+}
+
+.tool {
+  width: calc(var(--size-unit) * 2.5);
+  height: calc(var(--size-unit) * 2.5);
+  background-color: #3B3C43;
+  background-size: 75%;
+  background-repeat: no-repeat;
+  background-position: center;
+  cursor: pointer;
+  image-rendering: pixelated;
+  transition: background-image 0.2s ease-in-out,
+              background-color 0.2s ease-in-out;
+  border-radius: calc(var(--size-unit) * 0.5);
+}
+
+.tool:hover {
+  background-color: #2E2F35;
+}
+
+.tool.selected {
+  background-color: #717379;
+}
+
+#pencil {
+  background-image: url('/resources/imgs/icons/tools/canvas/pencil 2.png');
+}
+
+#pencil:hover {
+  background-image: url('/resources/imgs/icons/tools/canvas/pencil 1.png');
+}
+
+#pencil.selected {
+  background-image: url('/resources/imgs/icons/tools/canvas/pencil 0.png');
+}
+
+#eraser {
+  background-image: url('/resources/imgs/icons/tools/canvas/eraser 2.png');
+}
+
+#eraser:hover {
+  background-image: url('/resources/imgs/icons/tools/canvas/eraser 1.png');
+}
+
+#eraser.selected {
+  background-image: url('/resources/imgs/icons/tools/canvas/eraser 0.png');
+}
+
+#picker {
+  background-image: url('/resources/imgs/icons/tools/canvas/picker 2.png');
+}
+
+#picker:hover {
+  background-image: url('/resources/imgs/icons/tools/canvas/picker 1.png');
+}
+
+#picker.selected {
+  background-image: url('/resources/imgs/icons/tools/canvas/picker 0.png');
+}

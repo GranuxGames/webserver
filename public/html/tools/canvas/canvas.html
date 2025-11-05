@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<meta charset="UTF-8">
+<html>
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    
+    <title>GranuxGames | Canvas</title>
+
+    <script src="/js/libraries/socket_4.6.1.js"></script>
+    
+    <script src="/js/utils/dragndrop.js"></script>
+    <script src="/js/utils/utils.js"></script>
+    <script src="/js/utils/vector.js"></script>
+    <script src="/js/utils/line.js"></script>
+    <script src="/js/utils/rect.js"></script>
+    <script src="/js/utils/circle.js"></script>
+    <script src="/js/utils/canvas_screen.js"></script>
+    <script src="/js/utils/socket.js"></script>
+
+    <script src="/js/tools/canvas/socket.js"></script>
+    <script src="/js/tools/canvas/tile.js"></script>
+    <script src="/js/tools/canvas/layer.js"></script>
+    <script src="/js/tools/canvas/tile_layer.js"></script>
+    <script src="/js/tools/canvas/canvas_screen.js"></script>
+    <script src="/js/tools/canvas/shape.js"></script>
+    <script src="/js/tools/canvas/shape_square.js"></script>
+    <script src="/js/tools/canvas/shape_circle.js"></script>
+    <script src="/js/tools/canvas/tool.js"></script>
+    <script src="/js/tools/canvas/tool_pencil.js"></script>
+    <script src="/js/tools/canvas/tool_eraser.js"></script>
+    <script src="/js/tools/canvas/tool_picker.js"></script>
+    <script src="/js/tools/canvas/tool_manager.js"></script>
+    <script src="/js/tools/canvas/main.js"></script>
+
+    <link rel="stylesheet" href="/css/fonts.css">
+    <link rel="stylesheet" href="/css/general.css">
+    <link rel="stylesheet" href="/css/tools/canvas/general.css">
+    <link rel="stylesheet" href="/css/tools/canvas/toolbar.css">
+  </head>
+  <body>
+    <canvas id="canvas"></canvas>
+    <div id="toolbar">
+      <div id="tools">
+        <div class="tool selected" id="pencil"></div>
+        <div class="tool" id="eraser"></div>
+        <div class="tool" id="picker"></div>
+      </div>
+    </div>
+  </body>
+</html>

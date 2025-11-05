@@ -38,14 +38,23 @@ class CanvasScreen {
     this.minZoom = minZoom;
 
     this.canvas = canvas;
+    this.canvas.setAttribute('tabindex', '1');
+    this.canvas.oncontextmenu = () => {return false;};
     this.ctx = this.canvas.getContext('2d');
     this.onResize();
+
+    this.ctx.mozImageSmoothingEnabled = false;
+    this.ctx.webkitImageSmoothingEnabled = false;
+    this.ctx.msImageSmoothingEnabled = false;
+    this.ctx.imageSmoothingEnabled = false;
 
     this.mouseButtons = [false, false, false];
     this.mouseModifier = [[], [], []];
 
+    this.canvas.addEventListener('keydown', this.onKeyDown.bind(this));
+    this.keyDownListeners = [];
     window.addEventListener('resize', this.onResize.bind(this));
-    window.addEventListener('wheel', this.onScrollRaw.bind(this));
+    window.addEventListener('wheel', this.onScrollRaw.bind(this), {passive:false});
     this.mouseScrollListeners = [];
     window.addEventListener('mousedown', this.onMouseDownRaw.bind(this));
     this.mouseDownListeners = [];
@@ -55,11 +64,37 @@ class CanvasScreen {
     window.addEventListener('mouseup', this.onMouseUpRaw.bind(this));
     this.mouseUpListeners = [];
 
-    this.updateInterval = setInterval(this.onUpdate.bind(this), 1000 / 60);
+    requestAnimationFrame(this.animationFrameCallback.bind(this));
   }
 
   onUpdate() {
     this.repaint();
+  }
+
+  addKeyDownListener(key, modifier, listener) {
+    this.keyDownListeners.push({ key: key, modifier: modifier,
+                                 callback: listener });
+  }
+
+  onKeyDown(e) {
+    var modifier = [];
+    if (e.shiftKey)
+      modifier.push(CanvasScreen.MOUSE_MODIFIER.shift);
+    if (e.ctrlKey)
+      modifier.push(CanvasScreen.MOUSE_MODIFIER.ctrl);
+    if (e.altKey)
+      modifier.push(CanvasScreen.MOUSE_MODIFIER.alt);
+
+    this.keyDownListeners.forEach((listener) => {
+      if (e.key != listener.key)
+        return;
+
+      if (!compareLists(listener.modifier, modifier))
+        return;
+
+      listener.callback(e.key, modifier);
+      e.preventDefault();
+    });
   }
 
   onResize(e) {
@@ -70,33 +105,60 @@ class CanvasScreen {
   getMousePos(e) {
     var mouse = new Vector(e.clientX, e.clientY);
     var bounds = this.canvas.getBoundingClientRect();
-    bounds = new Vector(bounds.left, bounds.top);
-    return mouse.sub(bounds);
+    var topLeft = new Vector(bounds.left, bounds.top);
+    var botRight = new Vector(bounds.right, bounds.bottom);
+    var size = botRight.sub(topLeft);
+    var pos = mouse.sub(topLeft);
+    pos = pos.scaleIndividualInverted(size);
+    return pos.scaleIndividual(new Vector(this.canvas.width, this.canvas.height));
   }
 
-  addMouseScrollListener(listener) {
-    this.mouseScrollListeners.push({ callback: listener });
+  addMouseScrollListener(modifier, listener) {
+    this.mouseScrollListeners.push({ modifier: modifier,
+                                     callback: listener });
+  }
+
+  changeZoom(mouse, deltaY) {
+    var mouseBefore = this.screenToCanvas(mouse);
+    this.zoom = Math.max(Math.min(this.zoom - Math.round(deltaY / 100),
+                                  this.maxZoom),
+                         this.minZoom);
+    var mouseAfter = this.screenToCanvas(mouse);
+    this.position = this.position.sub(mouseAfter.sub(mouseBefore));
+    
+    this.ctx.mozImageSmoothingEnabled = this.zoom < 0;
+    this.ctx.webkitImageSmoothingEnabled = this.zoom < 0;
+    this.ctx.msImageSmoothingEnabled = this.zoom < 0;
+    this.ctx.imageSmoothingEnabled = this.zoom < 0;
+  }
+
+  changePosition(mouseStart, mouseEnd) {
+    this.position = this.position.sub(mouseEnd
+                    .sub(mouseStart).scale(this.zoomSpeed ** (-this.zoom)));
   }
 
   onScrollRaw(e) {
     if (e.srcElement != this.canvas)
       return;
 
-    var mouse = this.getMousePos(e);
-    var mouseBefore = this.screenToCanvas(mouse);
-    this.zoom = Math.max(Math.min(this.zoom - Math.round(e.deltaY / 100),
-                                  this.maxZoom),
-                         this.minZoom);
-    var mouseAfter = this.screenToCanvas(mouse);
-    this.position = this.position.sub(mouseAfter.sub(mouseBefore));
+    var modifier = [];
+    if (e.shiftKey)
+      modifier.push(CanvasScreen.MOUSE_MODIFIER.shift);
+    if (e.ctrlKey)
+      modifier.push(CanvasScreen.MOUSE_MODIFIER.ctrl);
+    if (e.altKey)
+      modifier.push(CanvasScreen.MOUSE_MODIFIER.alt);
 
-    this.onScroll(e.deltaX, e.deltaY);
+    var mouse = this.getMousePos(e);
+
     this.mouseScrollListeners.forEach((listener) => {
-      listener.callback(x, y);
+      if (!compareLists(listener.modifier, modifier))
+        return;
+
+      listener.callback(mouse, e.deltaX, e.deltaY, modifier);
+      e.preventDefault();
     });
   }
-
-  onScroll(x, y) {}
 
   addMouseDownListener(button, modifier, listener) {
     this.mouseDownListeners.push({ button: button,
@@ -107,7 +169,7 @@ class CanvasScreen {
   onMouseDownRaw(e) {
     if (e.srcElement != this.canvas)
       return;
-    
+
     e.preventDefault();
     this.mouseButtons[e.button] = true;
     var modifier = [];
@@ -120,7 +182,6 @@ class CanvasScreen {
     this.mouseButtons[e.button] = modifier;
 
     var mouse = this.getMousePos(e);
-    this.onMouseDown(mouse, e.button, this.mouseModifier[e.button]);
     this.mouseDownListeners.forEach((listener) => {
       if (listener.button != e.button)
         return;
@@ -131,8 +192,6 @@ class CanvasScreen {
       listener.callback(mouse, e.button, modifier);
     });
   }
-
-  onMouseDown(mouse, button, modifier) {}
 
   addMouseMoveListener(listener) {
     this.mouseMoveListeners.push({ callback: listener });
@@ -150,7 +209,8 @@ class CanvasScreen {
     var start = end.sub(move);
     
     if (e.srcElement == this.canvas) {
-      this.onMouseMove(start, end);
+      this.canvas.focus();
+
       this.mouseMoveListeners.forEach((listener) => {
         listener.callback(start, end);
       });
@@ -158,7 +218,6 @@ class CanvasScreen {
 
     for (var i = 0; i < this.mouseButtons.length; i++) {
       if (this.mouseButtons[i]) {
-        this.onMouseDrag(start, end, i, this.mouseModifier[i]);
         this.mouseDragListeners.forEach((listener) => {
           if (listener.button != i)
             return;
@@ -171,10 +230,6 @@ class CanvasScreen {
       }
     }
   }
-
-  onMouseMove(start, end) {}
-
-  onMouseDrag(start, end, button, modifier) {}
 
   addMouseUpListener(button, modifier, listener) {
     this.mouseUpListeners.push({ button: button,
@@ -189,7 +244,6 @@ class CanvasScreen {
     this.mouseModifier[e.button] = [];
 
     var mouse = this.getMousePos(e);
-    this.onMouseUp(mouse, e.button, modifier);
     this.mouseUpListeners.forEach((listener) => {
       if (listener.button != e.button)
         return;
@@ -200,8 +254,6 @@ class CanvasScreen {
       listener.callback(mouse, e.button, modifier);
     });
   }
-
-  onMouseUp(button, mouse, modifier) {}
 
   screenToCanvas(vec) {
     vec = vec.sub(new Vector(this.canvas.width, this.canvas.height)
@@ -225,6 +277,20 @@ class CanvasScreen {
 
   canvasSizeToScreen(size) {
     return size * (this.zoomSpeed ** this.zoom);
+  }
+
+  getBottomRightCanvas() {
+    return this.screenToCanvas(new Vector(this.canvas.width, this.canvas.height));
+  }
+
+  getTopLeftCanvas() {
+    return this.screenToCanvas(Vector.ZERO);
+  }
+
+
+  animationFrameCallback() {
+    this.repaint();
+    requestAnimationFrame(this.animationFrameCallback.bind(this));
   }
 
   repaint() {

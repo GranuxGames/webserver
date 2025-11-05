@@ -11,6 +11,10 @@ body {
   height: 100%;
 }
 
+#canvas:focus {
+  outline: 0px solid black;
+}
+
 #upload-zone {
   position: fixed;
   top: 0px;
@@ -20,6 +24,7 @@ body {
   background-color: #0002;
   user-select: none;
   pointer-events: none;
+  display: none;
 }
 
 #upload-zone.active > div {

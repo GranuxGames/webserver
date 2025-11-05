@@ -22,6 +22,7 @@ class TrackerCanvasScreen extends CanvasScreen {
 
     this.bgImgs = defaultList(2, null);
 
+    this.addMouseScrollListener([], this.onScroll.bind(this));
     this.addMouseMoveListener(this.onMove.bind(this));
     this.addMouseDownListener(CanvasScreen.MOUSE_BUTTON.left, [],
                               this.onLeft.bind(this));
@@ -62,6 +63,10 @@ class TrackerCanvasScreen extends CanvasScreen {
                              .getItem('tools.insect_tracker.border.bottom_right')));
     this.scaleInput.value = parseFloat(window.localStorage
                             .getItem('tools.insect_tracker.scale'));
+  }
+
+  onScroll(mouse, x, y, modifier) {
+    this.changeZoom(mouse, y);
   }
 
   onScaleInput() {
@@ -172,8 +177,7 @@ class TrackerCanvasScreen extends CanvasScreen {
   }
 
   onMoveScreen(start, end, button, modifier) {
-    this.position = this.position.sub(end
-                    .sub(start).scale(this.zoomSpeed ** (-this.zoom)));
+    this.changePosition(start, end);
   }
 
   pixToLengthString(len, scale, digits) {

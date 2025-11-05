@@ -1,0 +1,113 @@
+@font-face {
+  font-family: 'Source Sans Pro';
+  font-stretch: normal;
+  font-weight: 200;
+  font-style: normal;
+  src: url('/resources/fonts/source sans pro/200.otf');
+}
+
+@font-face {
+  font-family: 'Source Sans Pro';
+  font-stretch: normal;
+  font-weight: 200;
+  font-style: italic;
+  src: url('/resources/fonts/source sans pro/200 it.otf');
+}
+
+@font-face {
+  font-family: 'Source Sans Pro';
+  font-stretch: normal;
+  font-weight: 300;
+  font-style: normal;
+  src: url('/resources/fonts/source sans pro/300.otf');
+}
+
+@font-face {
+  font-family: 'Source Sans Pro';
+  font-stretch: normal;
+  font-weight: 300;
+  font-style: italic;
+  src: url('/resources/fonts/source sans pro/300 it.otf');
+}
+
+@font-face {
+  font-family: 'Source Sans Pro';
+  font-stretch: normal;
+  font-weight: 400;
+  font-style: normal;
+  src: url('/resources/fonts/source sans pro/400.otf');
+}
+
+@font-face {
+  font-family: 'Source Sans Pro';
+  font-stretch: normal;
+  font-weight: 400;
+  font-style: italic;
+  src: url('/resources/fonts/source sans pro/400 it.otf');
+}
+
+@font-face {
+  font-family: 'Source Sans Pro';
+  font-stretch: normal;
+  font-weight: 600;
+  font-style: normal;
+  src: url('/resources/fonts/source sans pro/600.otf');
+}
+
+@font-face {
+  font-family: 'Source Sans Pro';
+  font-stretch: normal;
+  font-weight: 600;
+  font-style: italic;
+  src: url('/resources/fonts/source sans pro/600 it.otf');
+}
+
+@font-face {
+  font-family: 'Source Sans Pro';
+  font-stretch: normal;
+  font-weight: 700;
+  font-style: normal;
+  src: url('/resources/fonts/source sans pro/700.otf');
+}
+
+@font-face {
+  font-family: 'Source Sans Pro';
+  font-stretch: normal;
+  font-weight: 700;
+  font-style: italic;
+  src: url('/resources/fonts/source sans pro/700 it.otf');
+}
+
+
+
+@font-face {
+  font-family: 'Kirvy';
+  font-stretch: normal;
+  font-weight: 100;
+  font-style: normal;
+  src: url('/resources/fonts/kirvy/100.otf');
+}
+
+@font-face {
+  font-family: 'Kirvy';
+  font-stretch: normal;
+  font-weight: 200;
+  font-style: normal;
+  src: url('/resources/fonts/kirvy/200.otf');
+}
+
+@font-face {
+  font-family: 'Kirvy';
+  font-stretch: normal;
+  font-weight: 300;
+  font-style: normal;
+  src: url('/resources/fonts/kirvy/300.otf');
+}
+
+@font-face {
+  font-family: 'Kirvy';
+  font-stretch: normal;
+  font-weight: 400;
+  font-style: normal;
+  src: url('/resources/fonts/kirvy/400.otf');
+}
