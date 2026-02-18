@@ -1,9 +1,15 @@
 {
   "dependencies": {
+    "argon2": "^0.44.0",
+    "bad-words": "^4.0.0",
+    "better-sqlite3": "^12.5.0",
     "canvas": "^3.2.0",
     "express": "^5.1.0",
+    "express-session": "^1.18.2",
     "js-yaml": "^4.1.0",
+    "obscenity": "^0.4.5",
     "socket.io": "^4.8.1",
+    "sqlite3": "^5.1.7",
     "uuid": "^11.1.0"
   }
 }

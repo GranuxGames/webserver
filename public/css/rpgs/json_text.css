@@ -1,0 +1,37 @@
+.json-text {
+  white-space: pre-wrap;
+}
+
+.json-text-italic {
+  font-style: italic;
+}
+
+.json-text-bold {
+  font-weight: bold;
+}
+
+.json-text-unordered-element:before {
+  content: '•';
+  position: absolute;
+  left: -1.5em;
+  width: 1.5em;
+  text-align: center;
+  vertical-align: middle;
+}
+
+.json-text-unordered-element {
+  margin-left: 1.5em;
+  position: relative;
+}
+
+.json-text-table-left-adjust {
+  text-align: left;
+}
+
+.json-text-table-center-adjust {
+  text-align: center;
+}
+
+.json-text-table-right-adjust {
+  text-align: right;
+}

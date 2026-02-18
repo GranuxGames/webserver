@@ -1,0 +1,1929 @@
+body {
+  --body-padding: 8px;
+
+  margin: 0px;
+  padding: var(--body-padding);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+
+
+#sheet {
+  --sheet-size-unit: calc(min(100vw - var(--body-padding) * 2, 1000px) / 100);
+  width: calc(var(--sheet-size-unit) * 100);
+  font-size: calc(var(--sheet-size-unit) * 1.5);
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: calc(var(--sheet-size-unit) * 0.75);
+
+  font-family: 'Scaly Sans';
+}
+
+#sheet input {
+  border: none;
+  outline: none;
+  min-width: 0;
+  font-family: 'Scaly Sans';
+  background-color: #fff0;
+  font-size: 100%;
+  text-overflow: ellipsis;
+  padding: 0;
+  margin: 0;
+}
+
+.sheet-background {
+  grid-area: 1 / 1;
+}
+
+
+
+#sheet .checkbox {
+  aspect-ratio: 1;
+  cursor: pointer;
+  content: url("/resources/imgs/rpgs/dnd/character_sheet/checkbox.svg");
+}
+
+#sheet .checkbox.checked {
+  content: url("/resources/imgs/rpgs/dnd/character_sheet/checkbox-checked.svg");
+}
+
+#sheet .checkbox.double-checked {
+  content: url("/resources/imgs/rpgs/dnd/character_sheet/checkbox-double-checked.svg");
+}
+
+#sheet .collapse-button {
+  aspect-ratio: 1;
+  cursor: pointer;
+  content: url("/resources/imgs/rpgs/dnd/character_sheet/arrow-closed.svg");
+}
+
+#sheet .collapse-button.open {
+  content: url("/resources/imgs/rpgs/dnd/character_sheet/arrow-opened.svg");
+}
+
+
+
+.sheet-header {
+  width: 100%;
+}
+
+.sheet-header > .sheet-background,
+#health-block > .sheet-background,
+#ac-container > .sheet-background,
+#initiative-container > .sheet-background,
+#speed-container > .sheet-background,
+#hp-container > .sheet-background,
+#temp-hp-container > .sheet-background,
+#hit-dice-container > .sheet-background,
+#death-saves-container > .sheet-background,
+#personality-container > .sheet-background,
+#ideals-container > .sheet-background,
+#bonds-container > .sheet-background,
+#flaws-container > .sheet-background {
+  width: 100%;
+  height: 100%;
+}
+
+.sheet-body {
+  --sheet-body-width: 0.9475;
+  width: calc(var(--sheet-size-unit) * 100 * var(--sheet-body-width));
+}
+
+
+
+.sheet-header {
+  display: grid;
+}
+
+.sheet-header > div {
+  grid-area: 1 / 1;
+  display: flex;
+  flex-direction: row;
+}
+
+.header-name-container {
+  width: 42%;
+  flex: 0 0 42%;
+  display: flex;
+  flex-direction: column;
+  gap: 7.75%;
+}
+
+.header-name-input {
+  font-size: 200% !important;
+  height: 23%;
+  box-sizing: border-box;
+  text-align: center;
+  width: 100%;
+  margin-top: 18% !important;
+  padding-left: 14% !important;
+}
+
+.header-name-name {
+  padding: 0;
+  padding-left: 24.5%;
+  margin: 0;
+  font-size: 80%;
+  height: 15%;
+  display: flex;
+  align-items: start;
+  width: 50%;
+  box-sizing: border-box;
+}
+
+.header-body {
+  flex: 1 0 0;
+  box-sizing: border-box;
+}
+
+.header-body-table {
+  padding: 5.75% 5.4% 2.05% 2.2%;
+  display: flex;
+  flex-direction: column;
+  gap: 8.5%;
+}
+
+.header-body-table > div {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  gap: 1%;
+  height: 40%;
+  flex: 0 0 40%;
+}
+
+.header-body-table > div > div {
+  flex: 0 0 calc((100% - 2%) / 3);
+  width: calc((100% - 2%) / 3);
+  display: flex;
+  flex-direction: column;
+}
+
+.header-body-table > div > div > input {
+  width: 100%;
+  flex: 1 0 0;
+  font-size: 125% !important;
+}
+
+.header-body-table > div > div > p {
+  margin: 0;
+  padding: 0;
+  font-size: 80%;
+  width: 100%;
+  height: 35%;
+  display: flex;
+  align-items: center;
+}
+
+
+
+/* -------------------------------- PAGE 1  -------------------------------- */
+#sheet-body-1 {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  --gap: calc(var(--sheet-size-unit) * 0.75);
+  --small-gap: calc(var(--gap) / 0.75 * 0.75);
+}
+
+#stats-block-container {
+  grid-area: 1 / 1 / 3 / 1;
+  padding: var(--gap);
+}
+
+#stats-block {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: row;
+  gap: 2.5%;
+}
+
+#stats-container {
+  display: grid;
+  height: 100%;
+  width: calc((var(--sheet-size-unit) * 100 * var(--sheet-body-width) / 3 - var(--gap) * 2) * 0.3397932387);
+  flex-shrink: 0;
+}
+
+#stats-container > .sheet-background {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+#stats-container > div {
+  grid-area: 1 / 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  margin: 27% 6% 22% 6%;
+}
+
+.stat {
+  display: grid;
+}
+
+.stat > div {
+  width: 100%;
+  grid-area: 1 / 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.stat-name {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 0;
+  margin: 0;
+  font-size: 70%;
+  font-weight: bold;
+  flex: 0 0 25%;
+}
+
+.stat-modifier {
+  width: 75%;
+  text-align: center;
+  font-size: 200% !important;
+  flex: 1 0 0;
+}
+
+.stat-value {
+  width: 35%;
+  text-align: center;
+  font-size: 125% !important;
+  flex: 0 0 35%;
+}
+
+#skills-block {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100%;
+  width: 100%;
+}
+
+#inspiration-container,
+#proficiency-container {
+  display: grid;
+}
+
+#inspiration-container > div,
+#proficiency-container > div {
+  grid-area: 1 / 1;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+#inspiration-container > div > input {
+  box-sizing: border-box;
+  height: 75%;
+  min-width: 0;
+  flex: 0 0 24%;
+  width: 24%;
+  padding: 0 3%;
+  text-align: center;
+  font-size: 125%;
+}
+
+#proficiency-container > div > input {
+  box-sizing: border-box;
+  height: 75%;
+  min-width: 0;
+  flex: 0 0 28.5%;
+  width: 28.5%;
+  padding: 0 4% 0 3%;
+  text-align: center;
+  font-size: 125%;
+}
+
+#inspiration-container > div > p,
+#proficiency-container > div > p {
+  margin: 0;
+  font-size: 70%;
+  text-align: center;
+  flex: 1 0 0;
+  font-weight: bold;
+}
+
+#proficiency-container > div > p {
+  box-sizing: border-box;
+  padding-right: 5%;
+}
+
+#saves-container {
+  display: grid;
+}
+
+#saves-container > div{
+  grid-area: 1 / 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+#saves-list-container {
+  flex: 1 0 0;
+  width: 90%;
+  margin: 5% 5% 0 5%;
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+.save-container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 2%;
+  height: calc(var(--sheet-size-unit) * 2.3);
+}
+
+.save-checkbox {
+  height: 70%;
+}
+
+.save-value {
+  width: 15%;
+  font-size: 100% !important;
+  height: 100%;
+  background-size: 100% 100%;
+  background-image: url('/resources/imgs/rpgs/dnd/character_sheet/underline.svg');
+}
+
+.save-name {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  font-size: 80%;
+  display: flex;
+  align-items: center;
+}
+
+#saves-name {
+  padding: 0;
+  margin: 0;
+  width: 90%;
+  font-size: 70%;
+  font-weight: bold;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  flex: 0 0 12%;
+  height: 12%;
+}
+
+#skills-container {
+  display: grid;
+}
+
+#skills-container > div{
+  grid-area: 1 / 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+#skills-list-container {
+  flex: 1 0 0;
+  width: 90%;
+  margin: 5% 5% 0 5%;
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+.skill-container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 2%;
+  height: calc(var(--sheet-size-unit) * 2.3);
+}
+
+.skill-checkbox {
+  height: 50%;
+}
+
+.skill-value {
+  width: 15%;
+  font-size: 100% !important;
+  height: 100%;
+  background-size: 100% 100%;
+  background-image: url('/resources/imgs/rpgs/dnd/character_sheet/underline.svg');
+}
+
+.skill-name {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  font-size: 80%;
+  display: flex;
+  align-items: center;
+}
+
+.skill-type {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  color: #bbb;
+  font-size: 80%;
+  display: flex;
+  align-items: center;
+}
+
+.skill-type:before {
+  content: '(';
+}
+
+.skill-type:after {
+  content: ')';
+}
+
+#skills-name {
+  padding: 0;
+  margin: 0;
+  width: 90%;
+  font-size: 70%;
+  font-weight: bold;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  flex: 0 0 4.6%;
+  height: 4.6%;
+}
+
+#health-block-container {
+  grid-area: 1 / 2 / 1 / 2;
+  padding: var(--gap);
+  width: 100%;
+  height: 100%;
+  box-sizing: border-box;
+}
+
+#health-block {
+  display: grid;
+  height: 100%;
+  width: 100%;
+}
+
+#health-block > .sheet-background {
+  object-fit: cover;
+  width: 100%;
+  height: 100%;
+}
+
+#health-block > div {
+  grid-area: 1 / 1;
+  width: 100%;
+  height: 100%;
+  padding: 5%;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+}
+
+#health-header {
+  display: flex;
+  flex-direction: row;
+  gap: calc(100% / 18);
+  width: 100%;
+}
+
+#ac-container {
+  display: grid;
+}
+
+#ac-container > div {
+  grid-area: 1 / 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+#ac-value {
+  flex: 1 0 0;
+  width: 60%;
+  font-size: 200% !important;
+  text-align: center;
+  padding-top: 5% !important;
+}
+
+#ac-name {
+  flex: 0 0 25%;
+  height: 25%;
+  margin: 0;
+  margin-bottom: 20% !important;
+  padding: 0;
+  width: 75%;
+  font-size: 70%;
+  font-weight: bold;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+#initiative-container {
+  display: grid;
+}
+
+#initiative-container > div {
+  grid-area: 1 / 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+#initiative-value {
+  flex: 1 0 0;
+  width: 60%;
+  font-size: 200% !important;
+  text-align: center;
+  padding-top: 25% !important;
+}
+
+#initiative-name {
+  flex: 0 0 25%;
+  height: 25%;
+  margin: 0;
+  margin-bottom: 10%;
+  padding: 0;
+  width: 100%;
+  font-size: 70%;
+  font-weight: bold;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+#speed-container {
+  display: grid;
+}
+
+#speed-container > div {
+  grid-area: 1 / 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+#speed-value {
+  flex: 1 0 0;
+  width: 60%;
+  font-size: 200% !important;
+  text-align: center;
+  padding-top: 25% !important;
+}
+
+#speed-name {
+  flex: 0 0 25%;
+  height: 25%;
+  margin: 0;
+  margin-bottom: 10%;
+  padding: 0;
+  width: 100%;
+  font-size: 70%;
+  font-weight: bold;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+#hp-container {
+  display: grid;
+  width: 100%;
+}
+
+#hp-container > div {
+  grid-area: 1 / 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+#hp-container > div > div {
+  width: 90%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  flex: 0 0 25%;
+  height: 25%;
+}
+
+#hp-max-name {
+  margin: 0;
+  padding: 0;
+  color: #bbb;
+  font-size: 80%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  width: 42%;
+  flex: 0 0 42%;
+}
+
+#hp-max-value {
+  width: 100%;
+  height: 100%;
+  font-size: 125% !important;
+  border-bottom: 1px solid #bbb !important;
+}
+
+#hp-value {
+  width: 90%;
+  text-align: center;
+  flex: 1 0 0;
+  font-size: 250% !important;
+}
+
+#hp-name {
+  padding: 0;
+  margin: 0;
+  font-weight: bold;
+  font-size: 70%;
+  height: 25%;
+  flex: 0 0 25%;
+  display: flex;
+  align-items: center;
+}
+
+#temp-hp-container {
+  display: grid;
+  width: 100%;
+}
+
+#temp-hp-container > div {
+  grid-area: 1 / 1;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: end;
+}
+
+#temp-hp-value {
+  width: 90%;
+  text-align: center;
+  height: 70%;
+  flex: 0 0 70%;
+  font-size: 250% !important;
+}
+
+#temp-hp-name {
+  padding: 0;
+  margin: 0;
+  font-weight: bold;
+  font-size: 70%;
+  height: 25%;
+  flex: 0 0 25%;
+  display: flex;
+  align-items: center;
+}
+
+#health-footer {
+  display: flex;
+  flex-direction: row;
+  gap: calc(100% / 18);
+  width: 100%;
+}
+
+#hit-dice-container {
+  flex: 1 0 0;
+  display: grid;
+  width: 100%;
+}
+
+#hit-dice-container > div {
+  grid-area: 1 / 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+#hit-dice-container > div > div {
+  width: 85%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  flex: 0 0 35%;
+  height: 35%;
+}
+
+#hit-dice-max-name {
+  margin: 0;
+  padding: 0;
+  color: #bbb;
+  font-size: 80%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  width: 25%;
+  flex: 0 0 25%;
+}
+
+#hit-dice-max-value {
+  height: 100%;
+  width: 100%;
+  font-size: 125% !important;
+  border-bottom: 1px solid #bbb !important;
+}
+
+#hit-dice-value {
+  width: 85%;
+  text-align: center;
+  flex: 1 0 0;
+  font-size: 125% !important;
+}
+
+#hit-dice-name {
+  padding: 0;
+  margin: 0;
+  font-size: 80%;
+  height: 25%;
+  flex: 0 0 25%;
+  display: flex;
+  align-items: center;
+}
+
+#death-saves-container {
+  flex: 1 0 0;
+  display: grid;
+  width: 100%;
+}
+
+#death-saves-container > div {
+  grid-area: 1 / 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+#death-saves-container > div > div {
+  display: flex;
+  flex-direction: column;
+  width: 85%;
+  justify-content: center;
+  flex: 1 0 0;
+  height: 100%;
+  padding-top: 9%;
+}
+
+#death-saves-container > div > div > div {
+  display: flex;
+  flex-direction: row;
+  justify-content: end;
+  width: 100%;
+  height: 45%;
+  flex: 0 0 45%;
+  align-items: center;
+}
+
+#death-saves-successes-name {
+  padding: 0;
+  margin: 0;
+  font-size: 80%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  padding-right: 5%;
+}
+
+#death-saves-failures-name {
+  padding: 0;
+  margin: 0;
+  font-size: 80%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  padding-right: 5%;
+}
+
+.death-save-separator {
+  width: 3%;
+  height: 15%;
+  background-color: black;
+}
+
+.death-save-checkbox {
+  width: 10.5%;
+}
+
+#death-saves-name {
+  padding: 0;
+  margin: 0;
+  font-size: 80%;
+  height: 25%;
+  flex: 0 0 25%;
+  display: flex;
+  align-items: center;
+}
+
+#personality-block-container {
+  grid-area: 1 / 3 / 1 / 3;
+  padding: var(--gap);
+  box-sizing: border-box;
+  width: 100%;
+  height: 100%;
+}
+
+#personality-block {
+  display: grid;
+  width: 100%;
+  height: 100%;
+}
+
+#personality-block > .sheet-background {
+  object-fit: cover;
+  width: 100%;
+  height: 100%;
+}
+
+#personality-block > div {
+  grid-area: 1 / 1;
+  box-sizing: border-box;
+  padding: 5%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.text-block-container {
+  width: 100%;
+  display: grid;
+  --font-scale: 1.0;
+}
+
+.text-block-container > div {
+  grid-area: 1 / 1;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+  padding: 3.5% 3.5% 0 3.5%;
+  box-sizing: border-box;
+  align-items: center;
+}
+
+.text-block-input {
+  flex: 1 0 0;
+  width: 100%;
+  resize: none;
+  border: none;
+  outline: none;
+  font-family: 'Bookinsanity';
+  font-size: calc(90% * var(--font-scale));
+  padding: 0;
+}
+
+#personality-container > div > div {
+  height: 23%;
+  flex: 0 0 23%;
+}
+
+.text-block-container > div > div {
+  width: 100%;
+  height: 30.34%;
+  flex: 0 0 30.34%;
+  position: relative;
+}
+
+.text-block-name {
+  width: 100%;
+  padding: 0;
+  margin: 0;
+  font-size: 80%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.zoom-buttons {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: end;
+  top: 0;
+  gap: 1%;
+}
+
+.zoom-button {
+  height: 50%;
+  cursor: pointer;
+}
+
+#weapons-block-container {
+  grid-area: 2 / 2 / 2 / 2;
+  padding: var(--gap) var(--small-gap);
+  width: 100%;
+  height: 100%;
+  box-sizing: border-box;
+}
+
+#weapons-block {
+  width: 100%;
+  height: 100%;
+  box-sizing: border-box;
+  display: grid;
+  --font-scale: 1.0;
+}
+
+#weapons-block > .sheet-background {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+#weapons-block > div {
+  grid-area: 1 / 1;
+  width: 100%;
+  height: 100%;
+  box-sizing: border-box;
+  padding: 3% 4% 0% 4%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+#weapons-header {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  gap: 2%;
+  height: 5%;
+  flex: 0 0 5%;
+}
+
+#weapons-header > p {
+  padding: 0;
+  margin: 0;
+  font-size: 80%;
+  color: #bbb;
+  flex: 1 0 0;
+}
+
+#weapons-header > p:nth-child(2) {
+  width: 25%;
+  flex: 0 0 25%;
+  text-align: center;
+}
+
+#weapons-list-container {
+  flex: 1 0 0;
+  width: 100%;
+  overflow-y: auto;
+  overflow-x: hidden;
+  display: flex;
+  flex-direction: column;
+  gap: 2%;
+}
+
+.weapon-container {
+  display: flex;
+  flex-direction: column;
+  gap: calc(var(--sheet-size-unit) * 0.25);
+  width: 100%;
+}
+
+.weapon {
+  display: flex;
+  flex-direction: row;
+  gap: 2%;
+  width: 100%;
+}
+
+.weapon > * {
+  box-sizing: border-box;
+  padding: 1% !important;
+  background-color: #eee !important;
+  background-clip: border-box;
+  clip-path: polygon(
+    8% 0%,
+    100% 0%,
+    100% 70%,
+    92% 100%,
+    0% 100%,
+    0% 30%);
+  flex: 0 0 35.5%;
+  width: 35.5%;
+}
+
+.weapon-bonus-input {
+  width: 25%;
+  flex: 0 0 25%;
+}
+
+.weapon-description {
+  resize: none;
+  word-break: break-all;
+  field-sizing: content;
+  width: 100%;
+  border: none;
+  outline: none;
+  font-family: 'Scaly Sans';
+  font-size: calc(100% * var(--font-scale));
+  padding: 0%;
+}
+
+#weapons-footer {
+  width: 100%;
+  height: 6.83%;
+  flex: 0 0 6.83%;
+  position: relative;
+}
+
+#weapons-name {
+  font-weight: bold;
+  font-size: 70%;
+}
+
+#inventory-block-container {
+  grid-area: 3 / 2 / 3 / 2;
+  padding: var(--gap) var(--gap) var(--gap) 0;
+  box-sizing: border-box;
+  width: 100%;
+  height: 100%;
+}
+
+#inventory-block {
+  display: grid;
+  --font-scale: 1;
+}
+
+#inventory-block > div {
+  grid-area: 1 / 1;
+  width: 100%;
+  height: 100%;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+#inventory-container {
+  flex: 1 0 0;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+}
+
+#money {
+  width: 29.5%;
+  flex: 0 0 29.5%;
+  height: 96%;
+  display: flex;
+  flex-direction: column;
+  padding-top: 4%;
+  gap: 1.75%;
+}
+
+#money > div {
+  display: flex;
+  flex-direction: row;
+  height: 14.5%;
+  flex: 0 0 14.5%;
+}
+
+.money-name {
+  padding: 0;
+  margin: 0;
+  font-size: 70%;
+  display: flex;
+  align-items: center;
+  color: #bbb;
+  width: 20%;
+  flex: 0 0 20%;
+  height: 100%;
+  justify-content: end;
+  padding-right: 2%;
+  padding-top: 2%;
+  box-sizing: border-box;
+}
+
+.money-input {
+  flex: 1 0 0;
+  height: 100%;
+  text-align: center;
+  font-size: 100% !important;
+  padding: 0% 10% !important;
+}
+
+#inventory-input {
+  margin: 3% 3% 0% 2%;
+}
+
+#inventory-footer {
+  position: relative;
+  height: 7.35%;
+  flex: 0 0 7.35%;
+  width: 89.5%;
+  box-sizing: border-box;
+  margin-left: 6.5%;
+  margin-right: 4%;
+}
+
+#inventory-name {
+  font-size: 70%;
+  font-weight: bold;
+}
+
+#proficiencies-block-container {
+  grid-area: 3 / 1 / 3 / 1;
+  padding: var(--gap);
+  width: 100%;
+  height: 100%;
+  box-sizing: border-box;
+}
+
+#proficiencies-block {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+#passive-perception-container {
+  display: grid;
+}
+
+#passive-perception-container > div {
+  grid-area: 1 / 1;
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  height: 100%;
+}
+
+#passive-perception-input {
+  width: 18%;
+  flex: 0 0 18%;
+  box-sizing: border-box;
+  padding: 3% 3% !important;
+  text-align: center;
+  font-size: 125% !important;
+}
+
+#passive-perception-name {
+  padding: 0;
+  margin: 0;
+  font-size: 80%;
+  flex: 1 0 0;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+#proficiencies-container > div {
+  padding-top: 1.5%;
+}
+
+#proficiencies-container > div > div {
+  height: 9.44%;
+  flex: 0 0 9.44%;
+}
+
+#proficiencies-name {
+  font-size: 70%;
+  font-weight: bold;
+}
+
+#feats-block-container {
+  grid-area: 2 / 3 / 4 / 3;
+  padding: var(--gap) var(--small-gap);
+  width: 100%;
+  height: 100%;
+  box-sizing: border-box;
+}
+
+#feats-block {
+  width: 100%;
+  height: 100%;
+}
+
+#feats-block > div {
+  padding-top: 2.75%;
+}
+
+#feats-block > div > div {
+  height: 3.434%;
+  flex: 0 0 3.434%;
+}
+
+#feats-block > .sheet-background {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+#feats-name {
+  font-size: 70%;
+  font-weight: bold;
+}
+
+
+
+/* -------------------------------- PAGE 2  -------------------------------- */
+#header-body-2 {
+  padding-left: 1.3%;
+  padding-right: 4.75%;
+}
+
+#sheet-body-2 {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  --gap: calc(var(--sheet-size-unit) * 0.75);
+  --small-gap: calc(var(--gap) / 0.75 * 0.75);
+}
+
+#appearance-block-container {
+  grid-area: 1 / 1 / 1 / 1;
+  width: 100%;
+  box-sizing: border-box;
+  padding: 0 var(--gap) 0 var(--gap);
+}
+
+#appearance-block {
+  width: 100%;
+  height: 100%;
+  display: grid;
+  --font-scale: 1;
+}
+
+#appearance-block > .sheet-background {
+  width: 100%;
+  height: 100%;
+  object-fit: fill;
+}
+
+#appearance-block > div {
+  grid-area: 1 / 1;
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+  width: 100%;
+  height: 100%;
+  padding: 10% 4% 7% 4%;
+}
+
+#appearance-block > div > div:nth-child(1) {
+  flex: 1 0 0;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+#appearance-input {
+  flex: 1 0 0;
+  border: 0;
+  outline: 0;
+  font-family: 'Bookinsanity';
+  resize: none;
+  width: 100%;
+  font-size: calc(90% * var(--font-scale));
+}
+
+#appearance-image {
+  flex: 1 0 0;
+  cursor: pointer;
+  background-image: url('https://imgs.search.brave.com/wlqZEP1US4d7wwlQrLepqxNafHyaa39o-BINR0grtqU/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9pLnBp/bmltZy5jb20vb3Jp/Z2luYWxzLzI5L2Mz/LzFiLzI5YzMxYjRh/ODcxZTJmZjBjZTgz/MzgxNjUzODkzMjI2/LmpwZw');
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+#appearance-footer {
+  width: 100%;
+  height: 5.7%;
+  flex: 0 0 5.7%;
+  position: relative;
+}
+
+#appearance-name {
+  margin: 0;
+  padding: 0;
+  font-size: 70%;
+  font-weight: bold;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+#allies-block-container {
+  grid-area: 1 / 2 / 1 / 4;
+  width: 100%;
+  box-sizing: border-box;
+  padding: calc(var(--sheet-size-unit) * 2) var(--gap) calc(var(--sheet-size-unit) * 2) var(--gap);
+}
+
+#allies-block {
+  width: 100%;
+  height: 100%;
+  display: grid;
+  --font-scale: 1
+}
+
+#allies-block > .sheet-background {
+  width: 100%;
+  height: 100%;
+  object-fit: fill;
+}
+
+#allies-block > div {
+  grid-area: 1 / 1;
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+  width: 100%;
+  height: 100%;
+  padding: 1.5% 2% 0% 2%;
+}
+
+#allies-block > div > div:nth-child(1) {
+  flex: 1 0 0;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  gap: 2%;
+}
+
+#allies-input {
+  flex: 1 0 0;
+  font-family: 'Bookinsanity';
+  font-size: calc(90% * var(--font-scale));
+  resize: none;
+  height: 100%;
+  border: none;
+  outline: none;
+}
+
+#allies-block > div > div:nth-child(1) > div {
+  flex: 1 0 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: 100%;
+}
+
+#allies-block > div > div:nth-child(1) > div > div {
+  width: 100%;
+  display: grid;
+}
+
+#allies-block > div > div:nth-child(1) > div > div > div {
+  grid-area: 1 / 1;
+  box-sizing: border-box;
+  padding: 9% 7.5% 13% 7%;
+  display: flex;
+  flex-direction: column;
+  gap: 2%;
+}
+
+#symbol-name {
+  font-size: 70%;
+  color: #bbb;
+  margin: 0;
+  padding: 0;
+}
+
+#symbol-input {
+  width: 100%;
+  font-size: 125%;
+}
+
+#symbol-image {
+  flex: 1 0 0;
+  width: 100%;
+  cursor: pointer;
+  background-image: url('https://imgs.search.brave.com/EQWfsnUT8U1jxLbQOhAEcu9FEupcpSXPPvAExfVt7as/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9pLnBp/bmltZy5jb20vb3Jp/Z2luYWxzL2RlLzEw/L2ZlL2RlMTBmZWNl/MWEzYjJmMmQ2YmZl/ZGRjOGQ2MzRhMWMz/LmpwZw');
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+#allies-footer {
+  width: 100%;
+  height: 5.63%;
+  flex: 0 0 5.63%;
+  position: relative;
+}
+
+#allies-name {
+  font-size: 70%;
+  font-weight: bold;
+}
+
+#backstory-block-container {
+  grid-area: 2 / 1 / 4 / 1;
+  width: 100%;
+  box-sizing: border-box;
+  padding: calc(var(--gap) * 2.5) var(--gap) var(--gap) var(--gap);
+}
+
+#backstory-block {
+  width: 100%;
+  height: 100%;
+  display: grid;
+  --font-scale: 1;
+}
+
+#backstory-block > .sheet-background {
+  width: 100%;
+  height: 100%;
+  object-fit: fill;
+}
+
+#backstory-block > div {
+  grid-area: 1 / 1;
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+  width: 100%;
+  height: 100%;
+  padding: 4% 4% 2.5% 4%;
+}
+
+#backstory-input {
+  flex: 1 0 0;
+  border: 0;
+  outline: 0;
+  font-family: 'Bookinsanity';
+  resize: none;
+  width: 100%;
+  font-size: calc(90% * var(--font-scale));
+}
+
+#backstory-footer {
+  width: 100%;
+  height: 3.47%;
+  flex: 0 0 3.47%;
+  position: relative;
+}
+
+#backstory-name {
+  font-size: 70%;
+  font-weight: bold;
+}
+
+#additional-traits-block-container {
+  grid-area: 2 / 2 / 2 / 4;
+  width: 100%;
+  box-sizing: border-box;
+  padding: 0 var(--gap) var(--gap) var(--gap);
+}
+
+#additional-traits-block {
+  width: 100%;
+  height: 100%;
+  display: grid;
+  --font-scale: 1;
+}
+
+#additional-traits-block > .sheet-background {
+  width: 100%;
+  height: 100%;
+  object-fit: fill;
+}
+
+#additional-traits-block > div {
+  grid-area: 1 / 1;
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+  width: 100%;
+  height: 100%;
+  padding: 1.5% 2% 0% 2%;
+}
+
+#additional-traits-input {
+  flex: 1 0 0;
+  border: 0;
+  outline: 0;
+  font-family: 'Bookinsanity';
+  resize: none;
+  width: 100%;
+  font-size: calc(90% * var(--font-scale));
+}
+
+#additional-traits-footer {
+  width: 100%;
+  height: 6.05%;
+  flex: 0 0 6.05%;
+  position: relative;
+}
+
+#additional-traits-name {
+  font-size: 70%;
+  font-weight: bold;
+}
+
+#treasure-block-container {
+  grid-area: 3 / 2 / 3 / 4;
+  width: 100%;
+  box-sizing: border-box;
+  padding: var(--gap) var(--gap) var(--gap) var(--gap);
+}
+
+#treasure-block {
+  width: 100%;
+  height: 100%;
+  display: grid;
+  --font-scale: 1;
+}
+
+#treasure-block > .sheet-background {
+  width: 100%;
+  height: 100%;
+  object-fit: fill;
+}
+
+#treasure-block > div {
+  grid-area: 1 / 1;
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+  width: 100%;
+  height: 100%;
+  padding: 1.5% 2% 0% 2%;
+}
+
+#treasure-input {
+  flex: 1 0 0;
+  border: 0;
+  outline: 0;
+  font-family: 'Bookinsanity';
+  resize: none;
+  width: 100%;
+  font-size: calc(90% * var(--font-scale));
+}
+
+#treasure-footer {
+  width: 100%;
+  height: 8%;
+  flex: 0 0 8%;
+  position: relative;
+}
+
+#treasure-name {
+  font-size: 70%;
+  font-weight: bold;
+}
+
+
+
+/* -------------------------------- PAGE 3  -------------------------------- */
+#header-body-3 {
+  padding: 5.4% 7.15% 5.7% 3.5%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+}
+
+#header-body-3 > div {
+  width: 27%;
+  flex: 0 0 27%;
+  height: 100%;
+  display: grid;
+}
+
+#header-body-3 > div > div {
+  grid-area: 1 / 1;
+  width: 100%;
+  height: 100%;
+  position: relative;
+}
+
+#header-body-3 > div > div > input {
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  box-sizing: border-box;
+  padding: 6.5% 8%;
+  font-size: 200% !important;
+}
+
+#header-body-3 > div > div > p {
+  top: 105%;
+  position: absolute;
+  margin: 0;
+  padding: 0;
+  font-size: 80%;
+  width: 100%;
+  height: 50%;
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  box-sizing: border-box;
+  padding: 0% 12.5%;
+}
+
+#spells-block-container {
+  width: 100%;
+  height: 100%;
+}
+
+#spells-block {
+  width: 100%;
+  height: 100%;
+  display: grid;
+}
+
+#spells-block > div {
+  grid-area: 1 / 1;
+  width: 100%;
+  height: 100%;
+  box-sizing: border-box;
+  padding: 1.9% 0.15%;
+  display: flex;
+  flex-direction: row;
+}
+
+#spells-block > div > div {
+  flex: 1 0 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.spells-container {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 2% 4%;
+  display: flex;
+  flex-direction: column;
+  --font-scale: 1;
+}
+
+.spells-header {
+  width: 100%;
+  display: grid;
+  flex: 0 0;
+}
+
+.spells-header > div {
+  grid-area: 1 / 1;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.spells-header-size {
+  width: 10%;
+  flex: 0 0 10%;
+  padding: 0;
+  margin: 0;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 150%;
+  font-weight: bold;
+}
+
+#cantrips-header-name {
+  padding: 0;
+  margin: 0;
+  width: 100%;
+  height: 100%;
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 70%;
+  font-weight: bold;
+}
+
+.spell-slots-total {
+  width: 27.5%;
+  flex: 0 0 27.5%;
+  height: 100%;
+  box-sizing: border-box;
+  text-align: center;
+  padding: 0% 2% !important;
+  font-size: 150% !important;
+}
+
+.spell-slots-expended {
+  flex: 1 0 0;
+  height: 100%;
+  box-sizing: border-box;
+  text-align: center;
+  padding: 0% 5% !important;
+  font-size: 150% !important;
+}
+
+.spells-body {
+  flex: 1 0 0;
+  overflow-y: auto;
+  box-sizing: border-box;
+}
+
+#cantrips-container {
+  flex: 0 0 25%;
+}
+
+#spells-1-container {
+  flex: 0 0 38.1%;
+}
+
+#spells-2-container {
+  flex: 0 0 36.9%;
+}
+
+#spells-3-container {
+  flex: 0 0 36.1%;
+}
+
+#spells-4-container {
+  flex: 0 0 35.8%;
+}
+
+#spells-5-container {
+  flex: 0 0 28.1%;
+}
+
+#spells-6-container {
+  flex: 0 0 27.1%;
+}
+
+#spells-7-container {
+  flex: 0 0 27%;
+}
+
+#spells-8-container {
+  flex: 0 0 22.5%;
+}
+
+#spells-9-container {
+  flex: 0 0 23.4%;
+}
+
+.spell-container {
+  display: flex;
+  flex-direction: column;
+  gap: calc(var(--sheet-size-unit) * 0.6);
+}
+
+.spell-header {
+  width: 100%;
+  box-sizing: border-box;
+  padding-right: 5%;
+  height: calc(var(--sheet-size-unit) * 2.5);
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 2%;
+}
+
+.spell-header > .checkbox {
+  height: 50%;
+}
+
+.spell-name {
+  height: 100%;
+  flex: 1 0 0;
+  font-size: 125% !important;
+  background-size: 100% 100%;
+  background-image: url('/resources/imgs/rpgs/dnd/character_sheet/underline.svg');
+}
+
+.spell-header > .collapse-button {
+  height: 50%;
+}
+
+.spell-body {
+  flex-direction: column;
+  width: 100%;
+  gap: calc(var(--sheet-size-unit) * 0.6);
+  display: none;
+}
+
+.spell-container:has(> .spell-header > .collapse-button.open) > .spell-body {
+  display: flex;
+}
+
+.spell-stats {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  flex-wrap: wrap;
+  gap: 2%;
+  row-gap: calc(var(--sheet-size-unit) * 0.6);
+}
+
+.spell-stat {
+  display: flex;
+  flex-direction: column;
+  flex: 1 0 30%;
+}
+
+.spell-stat-header {
+  margin: 0;
+  padding: 0;
+  font-size: 70%;
+  font-weight: bold;
+  width: 100%;
+  text-align: center;
+}
+
+.spell-stat-value {
+  width: 100%;
+  text-align: center;
+  font-size: 80% !important;
+}
+
+.spell-separator {
+  width: 100%;
+  height: calc(var(--sheet-size-unit) * 0.15);
+  background-color: black;
+}
+
+.spell-description {
+  padding: 0;
+  margin: 0;
+  width: 100%;
+  outline: none;
+  border: none;
+  resize: none;
+  field-sizing: content;
+  font-family: 'Bookinsanity';
+  font-size: calc(90% * var(--font-scale));
+}
+
+.add-button {
+  width: 100%;
+  height: calc(var(--sheet-size-unit) * 2);
+  background-color: #eee;
+  margin: 5% 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 100%;
+  font-weight: bold;
+  box-sizing: border-box;
+  clip-path: polygon(
+    calc(var(--sheet-size-unit) * 0.75) 0%,
+    100% 0%,
+    100% calc(100% - var(--sheet-size-unit) * 0.75),
+    calc(100% - var(--sheet-size-unit) * 0.75) 100%,
+    0% 100%,
+    0% calc(var(--sheet-size-unit) * 0.75));
+  cursor: pointer;
+}
+
+.remove-button {
+  width: 100%;
+  height: calc(var(--sheet-size-unit) * 2);
+  background-color: #eee;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 100%;
+  font-weight: bold;
+  box-sizing: border-box;
+  clip-path: polygon(
+    calc(var(--sheet-size-unit) * 0.75) 0%,
+    100% 0%,
+    100% calc(100% - var(--sheet-size-unit) * 0.75),
+    calc(100% - var(--sheet-size-unit) * 0.75) 100%,
+    0% 100%,
+    0% calc(var(--sheet-size-unit) * 0.75));
+  cursor: pointer;
+}
+
+.spell-notes {
+  padding: 0;
+  margin: 0;
+  width: 100%;
+  outline: none;
+  border: none;
+  resize: none;
+  field-sizing: content;
+  font-family: 'Bookinsanity';
+  font-size: calc(90% * var(--font-scale));
+}

@@ -1,0 +1,1073 @@
+<!DOCTYPE html>
+<meta charset="UTF-8">
+<html>
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    
+    <title>GranuxGames | D&D 5E Character Sheet</title>
+    
+    <script src="/js/rpgs/dnd/character_sheet/character.js"></script>
+
+    <link rel="stylesheet" href="/css/fonts.css">
+    <link rel="stylesheet" href="/css/general.css">
+
+    <link rel="stylesheet" href="/css//rpgs/dnd/character_sheet/general.css">
+  </head>
+  <body>
+    <div id="sheet">
+      <div class="sheet-header" id="sheet-header-1">
+        <img class="sheet-background" src="/resources/imgs/rpgs/dnd/character_sheet/header-1.svg"/>
+        <div>
+          <div id="name-container-1" class="header-name-container">
+            <input id="name-input-1" class="header-name-input" type="text" value="Gremas"/>
+            <p id="name-name-1" class="header-name-name">CHARACTER NAME</p>
+          </div>
+          <div id="header-body-1" class="header-body header-body-table">
+            <div>
+              <div>
+                <input id="class-level-input" type="text" value="BloodSampler LvL 3"/>
+                <p id="class-level-name">CLASS & LEVEL</p>
+              </div>
+              <div>
+                <input id="background-input" type="text" value ="Sage (Professor)"/>
+                <p id="background-name">BACKGROUND</p>
+              </div>
+              <div>
+                <input id="player-name-input" type="text" value="Till"/>
+                <p id="player-name-name">PLAYER NAME</p>
+              </div>
+            </div>
+            <div>
+              <div>
+                <input id="race-input" type="text" value="Half Frost Giant"/>
+                <p id="race-name">RACE</p>
+              </div>
+              <div>
+                <input id="alignment-input" type="text" value="Chaotic Good"/>
+                <p id="alignment-name">ALIGNMENT</p>
+              </div>
+              <div>
+                <input id="xp-input" class="hidden-arrows" type="number" value="1350"/>
+                <p id="xp-name">EXPERIENCE POINTS</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="sheet-body" id="sheet-body-1">
+        <div id="stats-block-container">
+          <div id="stats-block">
+            <div id="stats-container">
+              <img class="sheet-background" src="/resources/imgs/rpgs/dnd/character_sheet/stats-container.svg"/>
+              <div>
+                <div class="stat">
+                  <img class="sheet-background" src="/resources/imgs/rpgs/dnd/character_sheet/stat-container.svg"/>
+                  <div>
+                    <p class="stat-name">STRENGTH</p>
+                    <input id="stat-str-mod" class="stat-modifier" type="text" value="+2"/>
+                    <input id="stat-str-val" class="stat-value hidden-arrows" type="number" value="14"/>
+                  </div>
+                </div>
+                <div class="stat">
+                  <img class="sheet-background" src="/resources/imgs/rpgs/dnd/character_sheet/stat-container.svg"/>
+                  <div>
+                    <p class="stat-name">DEXTERITY</p>
+                    <input id="stat-dex-mod" class="stat-modifier" type="text" value="+0"/>
+                    <input id="stat-dex-val" class="stat-value hidden-arrows" type="number" value="10"/>
+                  </div>
+                </div>
+                <div class="stat">
+                  <img class="sheet-background" src="/resources/imgs/rpgs/dnd/character_sheet/stat-container.svg"/>
+                  <div>
+                    <p class="stat-name">CONSTITUTION</p>
+                    <input id="stat-con-mod" class="stat-modifier" type="text" value="+3"/>
+                    <input id="stat-con-val" class="stat-value hidden-arrows" type="number" value="16"/>
+                  </div>
+                </div>
+                <div class="stat">
+                  <img class="sheet-background" src="/resources/imgs/rpgs/dnd/character_sheet/stat-container.svg"/>
+                  <div>
+                    <p class="stat-name">INTELLIGENCE</p>
+                    <input id="stat-int-mod" class="stat-modifier" type="text" value="+4"/>
+                    <input id="stat-int-val" class="stat-value hidden-arrows" type="number" value="18"/>
+                  </div>
+                </div>
+                <div class="stat">
+                  <img class="sheet-background" src="/resources/imgs/rpgs/dnd/character_sheet/stat-container.svg"/>
+                  <div>
+                    <p class="stat-name">WISDOM</p>
+                    <input id="stat-wis-mod" class="stat-modifier" type="text" value="+2"/>
+                    <input id="stat-wis-val" class="stat-value hidden-arrows" type="number" value="14"/>
+                  </div>
+                </div>
+                <div class="stat">
+                  <img class="sheet-background" src="/resources/imgs/rpgs/dnd/character_sheet/stat-container.svg"/>
+                  <div>
+                    <p class="stat-name">CHARISMA</p>
+                    <input id="stat-cha-mod" class="stat-modifier" type="text" value="-1"/>
+                    <input id="stat-cha-val" class="stat-value hidden-arrows" type="number" value="8"/>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div id="skills-block">
+              <div id="inspiration-container">
+                <img class="sheet-background" src="/resources/imgs/rpgs/dnd/character_sheet/inspiration-container.svg"/>
+                <div>
+                  <input id="inspiration" type="text" value="0"/>
+                  <p id="inspiration-name">INSPIRATION</p>
+                </div>
+              </div>
+              <div id="proficiency-container">
+                <img class="sheet-background" src="/resources/imgs/rpgs/dnd/character_sheet/proficiency-container.svg"/>
+                <div>
+                  <input id="proficiency" type="text" value="+2"/>
+                  <p id="proficiency-name">PROFICIENCY BONUS</p>
+                </div>
+              </div>
+              <div id="saves-container">
+                <img class="sheet-background" src="/resources/imgs/rpgs/dnd/character_sheet/saves-container.svg"/>
+                <div>
+                  <div id="saves-list-container">
+                    <div class="save-container">
+                      <img class="checkbox skill-checkbox" src="/resources/imgs/rpgs/dnd/character_sheet/checkbox.svg"/>
+                      <input id="save-str-val" class="save-value" type="text" value="+2"/>
+                      <p class="save-name">Strength</p>
+                    </div>
+                    <div class="save-container">
+                      <img class="checkbox skill-checkbox" src="/resources/imgs/rpgs/dnd/character_sheet/checkbox.svg"/>
+                      <input id="save-dex-val" class="save-value" type="text" value="+0"/>
+                      <p class="save-name">Dexterity</p>
+                    </div>
+                    <div class="save-container">
+                      <img class="checkbox skill-checkbox" src="/resources/imgs/rpgs/dnd/character_sheet/checkbox.svg"/>
+                      <input id="save-con-val" class="save-value" type="text" value="+3"/>
+                      <p class="save-name">Constitution</p>
+                    </div>
+                    <div class="save-container">
+                      <img class="checkbox skill-checkbox checked" src="/resources/imgs/rpgs/dnd/character_sheet/checkbox.svg"/>
+                      <input id="save-int-val" class="save-value" type="text" value="+6"/>
+                      <p class="save-name">Intelligence</p>
+                    </div>
+                    <div class="save-container">
+                      <img class="checkbox skill-checkbox" src="/resources/imgs/rpgs/dnd/character_sheet/checkbox.svg"/>
+                      <input id="save-wis-val" class="save-value" type="text" value="+2"/>
+                      <p class="save-name">Wisdom</p>
+                    </div>
+                    <div class="save-container">
+                      <img class="checkbox skill-checkbox checked" src="/resources/imgs/rpgs/dnd/character_sheet/checkbox.svg"/>
+                      <input id="save-cha-val" class="save-value" type="text" value="+1"/>
+                      <p class="save-name">Charisma</p>
+                    </div>
+                  </div>
+                  <p id="saves-name">SAVING THROWS</p>
+                </div>
+              </div>
+              <div id="skills-container">
+                <img class="sheet-background" src="/resources/imgs/rpgs/dnd/character_sheet/skills-container.svg"/>
+                <div>
+                  <div id="skills-list-container">
+                    <div class="skill-container">
+                      <img class="checkbox skill-checkbox" src="/resources/imgs/rpgs/dnd/character_sheet/checkbox.svg"/>
+                      <input id="skill-acr-val" class="skill-value" type="text" value="+0"/>
+                      <p class="skill-name">Acrobatics</p>
+                      <p class="skill-type">Dex</p>
+                    </div>
+                    <div class="skill-container">
+                      <img class="checkbox skill-checkbox checked" src="/resources/imgs/rpgs/dnd/character_sheet/checkbox.svg"/>
+                      <input id="skill-ani-val" class="skill-value" type="text" value="+4"/>
+                      <p class="skill-name">Animal Handling</p>
+                      <p class="skill-type">Wis</p>
+                    </div>
+                    <div class="skill-container">
+                      <img class="checkbox skill-checkbox checked" src="/resources/imgs/rpgs/dnd/character_sheet/checkbox.svg"/>
+                      <input id="skill-arc-val" class="skill-value" type="text" value="+6"/>
+                      <p class="skill-name">Arcana</p>
+                      <p class="skill-type">Int</p>
+                    </div>
+                    <div class="skill-container">
+                      <img class="checkbox skill-checkbox checked" src="/resources/imgs/rpgs/dnd/character_sheet/checkbox.svg"/>
+                      <input id="skill-ath-val" class="skill-value" type="text" value="+4"/>
+                      <p class="skill-name">Athletics</p>
+                      <p class="skill-type">Str</p>
+                    </div>
+                    <div class="skill-container">
+                      <img class="checkbox skill-checkbox" src="/resources/imgs/rpgs/dnd/character_sheet/checkbox.svg"/>
+                      <input id="skill-dec-val" class="skill-value" type="text" value="-1"/>
+                      <p class="skill-name">Deception</p>
+                      <p class="skill-type">Cha</p>
+                    </div>
+                    <div class="skill-container">
+                      <img class="checkbox skill-checkbox checked" src="/resources/imgs/rpgs/dnd/character_sheet/checkbox.svg"/>
+                      <input id="skill-his-val" class="skill-value" type="text" value="+6"/>
+                      <p class="skill-name">History</p>
+                      <p class="skill-type">Int</p>
+                    </div>
+                    <div class="skill-container">
+                      <img class="checkbox skill-checkbox" src="/resources/imgs/rpgs/dnd/character_sheet/checkbox.svg"/>
+                      <input id="skill-ins-val" class="skill-value" type="text" value="+2"/>
+                      <p class="skill-name">Insight</p>
+                      <p class="skill-type">Wis</p>
+                    </div>
+                    <div class="skill-container">
+                      <img class="checkbox skill-checkbox" src="/resources/imgs/rpgs/dnd/character_sheet/checkbox.svg"/>
+                      <input id="skill-int-val" class="skill-value" type="text" value="-1"/>
+                      <p class="skill-name">Intimidation</p>
+                      <p class="skill-type">Cha</p>
+                    </div>
+                    <div class="skill-container">
+                      <img class="checkbox skill-checkbox" src="/resources/imgs/rpgs/dnd/character_sheet/checkbox.svg"/>
+                      <input id="skill-inv-val" class="skill-value" type="text" value="+4"/>
+                      <p class="skill-name">Investigation</p>
+                      <p class="skill-type">Int</p>
+                    </div>
+                    <div class="skill-container">
+                      <img class="checkbox skill-checkbox" src="/resources/imgs/rpgs/dnd/character_sheet/checkbox.svg"/>
+                      <input id="skill-med-val" class="skill-value" type="text" value="+2"/>
+                      <p class="skill-name">Medicine</p>
+                      <p class="skill-type">Wis</p>
+                    </div>
+                    <div class="skill-container">
+                      <img class="checkbox skill-checkbox" src="/resources/imgs/rpgs/dnd/character_sheet/checkbox.svg"/>
+                      <input id="skill-nat-val" class="skill-value" type="text" value="+4"/>
+                      <p class="skill-name">Nature</p>
+                      <p class="skill-type">Int</p>
+                    </div>
+                    <div class="skill-container">
+                      <img class="checkbox skill-checkbox" src="/resources/imgs/rpgs/dnd/character_sheet/checkbox.svg"/>
+                      <input id="skill-pec-val" class="skill-value" type="text" value="+2"/>
+                      <p class="skill-name">Perception</p>
+                      <p class="skill-type">Wis</p>
+                    </div>
+                    <div class="skill-container">
+                      <img class="checkbox skill-checkbox" src="/resources/imgs/rpgs/dnd/character_sheet/checkbox.svg"/>
+                      <input id="skill-pef-val" class="skill-value" type="text" value="-1"/>
+                      <p class="skill-name">Performance</p>
+                      <p class="skill-type">Cha</p>
+                    </div>
+                    <div class="skill-container">
+                      <img class="checkbox skill-checkbox checked" src="/resources/imgs/rpgs/dnd/character_sheet/checkbox.svg"/>
+                      <input id="skill-pes-val" class="skill-value" type="text" value="+1"/>
+                      <p class="skill-name">Persuasion</p>
+                      <p class="skill-type">Cha</p>
+                    </div>
+                    <div class="skill-container">
+                      <img class="checkbox skill-checkbox" src="/resources/imgs/rpgs/dnd/character_sheet/checkbox.svg"/>
+                      <input id="skill-rel-val" class="skill-value" type="text" value="+4"/>
+                      <p class="skill-name">Religion</p>
+                      <p class="skill-type">Int</p>
+                    </div>
+                    <div class="skill-container">
+                      <img class="checkbox skill-checkbox" src="/resources/imgs/rpgs/dnd/character_sheet/checkbox.svg"/>
+                      <input id="skill-sle-val" class="skill-value" type="text" value="+0"/>
+                      <p class="skill-name">Sleight of Hand</p>
+                      <p class="skill-type">Dex</p>
+                    </div>
+                    <div class="skill-container">
+                      <img class="checkbox skill-checkbox" src="/resources/imgs/rpgs/dnd/character_sheet/checkbox.svg"/>
+                      <input id="skill-ste-val" class="skill-value" type="text" value="+0"/>
+                      <p class="skill-name">Stealth</p>
+                      <p class="skill-type">Dex</p>
+                    </div>
+                    <div class="skill-container">
+                      <img class="checkbox skill-checkbox" src="/resources/imgs/rpgs/dnd/character_sheet/checkbox.svg"/>
+                      <input id="skill-sur-val" class="skill-value" type="text" value="+2"/>
+                      <p class="skill-name">Survival</p>
+                      <p class="skill-type">Wis</p>
+                    </div>
+                  </div>
+                  <p id="skills-name">SKILLS</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div id="health-block-container">
+          <div id="health-block">
+            <img class="sheet-background" src="/resources/imgs/rpgs/dnd/character_sheet/health-block-container.svg"/>
+            <div>
+              <div id="health-header">
+                <div id="ac-container">
+                  <img class="sheet-background" src="/resources/imgs/rpgs/dnd/character_sheet/ac-container.svg"/>
+                  <div>
+                    <input id="ac-value" class="hidden-arrows" type="number" value="13"/>
+                    <p id="ac-name">ARMOR CLASS</p>
+                  </div>
+                </div>
+                <div id="initiative-container">
+                  <img class="sheet-background" src="/resources/imgs/rpgs/dnd/character_sheet/initiative-container.svg"/>
+                  <div>
+                    <input id="initiative-value" type="text" value="+0"/>
+                    <p id="initiative-name">INITIATIVE</p>
+                  </div>
+                </div>
+                <div id="speed-container">
+                  <img class="sheet-background" src="/resources/imgs/rpgs/dnd/character_sheet/speed-container.svg"/>
+                  <div>
+                    <input id="speed-value" class="hidden-arrows" type="number" value="30"/>
+                    <p id="speed-name">SPEED</p>
+                  </div>
+                </div>
+              </div>
+              <div id="hp-container">
+                <img class="sheet-background" src="/resources/imgs/rpgs/dnd/character_sheet/hp-container.svg"/>
+                <div>
+                  <div>
+                    <p id="hp-max-name">Hit Point Maximum</p>
+                    <input id="hp-max-value" type="number" value="28"/>
+                  </div>
+                  <input id="hp-value" type="number" value="28"/>
+                  <p id="hp-name">CURRENT HIT POINTS</p>
+                </div>
+              </div>
+              <div id="temp-hp-container">
+                <img class="sheet-background" src="/resources/imgs/rpgs/dnd/character_sheet/temp-hp-container.svg"/>
+                <div>
+                  <input id="temp-hp-value" type="number" value="0"/>
+                  <p id="temp-hp-name">TEMPORARY HIT POINTS</p>
+                </div>
+              </div>
+              <div id="health-footer">
+                <div id="hit-dice-container">
+                  <img class="sheet-background" src="/resources/imgs/rpgs/dnd/character_sheet/hit-dice-container.svg"/>
+                  <div>
+                    <div>
+                      <p id="hit-dice-max-name">Total</p>
+                      <input id="hit-dice-max-value" type="text" value="3d8"/>
+                    </div>
+                    <input id="hit-dice-value" type="text" value="3d8"/>
+                    <p id="hit-dice-name">HIT DICE</p>
+                  </div>
+                </div>
+                <div id="death-saves-container">
+                  <img class="sheet-background" src="/resources/imgs/rpgs/dnd/character_sheet/death-saves-container.svg"/>
+                  <div>
+                    <div>
+                      <div>
+                        <p id="death-saves-successes-name">SUCCESSES</p>
+                        <img class="checkbox death-save-checkbox" src="/resources/imgs/rpgs/dnd/character_sheet/checkbox.svg"/>
+                        <div class="death-save-separator"></div>
+                        <img class="checkbox death-save-checkbox" src="/resources/imgs/rpgs/dnd/character_sheet/checkbox.svg"/>
+                        <div class="death-save-separator"></div>
+                        <img class="checkbox death-save-checkbox" src="/resources/imgs/rpgs/dnd/character_sheet/checkbox.svg"/>
+                      </div>
+                      <div>
+                        <p id="death-saves-failures-name">FAILURES</p>
+                        <img class="checkbox death-save-checkbox" src="/resources/imgs/rpgs/dnd/character_sheet/checkbox.svg"/>
+                        <div class="death-save-separator"></div>
+                        <img class="checkbox death-save-checkbox" src="/resources/imgs/rpgs/dnd/character_sheet/checkbox.svg"/>
+                        <div class="death-save-separator"></div>
+                        <img class="checkbox death-save-checkbox" src="/resources/imgs/rpgs/dnd/character_sheet/checkbox.svg"/>
+                      </div>
+                    </div>
+                    <p id="death-saves-name">DEATH SAVES</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div id="personality-block-container">
+          <div id="personality-block">
+            <img class="sheet-background" src="/resources/imgs/rpgs/dnd/character_sheet/personality-block-container.svg"/>
+            <div>
+              <div id="personality-container" class="text-block-container">
+                <img class="sheet-background" src="/resources/imgs/rpgs/dnd/character_sheet/traits-container.svg"/>
+                <div>
+                  <textarea id="personality-input" class="text-block-input">I'm used to help out those who aren't as smart as I am, and I patiently explain anything and everything to others.</textarea>
+                  <div>
+                    <p id="personality-name" class="text-block-name">PERSONALITY TRAITS</p>
+                    <div class="zoom-buttons">
+                      <img class="zoom-dec zoom-button" src="/resources/imgs/rpgs/dnd/character_sheet/button-dec.svg"/>
+                      <img class="zoom-inc zoom-button" src="/resources/imgs/rpgs/dnd/character_sheet/button-inc.svg"/>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div id="ideals-container" class="text-block-container">
+                <img class="sheet-background" src="/resources/imgs/rpgs/dnd/character_sheet/ideals-container.svg"/>
+                <div>
+                  <textarea id="ideals-input" class="text-block-input">No Limits. Nothing should fetter the infinite possibility inherent in all existence.</textarea>
+                  <div>
+                    <p id="ideals-name" class="text-block-name">IDEALS</p>
+                    <div class="zoom-buttons">
+                      <img class="zoom-dec zoom-button" src="/resources/imgs/rpgs/dnd/character_sheet/button-dec.svg"/>
+                      <img class="zoom-inc zoom-button" src="/resources/imgs/rpgs/dnd/character_sheet/button-inc.svg"/>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div id="bonds-container" class="text-block-container">
+                <img class="sheet-background" src="/resources/imgs/rpgs/dnd/character_sheet/bonds-container.svg"/>
+                <div>
+                  <textarea id="bonds-input" class="text-block-input">A ring from my dead father</textarea>
+                  <div>
+                    <p id="bonds-name" class="text-block-name">BONDS</p>
+                    <div class="zoom-buttons">
+                      <img class="zoom-dec zoom-button" src="/resources/imgs/rpgs/dnd/character_sheet/button-dec.svg"/>
+                      <img class="zoom-inc zoom-button" src="/resources/imgs/rpgs/dnd/character_sheet/button-inc.svg"/>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div id="flaws-container" class="text-block-container">
+                <img class="sheet-background" src="/resources/imgs/rpgs/dnd/character_sheet/flaws-container.svg"/>
+                <div>
+                  <textarea id="flaws-input" class="text-block-input">I kill animals and monsters to avenge my fathers death.</textarea>
+                  <div>
+                    <p id="flaws-name" class="text-block-name">FLAWS</p>
+                    <div class="zoom-buttons">
+                      <img class="zoom-dec zoom-button" src="/resources/imgs/rpgs/dnd/character_sheet/button-dec.svg"/>
+                      <img class="zoom-inc zoom-button" src="/resources/imgs/rpgs/dnd/character_sheet/button-inc.svg"/>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div id="weapons-block-container">
+          <div id="weapons-block">
+            <img class="sheet-background" src="/resources/imgs/rpgs/dnd/character_sheet/weapons-block-container.svg"/>
+            <div>
+              <div id="weapons-list-container">
+                <div id="weapons-header">
+                  <p>NAME</p>
+                  <p>ATK BONUS</p>
+                  <p>DAMAGE/TYPE</p>
+                </div>
+                <div class="weapon-container">
+                  <div class="weapon">
+                    <input class="weapon-name-input" type="text" value="Oversized Quaterstaff"/>
+                    <input class="weapon-bonus-input" type="text" value="+4"/>
+                    <input class="weapon-dmg-input" type="text" value="1d8"/>
+                  </div>
+                  <textarea class="weapon-description">Versatile
+Two-Handed: 1d10</textarea>
+                  <div class="remove-button">-</div>
+                </div>
+                <div class="add-button">+</div>
+              </div>
+              <div id="weapons-footer">
+                <p id="weapons-name" class="text-block-name">ATTACKS & SPELLCASTING</p>
+                <div class="zoom-buttons">
+                  <img class="zoom-dec zoom-button" src="/resources/imgs/rpgs/dnd/character_sheet/button-dec.svg"/>
+                  <img class="zoom-inc zoom-button" src="/resources/imgs/rpgs/dnd/character_sheet/button-inc.svg"/>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div id="inventory-block-container">
+          <div id="inventory-block">
+            <img class="sheet-background" src="/resources/imgs/rpgs/dnd/character_sheet/inventory-block-container.svg"/>
+            <div>
+              <div id="inventory-container">
+                <div id="money">
+                  <div>
+                    <p id="cp-name" class="money-name">CP</p>
+                    <input id="cp-input" class="money-input hidden-arrows" type="number" value="0"/>
+                  </div>
+                  <div>
+                    <p id="sp-name" class="money-name">SP</p>
+                    <input id="sp-input" class="money-input hidden-arrows" type="number" value="3"/>
+                  </div>
+                  <div>
+                    <p id="ep-name" class="money-name">EP</p>
+                    <input id="ep-input" class="money-input hidden-arrows" type="number" value="0"/>
+                  </div>
+                  <div>
+                    <p id="gp-name" class="money-name">GP</p>
+                    <input id="gp-input" class="money-input hidden-arrows" type="number" value="26"/>
+                  </div>
+                  <div>
+                    <p id="pp-name" class="money-name">PP</p>
+                    <input id="pp-input" class="money-input hidden-arrows" type="number" value="0"/>
+                  </div>
+                </div>
+                <textarea id="inventory-input" class="text-block-input">Essensrationen: 19
+
+Spellbook mit Mage Armor
+Scroll of Jump
+Immerrauchende Flasche!
+
+Wilder Stab
+(attuned): 3</textarea>
+              </div>
+              <div id="inventory-footer">
+                <p id="inventory-name" class="text-block-name">EQUIPMENT</p>
+                <div class="zoom-buttons">
+                  <img class="zoom-dec zoom-button" src="/resources/imgs/rpgs/dnd/character_sheet/button-dec.svg"/>
+                  <img class="zoom-inc zoom-button" src="/resources/imgs/rpgs/dnd/character_sheet/button-inc.svg"/>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div id="proficiencies-block-container">
+          <div id="proficiencies-block">
+            <div id="passive-perception-container">
+              <img class="sheet-background" src="/resources/imgs/rpgs/dnd/character_sheet/passive-perception-container.svg"/>
+              <div>
+                <input id="passive-perception-input" class="hidden-arrows" type="number" value="12"/>
+                <p id="passive-perception-name">PASSIVE WISDOM (PERCEPTION)</p>
+              </div>
+            </div>
+            <div id="proficiencies-container" class="text-block-container">
+              <img class="sheet-background" src="/resources/imgs/rpgs/dnd/character_sheet/proficiencies-container.svg"/>
+              <div>
+                <textarea id="proficiencies-input" class="text-block-input">Light Armor
+Medium Armor
+Simple Weapons
+Alchemist's Supplies
+Poisoner's Kit
+
+Common
+Giant</textarea>
+                <div>
+                  <p id="proficiencies-name" class="text-block-name">OTHER PROFICIENCIES & LANGUAGES</p>
+                  <div class="zoom-buttons">
+                    <img class="zoom-dec zoom-button" src="/resources/imgs/rpgs/dnd/character_sheet/button-dec.svg"/>
+                    <img class="zoom-inc zoom-button" src="/resources/imgs/rpgs/dnd/character_sheet/button-inc.svg"/>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div id="feats-block-container">
+          <div id="feats-block" class="text-block-container">
+            <img class="sheet-background" src="/resources/imgs/rpgs/dnd/character_sheet/feats-block-container.svg"/>
+            <div>
+              <textarea id="feats-input" class="text-block-input">Type: Giant, Humanoid
+
+Stone Toss: When you make a ranged attack with an improvised weapon made of stone, you are considered proficient with that improvised weapon, and its damage die increases to 1d6. (Attack + 2)
+
+Resistance: Cold Damage
+
+Glacial Native: Bonuses in Arctic Terrain (dnd wiki, half-giant frost)
+
+DRACOGORE
+Elements of Dragons
+Next: Lvl 7</textarea>
+              <div>
+                <p id="feats-name" class="text-block-name">FEATURES & TRAITS</p>
+                <div class="zoom-buttons">
+                  <img class="zoom-dec zoom-button" src="/resources/imgs/rpgs/dnd/character_sheet/button-dec.svg"/>
+                  <img class="zoom-inc zoom-button" src="/resources/imgs/rpgs/dnd/character_sheet/button-inc.svg"/>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="sheet-header" id="sheet-header-2">
+        <img class="sheet-background" src="/resources/imgs/rpgs/dnd/character_sheet/header-2.svg"/>
+        <div>
+          <div id="name-container-2" class="header-name-container">
+            <input id="name-input-2" class="header-name-input" type="text" value="Gremas"/>
+            <p id="name-name-2" class="header-name-name">CHARACTER NAME</p>
+          </div>
+          <div id="header-body-2" class="header-body header-body-table">
+            <div>
+              <div>
+                <input id="age-input" type="text" value="32"/>
+                <p id="age-name">AGE</p>
+              </div>
+              <div>
+                <input id="height-input" type="text" value ="9'8''"/>
+                <p id="height-name">HEIGHT</p>
+              </div>
+              <div>
+                <input id="weight-input" type="text" value="720 lbs"/>
+                <p id="weight-name">WEIGHT</p>
+              </div>
+            </div>
+            <div>
+              <div>
+                <input id="eyes-input" type="text" value="ice"/>
+                <p id="eyes-name">EYES</p>
+              </div>
+              <div>
+                <input id="skin-input" type="text" value="white"/>
+                <p id="skin-name">SKIN</p>
+              </div>
+              <div>
+                <input id="hair-input" type="text" value="black"/>
+                <p id="hair-name">HAIR</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="sheet-body" id="sheet-body-2">
+        <div id="appearance-block-container">
+          <div id="appearance-block">
+            <img class="sheet-background" src="/resources/imgs/rpgs/dnd/character_sheet/appearance-container.svg"/>
+            <div>
+              <div>
+                <textarea id="appearance-input"></textarea>
+                <div id="appearance-image"></div>
+              </div>
+              <div id="appearance-footer">
+                <p id="appearance-name" class="text-block-name">CHARACTER APPEARANCE</p>
+                <div class="zoom-buttons">
+                  <img class="zoom-dec zoom-button" src="/resources/imgs/rpgs/dnd/character_sheet/button-dec.svg"/>
+                  <img class="zoom-inc zoom-button" src="/resources/imgs/rpgs/dnd/character_sheet/button-inc.svg"/>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div id="allies-block-container">
+          <div id="allies-block">
+            <img class="sheet-background" src="/resources/imgs/rpgs/dnd/character_sheet/allies-container.svg"/>
+            <div>
+              <div>
+                <textarea id="allies-input"></textarea>
+                <div>
+                  <div>
+                    <img class="sheet-background" src="/resources/imgs/rpgs/dnd/character_sheet/symbol-container.svg"/>
+                    <div>
+                      <p id="symbol-name">NAME</p>
+                      <input id="symbol-input" type="text" value=""/>
+                      <div id="symbol-image"></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div id="allies-footer">
+                <p id="allies-name" class="text-block-name">ALLIES & ORGANIZATIONS</p>
+                <div class="zoom-buttons">
+                  <img class="zoom-dec zoom-button" src="/resources/imgs/rpgs/dnd/character_sheet/button-dec.svg"/>
+                  <img class="zoom-inc zoom-button" src="/resources/imgs/rpgs/dnd/character_sheet/button-inc.svg"/>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div id="backstory-block-container">
+          <div id="backstory-block">
+            <img class="sheet-background" src="/resources/imgs/rpgs/dnd/character_sheet/backstory-container.svg"/>
+            <div>
+              <textarea id="backstory-input"></textarea>
+              <div id="backstory-footer">
+                <p id="backstory-name" class="text-block-name">CHARACTER BACKSTORY</p>
+                <div class="zoom-buttons">
+                  <img class="zoom-dec zoom-button" src="/resources/imgs/rpgs/dnd/character_sheet/button-dec.svg"/>
+                  <img class="zoom-inc zoom-button" src="/resources/imgs/rpgs/dnd/character_sheet/button-inc.svg"/>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div id="additional-traits-block-container">
+          <div id="additional-traits-block">
+            <img class="sheet-background" src="/resources/imgs/rpgs/dnd/character_sheet/additional-features-container.svg"/>
+            <div>
+              <textarea id="additional-traits-input"></textarea>
+              <div id="additional-traits-footer">
+                <p id="additional-traits-name" class="text-block-name">ADDITIONAL FEATURES & TRAITS</p>
+                <div class="zoom-buttons">
+                  <img class="zoom-dec zoom-button" src="/resources/imgs/rpgs/dnd/character_sheet/button-dec.svg"/>
+                  <img class="zoom-inc zoom-button" src="/resources/imgs/rpgs/dnd/character_sheet/button-inc.svg"/>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div id="treasure-block-container">
+          <div id="treasure-block">
+            <img class="sheet-background" src="/resources/imgs/rpgs/dnd/character_sheet/treasure-container.svg"/>
+            <div>
+              <textarea id="treasure-input"></textarea>
+              <div id="treasure-footer">
+                <p id="treasure-name" class="text-block-name">TREASURE</p>
+                <div class="zoom-buttons">
+                  <img class="zoom-dec zoom-button" src="/resources/imgs/rpgs/dnd/character_sheet/button-dec.svg"/>
+                  <img class="zoom-inc zoom-button" src="/resources/imgs/rpgs/dnd/character_sheet/button-inc.svg"/>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="sheet-header" id="sheet-header-3">
+        <img class="sheet-background" src="/resources/imgs/rpgs/dnd/character_sheet/header-3.svg"/>
+        <div>
+          <div id="spellcasting-class-container" class="header-name-container">
+            <input id="spellcasting-class-input" class="header-name-input" type="text" value="Wizard"/>
+            <p id="spellcasting-class-name" class="header-name-name">SPELLCASTING CLASS</p>
+          </div>
+          <div id="header-body-3" class="header-body">
+            <div id="spellcasting-ability-container">
+              <img class="sheet-background" src="/resources/imgs/rpgs/dnd/character_sheet/header-3-element-container.svg"/>
+              <div>
+                <input id="spellcasting-ability-input" type="text" value="Int"/>
+                <p id="spellcasting-ability-name">SPELLCASTING ABILITY</p>
+              </div>
+            </div>
+            <div id="spell-save-dc-container">
+              <img class="sheet-background" src="/resources/imgs/rpgs/dnd/character_sheet/header-3-element-container.svg"/>
+              <div>
+                <input id="spell-save-dc-input" class="hidden-arrows" type="number" value="14"/>
+                <p id="spell-save-dc-name">SPELL SAVE DC</p>
+              </div>
+            </div>
+            <div id="spell-attack-bonus-container">
+              <img class="sheet-background" src="/resources/imgs/rpgs/dnd/character_sheet/header-3-element-container.svg"/>
+              <div>
+                <input id="spell-attack-bonus-input" type="text" value="+6"/>
+                <p id="spell-attack-bonus-name">SPELL ATTACK BONUS</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="sheet-body" id="sheet-body-3">
+        <div id="spells-block-container">
+          <div id="spells-block">
+            <img class="sheet-background" src="/resources/imgs/rpgs/dnd/character_sheet/spells-block-container.svg"/>
+            <div>
+              <div>
+                <div id="cantrips-container" class="spells-container">
+                  <div class="spells-header">
+                    <img class="sheet-background" src="/resources/imgs/rpgs/dnd/character_sheet/cantrips-header.svg"/>
+                    <div>
+                      <p class="spells-header-size">0</p>
+                      <p id="cantrips-header-name">CANTRIPS</p>
+                    </div>
+                  </div>
+                  <div class="spells-body">
+                    <div class="spell-container">
+                      <div class="spell-header">
+                        <img class="checkbox" src="/resources/imgs/rpgs/dnd/character_sheet/checkbox.svg"/>
+                        <input class="spell-name" type="text" value="Frostbite"/>
+                        <img class="collapse-button open" src="/resources/imgs/rpgs/dnd/character_sheet/arrow-closed.svg"/>
+                      </div>
+                      <div class="spell-body">
+                        <div class="spell-stats">
+                          <div class="spell-stat">
+                            <p class="spell-stat-header">SCHOOL</p>
+                            <input class="spell-stat-value" type="text" value="Evocation"/>
+                          </div>
+                          <div class="spell-stat">
+                            <p class="spell-stat-header">CASTING TIME</p>
+                            <input class="spell-stat-value" type="text" value="1 Action"/>
+                          </div>
+                          <div class="spell-stat">
+                            <p class="spell-stat-header">RANGE/AREA</p>
+                            <input class="spell-stat-value" type="text" value="60 ft."/>
+                          </div>
+                          <div class="spell-stat">
+                            <p class="spell-stat-header">COMPONENTS</p>
+                            <input class="spell-stat-value" type="text" value="V, S"/>
+                          </div>
+                          <div class="spell-stat">
+                            <p class="spell-stat-header">DURATION</p>
+                            <input class="spell-stat-value" type="text" value="Instantaneous"/>
+                          </div>
+                          <div class="spell-stat">
+                            <p class="spell-stat-header">DAMAGE/EFFECT</p>
+                            <input class="spell-stat-value" type="text" value="Cold"/>
+                          </div>
+                        </div>
+                        <div class="spell-separator"></div>
+                        <textarea class="spell-description">You cause numbing frost to form on one creature that you can see within range. The target must make a Constitution saving throw. On a failed save, the target takes 1d6 cold damage, and it has disadvantage on the next weapon attack roll it makes before the end of its next turn.
+
+The spell's damage increases by 1d6 when you reach 5th level (2d6), 11th level (3d6), and 17th level (4d6).</textarea>
+                        <div class="remove-button">-</div>
+                      </div>
+                    </div>
+                    <div class="spell-container">
+                      <div class="spell-header">
+                        <img class="checkbox" src="/resources/imgs/rpgs/dnd/character_sheet/checkbox.svg"/>
+                        <input class="spell-name" type="text" value="Mage Hand"/>
+                        <img class="collapse-button open" src="/resources/imgs/rpgs/dnd/character_sheet/arrow-closed.svg"/>
+                      </div>
+                      <div class="spell-body">
+                        <div class="spell-stats">
+                          <div class="spell-stat">
+                            <p class="spell-stat-header">SCHOOL</p>
+                            <input class="spell-stat-value" type="text" value="Conjuration"/>
+                          </div>
+                          <div class="spell-stat">
+                            <p class="spell-stat-header">CASTING TIME</p>
+                            <input class="spell-stat-value" type="text" value="1 Action"/>
+                          </div>
+                          <div class="spell-stat">
+                            <p class="spell-stat-header">RANGE/AREA</p>
+                            <input class="spell-stat-value" type="text" value="30 ft."/>
+                          </div>
+                          <div class="spell-stat">
+                            <p class="spell-stat-header">COMPONENTS</p>
+                            <input class="spell-stat-value" type="text" value="V, S"/>
+                          </div>
+                          <div class="spell-stat">
+                            <p class="spell-stat-header">DURATION</p>
+                            <input class="spell-stat-value" type="text" value="1 Minute"/>
+                          </div>
+                          <div class="spell-stat">
+                            <p class="spell-stat-header">DAMAGE/EFFECT</p>
+                            <input class="spell-stat-value" type="text" value="Utility"/>
+                          </div>
+                        </div>
+                        <div class="spell-separator"></div>
+                        <textarea class="spell-description">A spectral, floating hand appears at a point you choose within range. The hand lasts for the duration or until you dismiss it as an action. The hand vanishes if it is ever more than 30 feet away from you or if you cast this spell again.
+
+You can use your action to control the hand. You can use the hand to manipulate and object, open an unlocked door or container, stow or retrieve an item from an open container, or pour the contents out of a vial. You can move the hand up to 30 feet each time you use it.
+
+The hand can't attack, activate magic items, or carry more than 10 pounds.</textarea>
+                        <div class="remove-button">-</div>
+                      </div>
+                    </div>
+                    <div class="spell-container">
+                      <div class="spell-header">
+                        <img class="checkbox" src="/resources/imgs/rpgs/dnd/character_sheet/checkbox.svg"/>
+                        <input class="spell-name" type="text" value="Ray of Frost"/>
+                        <img class="collapse-button open" src="/resources/imgs/rpgs/dnd/character_sheet/arrow-closed.svg"/>
+                      </div>
+                      <div class="spell-body">
+                        <div class="spell-stats">
+                          <div class="spell-stat">
+                            <p class="spell-stat-header">SCHOOL</p>
+                            <input class="spell-stat-value" type="text" value="Evocation"/>
+                          </div>
+                          <div class="spell-stat">
+                            <p class="spell-stat-header">CASTING TIME</p>
+                            <input class="spell-stat-value" type="text" value="1 Action"/>
+                          </div>
+                          <div class="spell-stat">
+                            <p class="spell-stat-header">RANGE/AREA</p>
+                            <input class="spell-stat-value" type="text" value="60 ft."/>
+                          </div>
+                          <div class="spell-stat">
+                            <p class="spell-stat-header">COMPONENTS</p>
+                            <input class="spell-stat-value" type="text" value="V, S"/>
+                          </div>
+                          <div class="spell-stat">
+                            <p class="spell-stat-header">DURATION</p>
+                            <input class="spell-stat-value" type="text" value="Instantaneous"/>
+                          </div>
+                          <div class="spell-stat">
+                            <p class="spell-stat-header">DAMAGE/EFFECT</p>
+                            <input class="spell-stat-value" type="text" value="Cold"/>
+                          </div>
+                        </div>
+                        <div class="spell-separator"></div>
+                        <textarea class="spell-description">A frigid beam of blue white light streaks towards a creature within range. Make a ranged spell attack against the taret. On a hit, it takes 1d8 cold damage, and its speed is reduced by 10 feet until the start of your next turn.
+
+The spell's damage increases by 1d8 when you reach 5th level (2d8), 11th level (3d8), and 17th level (4d8).</textarea>
+                        <div class="remove-button">-</div>
+                      </div>
+                    </div>
+                    <div class="spell-container">
+                      <div class="spell-header">
+                        <img class="checkbox" src="/resources/imgs/rpgs/dnd/character_sheet/checkbox.svg"/>
+                        <input class="spell-name" type="text" value="Produce Flame"/>
+                        <img class="collapse-button open" src="/resources/imgs/rpgs/dnd/character_sheet/arrow-closed.svg"/>
+                      </div>
+                      <div class="spell-body">
+                        <div class="spell-stats">
+                          <div class="spell-stat">
+                            <p class="spell-stat-header">SCHOOL</p>
+                            <input class="spell-stat-value" type="text" value="Conjuration"/>
+                          </div>
+                          <div class="spell-stat">
+                            <p class="spell-stat-header">CASTING TIME</p>
+                            <input class="spell-stat-value" type="text" value="1 Action"/>
+                          </div>
+                          <div class="spell-stat">
+                            <p class="spell-stat-header">RANGE/AREA</p>
+                            <input class="spell-stat-value" type="text" value="Self"/>
+                          </div>
+                          <div class="spell-stat">
+                            <p class="spell-stat-header">COMPONENTS</p>
+                            <input class="spell-stat-value" type="text" value="V, S"/>
+                          </div>
+                          <div class="spell-stat">
+                            <p class="spell-stat-header">DURATION</p>
+                            <input class="spell-stat-value" type="text" value="10 Minutes"/>
+                          </div>
+                          <div class="spell-stat">
+                            <p class="spell-stat-header">DAMAGE/EFFECT</p>
+                            <input class="spell-stat-value" type="text" value="Fire"/>
+                          </div>
+                        </div>
+                        <div class="spell-separator"></div>
+                        <textarea class="spell-description">A flickering flame appears in your hand. The flame remains there for the duration and harms neither you nor your equipment. The flame sheds bright light in a 10-foot radius and dim light for an additional 10 feet. The spell ends if you dismiss it as an action or if you cast it again.
+
+You can also attack with the flame, although doing so ends the spell. When you cast this spell, or as an action on a later turn, you can hurl the flame at a creature within 30 feet of you. Make a ranged spell attack. On a hit, the target takes 1d8 fire damage.
+
+This spell's damage increases by 1d8 when you reach 5th level (2d8), 11th level (3d8), and 17th level (4d8).</textarea>
+                        <div class="remove-button">-</div>
+                      </div>
+                    </div>
+                    <div class="add-button">+</div>
+                    <textarea class="spell-notes">Elements of Dragons: DMG: INT; INT Times
+If cantrip deals elemental dmg, add +4 to dmg (4 times per short rest)</textarea>
+                  </div>
+                </div>
+                <div id="spells-1-container" class="spells-container">
+                  <div class="spells-header">
+                    <img class="sheet-background" src="/resources/imgs/rpgs/dnd/character_sheet/spells-header.svg"/>
+                    <div>
+                      <p class="spells-header-size">1</p>
+                      <input class="spell-slots-total hidden-arrows" type="number" value="0"/>
+                      <input class="spell-slots-expended hidden-arrows" type="number" value="1"/>
+                    </div>
+                  </div>
+                  <div class="spells-body">
+                    <div class="add-button">+</div>
+                    <textarea class="spell-notes"></textarea>
+                  </div>
+                </div>
+                <div id="spells-2-container" class="spells-container">
+                  <div class="spells-header">
+                    <img class="sheet-background" src="/resources/imgs/rpgs/dnd/character_sheet/spells-header.svg"/>
+                    <div>
+                      <p class="spells-header-size">2</p>
+                      <input class="spell-slots-total hidden-arrows" type="number" value="0"/>
+                      <input class="spell-slots-expended hidden-arrows" type="number" value="2"/>
+                    </div>
+                  </div>
+                  <div class="spells-body">
+                    <div class="add-button">+</div>
+                    <textarea class="spell-notes">Dragon's Breath
+Cloud of Daggers
+Scorching Ray
+Tasha's Mind Whip
+Barkskin
+Misty Step
+Alter Self</textarea>
+                  </div>
+                </div>
+              </div>
+              <div>
+                <div id="spells-3-container" class="spells-container">
+                  <div class="spells-header">
+                    <img class="sheet-background" src="/resources/imgs/rpgs/dnd/character_sheet/spells-header.svg"/>
+                    <div>
+                      <p class="spells-header-size">3</p>
+                      <input class="spell-slots-total hidden-arrows" type="number" value="0"/>
+                      <input class="spell-slots-expended hidden-arrows" type="number" value="3"/>
+                    </div>
+                  </div>
+                  <div class="spells-body">
+                    <div class="add-button">+</div>
+                    <textarea class="spell-notes"></textarea>
+                  </div>
+                </div>
+                <div id="spells-4-container" class="spells-container">
+                  <div class="spells-header">
+                    <img class="sheet-background" src="/resources/imgs/rpgs/dnd/character_sheet/spells-header.svg"/>
+                    <div>
+                      <p class="spells-header-size">4</p>
+                      <input class="spell-slots-total hidden-arrows" type="number" value="0"/>
+                      <input class="spell-slots-expended hidden-arrows" type="number" value="4"/>
+                    </div>
+                  </div>
+                  <div class="spells-body">
+                    <div class="add-button">+</div>
+                    <textarea class="spell-notes"></textarea>
+                  </div>
+                </div>
+                <div id="spells-5-container" class="spells-container">
+                  <div class="spells-header">
+                    <img class="sheet-background" src="/resources/imgs/rpgs/dnd/character_sheet/spells-header.svg"/>
+                    <div>
+                      <p class="spells-header-size">5</p>
+                      <input class="spell-slots-total hidden-arrows" type="number" value="0"/>
+                      <input class="spell-slots-expended hidden-arrows" type="number" value="6"/>
+                    </div>
+                  </div>
+                  <div class="spells-body">
+                    <div class="add-button">+</div>
+                    <textarea class="spell-notes"></textarea>
+                  </div>
+                </div>
+              </div>
+              <div>
+                <div id="spells-6-container" class="spells-container">
+                  <div class="spells-header">
+                    <img class="sheet-background" src="/resources/imgs/rpgs/dnd/character_sheet/spells-header.svg"/>
+                    <div>
+                      <p class="spells-header-size">6</p>
+                      <input class="spell-slots-total hidden-arrows" type="number" value="0"/>
+                      <input class="spell-slots-expended hidden-arrows" type="number" value="8"/>
+                    </div>
+                  </div>
+                  <div class="spells-body">
+                    <div class="add-button">+</div>
+                    <textarea class="spell-notes">Frostbite: const ST; other 1d6 and dis on next attack role
+Ray of Frost: ranged spell attack -> 1d8. -10ft speed
+Produce Flame: in hand, 10ft bright light, 10ft dim light
+-> range attack, 1d8 fire damage</textarea>
+                  </div>
+                </div>
+                <div id="spells-7-container" class="spells-container">
+                  <div class="spells-header">
+                    <img class="sheet-background" src="/resources/imgs/rpgs/dnd/character_sheet/spells-header.svg"/>
+                    <div>
+                      <p class="spells-header-size">7</p>
+                      <input class="spell-slots-total hidden-arrows" type="number" value="0"/>
+                      <input class="spell-slots-expended hidden-arrows" type="number" value="10"/>
+                    </div>
+                  </div>
+                  <div class="spells-body">
+                    <div class="add-button">+</div>
+                    <textarea class="spell-notes">SWA: communicating with animals; small favor, little information
+Inflict Wounds: melee spell attack -> 3d10 necrotic dmg
+Hellish Rebuke: reactions after being damaged-> dex st, 2d10 fire dmg or half dmg
+Burning Hands -> dex saving throw -> 3d6 fire dmg or half
+
+Sleep -> 5d8 hit points
+Command -> Hinlegen, Wegrennen, Anhalten, Ausziehen
+Shield -> 5 bonus AC till start of your next turn
+Inflict Wounds: melee spell attack -> 3d10 necrotic dmg</textarea>
+                  </div>
+                </div>
+                <div id="spells-8-container" class="spells-container">
+                  <div class="spells-header">
+                    <img class="sheet-background" src="/resources/imgs/rpgs/dnd/character_sheet/spells-header.svg"/>
+                    <div>
+                      <p class="spells-header-size">8</p>
+                      <input class="spell-slots-total hidden-arrows" type="number" value="0"/>
+                      <input class="spell-slots-expended hidden-arrows" type="number" value="13"/>
+                    </div>
+                  </div>
+                  <div class="spells-body">
+                    <div class="add-button">+</div>
+                    <textarea class="spell-notes">MEG->Hand Strength ST -> 2d6 bludegeoning+restrained
+-> if restrained -> crush -> strength st -> 2d6 or half
+Rope Trick->rope up to 60ft -> invis tree house in up to 60ft height; no attacks and spells</textarea>
+                  </div>
+                </div>
+                <div id="spells-9-container" class="spells-container">
+                  <div class="spells-header">
+                    <img class="sheet-background" src="/resources/imgs/rpgs/dnd/character_sheet/spells-header.svg"/>
+                    <div>
+                      <p class="spells-header-size">9</p>
+                      <input class="spell-slots-total hidden-arrows" type="number" value="0"/>
+                      <input class="spell-slots-expended hidden-arrows" type="number" value="16"/>
+                    </div>
+                  </div>
+                  <div class="spells-body">
+                    <div class="add-button">+</div>
+                    <textarea class="spell-notes">Commbon Blood Vials: 8
+Lesser Dragon Blood Vials: 2
+once filled: 1 greater, 0 lesser
+and common: 3
+used Common:
+used Lesser:       Greater:
+prepare: int+lvl = 7</textarea>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,107 @@
+.list-search-container {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25em;
+  position: relative;
+}
+
+.list-search-header {
+  font-weight: bold;
+}
+
+.list-search-selectors {
+  padding: 0.2em;
+  border: 1px solid black;
+  border-radius: 0.25em;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 0.25em;
+}
+
+.list-search-container:has(> .list-search-dropdown) .list-search-selectors {
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
+}
+
+.list-search-input {
+  border: 0;
+  padding: 0;
+  width: 100%;
+  border: none;
+  outline: none;
+  height: 1.5em;
+}
+
+.list-search-dropdown {
+  position: absolute;
+  top: 100%;
+  transform: translateY(-1px);
+  box-sizing: border-box;
+  border: 1px solid black;
+  border-radius: 0 0 0.25em 0.25em;
+  width: 100%;
+  background-color: white;
+  overflow-y: auto;
+  max-height: 25em;
+  z-index: 1;
+}
+
+.list-search-dropdown-value {
+  padding: 0.2em;
+  cursor: pointer;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.list-search-dropdown-value-selected {
+  background-color: #0001;
+}
+
+.list-search-dropdown-empty {
+  padding: 0.2em;
+  cursor: pointer;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.list-search-value {
+  display: flex;
+  flex-direction: row;
+  gap: 0.25em;
+  align-items: center;
+  padding: 0.2em;
+  box-sizing: border-box;
+  border: 1px solid black;
+  border-radius: 0.25em;
+  cursor: pointer;
+}
+
+.list-search-value:hover {
+  background-color: #0001;
+}
+
+.list-search-value-delete {
+  display: block;
+  flex: 0 0 0.65em;
+  width: 0.65em;
+  height: 0.65em;
+  background-color: black;
+  --dpw: 0.15;
+  clip-path: polygon(
+    calc(100% * (var(--dpw))) 0%,
+    50% calc(100% * (0.5 - var(--dpw))),
+    calc(100% * (1 - var(--dpw))) 0%,
+    100% calc(100% * (var(--dpw))),
+    calc(100% * (0.5 + var(--dpw))) 50%,
+    100% calc(100% * (1 - var(--dpw))),
+    calc(100% * (1 - var(--dpw))) 100%,
+    50% calc(100% * (0.5 + var(--dpw))),
+    calc(100% * (var(--dpw))) 100%,
+    0% calc(100% * (1 - var(--dpw))),
+    calc(100% * (0.5 - var(--dpw))) 50%,
+    0% calc(100% * (var(--dpw))));
+}

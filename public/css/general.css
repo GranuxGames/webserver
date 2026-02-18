@@ -6,7 +6,7 @@ body {
   font-size: var(--size-unit);
 }
 
-input[type=number] {
+input[type=number].default-style {
   height: calc(var(--size-unit) * 1.5 - 2px);
   border: 1px solid black;
   border-radius: calc(var(--size-unit) * 0.75);
@@ -17,12 +17,14 @@ input[type=number] {
   font-size: var(--size-unit);
 }
 
-input[type=number]::-webkit-outer-spin-button,
-input[type=number]::-webkit-inner-spin-button {
+input[type=number].hidden-arrows::-webkit-outer-spin-button,
+input[type=number].hidden-arrows::-webkit-inner-spin-button,
+input[type=number].default-style::-webkit-outer-spin-button,
+input[type=number].default-style::-webkit-inner-spin-button {
   -webkit-appearance: none;
   margin: 0;
 }
 
-input[type=number]:focus {
+input[type=number].default-style:focus {
   outline: 0;
 }

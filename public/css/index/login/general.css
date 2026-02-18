@@ -1,0 +1,164 @@
+body {
+  margin: 0px;
+  padding: 0px;
+  background-color: #383e50;
+
+  --pixel-size: max(calc(min(100vw, 100vh) / 384), 3px);
+
+  width: max(100vw, calc(var(--pixel-size) * 174));
+  height: max(100vh, calc(var(--pixel-size) * 104));
+
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+#form.login-form .input-wrapper:has(> #input-email) {
+  display: none;
+}
+
+#form.login-form .input-wrapper:has(> #input-password-repeat) {
+  display: none;
+}
+
+#form.login-form #cat {
+  top: calc(var(--pixel-size) * -1);
+}
+
+#cat {
+  position: absolute;
+  top: calc(var(--pixel-size) * -25);
+  right: calc(var(--pixel-size) * 12);
+  width: calc(var(--pixel-size) * 35);
+  height: calc(var(--pixel-size) * 50);
+  image-rendering: pixelated;
+  pointer-events: none;
+}
+
+#form {
+  position: fixed;
+  top: calc(max(50% + var(--pixel-size) * -49.5, var(--pixel-size) * 33));
+  display: flex;
+  flex-direction: column;
+  gap: calc(var(--pixel-size) * 3);
+  width: calc(var(--pixel-size) * 158);
+  height: calc(var(--pixel-size) * 63);
+  align-items: center;
+}
+
+#input-fields {
+  display: flex;
+  justify-content: end;
+  flex-direction: column;
+  gap: calc(var(--pixel-size) * 2);
+  width: calc(var(--pixel-size) * 158);
+  height: calc(var(--pixel-size) * 46);
+}
+
+#line {
+  width: calc(var(--pixel-size) * 158);
+  height: calc(var(--pixel-size) * 1);
+  background-color: #fffefe;
+}
+
+#buttons {
+  display: flex;
+  flex-direction: row;
+  gap: calc(var(--pixel-size) * 2);
+  width: calc(var(--pixel-size) * 128);
+}
+
+.input-wrapper {
+  display: flex;
+  flex-direction: row;
+}
+
+.icon-space {
+  width: 100%;
+  flex: 0 1 auto;
+}
+
+input, input::placeholder {
+  font-size: calc(var(--pixel-size) * 5);
+  font-family: var(--default-font);
+  color: #96a1b8;
+  flex: 1 0 auto;
+}
+
+.input-wrapper > .icon-space:first-child {
+  background-repeat: no-repeat;
+  image-rendering: pixelated;
+  background-position: center;
+  background-size: contain;
+}
+
+.input-wrapper:has(> #input-username) > .icon-space:first-child {
+  background-image: url('/resources/imgs/linos/login/icon_username.png');
+}
+
+.input-wrapper:has(> #input-email) > .icon-space:first-child {
+  background-image: url('/resources/imgs/linos/login/icon_email.png');
+}
+
+.input-wrapper:has(> #input-password) > .icon-space:first-child {
+  background-image: url('/resources/imgs/linos/login/icon_password.png');
+}
+
+input {
+  outline: none;
+  border: none;
+  background-color: #0000;
+  image-rendering: pixelated;
+  background-image: url('/resources/imgs/linos/login/field.png');
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  color: #fffefe;
+  width: calc(var(--pixel-size) * 122);
+  height: calc(var(--pixel-size) * 6);
+  padding: calc(var(--pixel-size) * 2) calc(var(--pixel-size) * 3);
+}
+
+a {
+  flex: 1 0 0;
+  color: #fffefe;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+button {
+  font-size: calc(var(--pixel-size) * 5);
+  font-family: var(--default-font);
+  color: #000101;
+  font-weight: bold;
+  cursor: pointer;
+  outline: none;
+  border: none;
+  background-color: #0000;
+  image-rendering: pixelated;
+  background-image: url('/resources/imgs/linos/login/button.png');
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  width: calc(var(--pixel-size) * 63);
+  height: calc(var(--pixel-size) * 10);
+  padding: 0px;
+  margin: 0px;
+}
+
+button:active {
+  background-image: url('/resources/imgs/linos/login/button_pressed.png');
+}
+
+#output {
+  position: absolute;
+  bottom: 0;
+  height: calc(var(--pixel-size) * 15);
+  margin: 0;
+  padding: 0;
+  display: flex;
+  width: 100%;
+  justify-content: center;
+  font-size: calc(var(--pixel-size) * 5);
+  color: #DD615D;
+  transform: translateY(calc(var(--pixel-size) * 17));
+}

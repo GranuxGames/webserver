@@ -9,7 +9,8 @@ global.__path = {
   databases: _PATH.join(__dirname, 'databases'),
   src: _PATH.join(__dirname, 'src'),
   public: _PATH.join(__dirname, 'public'),
-  html: _PATH.join(__dirname, 'public', 'html')
+  html: _PATH.join(__dirname, 'public', 'html'),
+  log: _PATH.join(__dirname, 'logs')
 };
 
 /**

@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<meta charset="UTF-8">
+<html>
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    
+    <title>GranuxGames | D&D Items</title>
+    
+    <script src="/js/utils/list_search.js"></script>
+    <script src="/js/rpgs/json_text.js"></script>
+    <script src="/js/rpgs/dice.js"></script>
+    <script src="/js/rpgs/dnd/items/item.js"></script>
+    <script src="/js/rpgs/dnd/items/library.js"></script>
+
+    <link rel="stylesheet" href="/css/fonts.css">
+    <link rel="stylesheet" href="/css/general.css">
+    <link rel="stylesheet" href="/css/list_search.css">
+    <link rel="stylesheet" href="/css/rpgs/json_text.css">
+    <link rel="stylesheet" href="/css/rpgs/dnd/item/general.css">
+    <link rel="stylesheet" href="/css/rpgs/dnd/item/library.css">
+  </head>
+  <body>
+    <div id="search-container">
+      <div id="search-header-container" class="collapsed">
+        <div id="search-name-input-container">
+          <input type="text" placeholder="Item Name"/>
+        </div>
+        <div id="search-price-input-container" class="search-input-container">
+          <div class="search-input-container-header">
+            Price
+          </div>
+          <div class="search-input-container-body">
+            From
+            <input class="search-input-min" type="text" placeholder="Minimum"/>
+            To
+            <input class="search-input-max" type="text" placeholder="Maximum"/>
+          </div>
+        </div>
+        <div id="search-weight-input-container" class="search-input-container">
+          <div class="search-input-container-header">
+            Weight
+          </div>
+          <div class="search-input-container-body">
+            From
+            <input class="search-input-min" type="text" placeholder="Minimum"/>
+            To
+            <input class="search-input-max" type="text" placeholder="Maximum"/>
+          </div>
+        </div>
+        <div id="search-header-container-collapse"></div>
+      </div>
+      <div id="search-body-header-container">
+        <div id="search-body-header-name">NAME</div>
+        <div id="search-body-header-type">TYPE</div>
+        <div id="search-body-header-requirements">REQUIREMENTS</div>
+        <div id="search-body-header-tags">TAGS</div>
+      </div>
+      <div id="search-body-container">
+          
+      </div>
+    </div>
+  </body>
+</html>

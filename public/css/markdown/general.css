@@ -1,0 +1,223 @@
+body {
+  height: 90vh;
+}
+
+.markdown-container {
+  width: 100%;
+  height: 100%;
+  outline: none;
+  border: none;
+  --color-transparent: #FFFFFF00;
+  --color-1: #FFFFFFFF;
+  --color-2: #000000FF;
+  --color-code: #F6F6F6FF;
+  --color-code-name: #777777FF;
+  --color-highlight: #8461F0FF;
+  background-color: var(--color-1);
+  color: var(--color-2);
+  overflow-y: scroll;
+  overflow-x: hidden;
+  box-sizing: border-box;
+  padding: 0.5em;
+  --indent-size: 1.75em;
+  --line-height: 1.5em;
+}
+
+.markdown-container.dark {
+  --color-transparent: #1E1E1E00;
+  --color-1: #1E1E1EFF;
+  --color-2: #DADADAFF;
+  --color-code: #242424FF;
+  --color-code-name: #B3B393FF;
+}
+
+
+/* GENERAL */
+.markdown-container:not([contenteditable="true"]) .markdown-hidden {
+  display: none;
+}
+
+.markdown-invisible {
+  color: var(--color-transparent);
+}
+
+.markdown-hidden {
+  width: 0;
+  height: 0;
+  display: inline-block;
+  overflow: hidden;
+}
+
+.markdown-line {
+  width: 100%;
+  box-sizing: border-box;
+  white-space: pre-wrap;
+  --indent: 0;
+  position: relative;
+}
+
+.markdown-line > span {
+  display: inline-block;
+  height: 100%;
+  line-height: calc(var(--line-height) * 1.1);
+}
+
+.markdown-text {
+  margin-left: calc(var(--indent-size) * var(--indent));
+  width: calc(100% - var(--indent-size) * var(--indent));
+  box-sizing: border-box;
+}
+
+/* CODE BLOCKS */
+.markdown-code-block {
+  background-color: var(--color-code);
+  box-sizing: border-box;
+  padding: 0 var(--indent-size);
+  font-family: 'Cascadia Mono';
+}
+
+.markdown-code-block-ticks {
+  display: inline-block;
+}
+
+.markdown-code-block-outer:has(> .markdown-code-block-ticks.markdown-invisible) .markdown-code-block-name {
+  color: var(--color-code-name);
+  font-size: 75%;
+}
+
+/* BLOCK QUOTES */
+.markdown-block-quote {
+  width: var(--indent-size);
+  position: absolute;
+}
+
+.markdown-block-quote {
+  margin-left: calc(var(--indent-size) * (var(--child-number) - 1));
+}
+
+.markdown-block-quote.markdown-invisible {
+  background-color: var(--color-highlight);
+  clip-path: polygon(
+    0% 0%,
+    25% 0%,
+    25% 100%,
+    0% 100%);
+}
+
+/* ORDERED */
+.markdown-ordered {
+  width: var(--indent-size);
+  position: absolute;
+}
+
+.markdown-ordered-num,
+.markdown-ordered-tab {
+  margin-left: calc(var(--indent-size) * (var(--child-number) - 1));
+}
+
+/* TASKS */
+.markdown-task {
+  width: var(--indent-size);
+  position: absolute;
+}
+
+.markdown-task-checkmark,
+.markdown-task-tab {
+  margin-left: calc(var(--indent-size) * (var(--child-number) - 1));
+}
+
+.markdown-task.markdown-invisible {
+  background-image: url('/resources/imgs/obsidian/checkbox-default.svg');
+  --background-size: calc(min(var(--indent-size), var(--line-height)) * 0.6);
+  background-size: var(--background-size);
+  background-repeat: no-repeat;
+  background-position: calc(var(--indent-size) / 2 - var(--background-size) / 2) calc(var(--line-height) / 2 - var(--background-size) / 2);
+  cursor: pointer;
+  user-select: none;
+}
+
+.markdown-task.markdown-invisible.markdown-task-checked {
+  background-image: url('/resources/imgs/obsidian/checkbox-checked.svg');
+}
+
+/* UNORDERED */
+.markdown-unordered {
+  width: var(--indent-size);
+  position: absolute;
+}
+
+.markdown-unordered-point,
+.markdown-unordered-tab {
+  margin-left: calc(var(--indent-size) * (var(--child-number) - 1));
+}
+
+.markdown-unordered-point.markdown-invisible:before {
+  content: '•';
+  position: absolute;
+  color: var(--color-2);
+  width: var(--indent-size);
+  height: var(--line-height);
+  user-select: none;
+  text-align: center;
+}
+
+/* IMAGES */
+.markdown-image {
+  display: block;
+  margin-left: calc(var(--indent-size) * var(--indent));
+  max-width: calc(100% - var(--indent-size) * var(--indent));
+  box-sizing: border-box;
+}
+
+.markdown-image-link {
+  cursor: pointer;
+}
+
+/* HEADERS */
+.markdown-header-1 {
+  font-size: 184%;
+  font-size: 220%;
+}
+
+.markdown-header-2 {
+  font-size: 180%;
+  font-size: 200%;
+}
+
+.markdown-header-3 {
+  font-size: 172%;
+  font-size: 180%;
+}
+
+.markdown-header-4 {
+  font-size: 160%;
+  font-size: 160%;
+}
+
+.markdown-header-5 {
+  font-size: 144%;
+  font-size: 140%;
+}
+
+.markdown-header-6 {
+  font-size: 124%;
+  font-size: 120%;
+}
+
+.markdown-header-initial.markdown-invisible {
+  display: inline-block;
+  width: 0;
+}
+
+/* TEXT */
+.markdown-code {
+  font-family: 'Cascadia Mono';
+}
+
+.markdown-italic {
+  font-style: italic;
+}
+
+.markdown-bold {
+  font-weight: bold;
+}

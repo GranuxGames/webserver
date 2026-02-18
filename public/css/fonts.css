@@ -1,4 +1,236 @@
 @font-face {
+  font-family: 'Bookinsanity';
+  font-stretch: normal;
+  font-weight: 400;
+  font-style: normal;
+  src: url('/resources/fonts/bookinsanity/400.otf');
+}
+
+@font-face {
+  font-family: 'Bookinsanity';
+  font-stretch: normal;
+  font-weight: 400;
+  font-style: italic;
+  src: url('/resources/fonts/bookinsanity/400 it.otf');
+}
+
+@font-face {
+  font-family: 'Bookinsanity';
+  font-stretch: normal;
+  font-weight: 700;
+  font-style: normal;
+  src: url('/resources/fonts/bookinsanity/700.otf');
+}
+
+@font-face {
+  font-family: 'Bookinsanity';
+  font-stretch: normal;
+  font-weight: 700;
+  font-style: italic;
+  src: url('/resources/fonts/bookinsanity/700 it.otf');
+}
+
+
+
+@font-face {
+  font-family: 'Dungeon Drop Case';
+  font-stretch: normal;
+  font-weight: 400;
+  font-style: normal;
+  src: url('/resources/fonts/dungeon drop case/400.otf');
+}
+
+
+
+@font-face {
+  font-family: 'Kirvy';
+  font-stretch: normal;
+  font-weight: 100;
+  font-style: normal;
+  src: url('/resources/fonts/kirvy/100.otf');
+}
+
+@font-face {
+  font-family: 'Kirvy';
+  font-stretch: normal;
+  font-weight: 200;
+  font-style: normal;
+  src: url('/resources/fonts/kirvy/200.otf');
+}
+
+@font-face {
+  font-family: 'Kirvy';
+  font-stretch: normal;
+  font-weight: 300;
+  font-style: normal;
+  src: url('/resources/fonts/kirvy/300.otf');
+}
+
+@font-face {
+  font-family: 'Kirvy';
+  font-stretch: normal;
+  font-weight: 400;
+  font-style: normal;
+  src: url('/resources/fonts/kirvy/400.otf');
+}
+
+
+
+@font-face {
+  font-family: 'Mr Eaves Caps';
+  font-stretch: normal;
+  font-weight: 400;
+  font-style: normal;
+  src: url('/resources/fonts/mr eaves caps/400.otf');
+}
+
+
+
+@font-face {
+  font-family: 'Nodesto Caps Condensed';
+  font-stretch: normal;
+  font-weight: 400;
+  font-style: normal;
+  src: url('/resources/fonts/nodesto caps condensed/400.otf');
+}
+
+@font-face {
+  font-family: 'Nodesto Caps Condensed';
+  font-stretch: normal;
+  font-weight: 400;
+  font-style: italic;
+  src: url('/resources/fonts/nodesto caps condensed/400 it.otf');
+}
+
+@font-face {
+  font-family: 'Nodesto Caps Condensed';
+  font-stretch: normal;
+  font-weight: 700;
+  font-style: normal;
+  src: url('/resources/fonts/nodesto caps condensed/700.otf');
+}
+
+@font-face {
+  font-family: 'Nodesto Caps Condensed';
+  font-stretch: normal;
+  font-weight: 700;
+  font-style: italic;
+  src: url('/resources/fonts/nodesto caps condensed/700 it.otf');
+}
+
+
+
+@font-face {
+  font-family: 'Scaly Sans';
+  font-stretch: normal;
+  font-weight: 400;
+  font-style: normal;
+  src: url('/resources/fonts/scaly sans/400.otf');
+}
+
+@font-face {
+  font-family: 'Scaly Sans';
+  font-stretch: normal;
+  font-weight: 400;
+  font-style: italic;
+  src: url('/resources/fonts/scaly sans/400 it.otf');
+}
+
+@font-face {
+  font-family: 'Scaly Sans';
+  font-stretch: normal;
+  font-weight: 500;
+  font-style: normal;
+  src: url('/resources/fonts/scaly sans/500.otf');
+}
+
+@font-face {
+  font-family: 'Scaly Sans';
+  font-stretch: normal;
+  font-weight: 500;
+  font-style: italic;
+  src: url('/resources/fonts/scaly sans/500 it.otf');
+}
+
+@font-face {
+  font-family: 'Scaly Sans';
+  font-stretch: normal;
+  font-weight: 700;
+  font-style: normal;
+  src: url('/resources/fonts/scaly sans/700.otf');
+}
+
+@font-face {
+  font-family: 'Scaly Sans';
+  font-stretch: normal;
+  font-weight: 700;
+  font-style: italic;
+  src: url('/resources/fonts/scaly sans/700 it.otf');
+}
+
+@font-face {
+  font-family: 'Scaly Sans';
+  font-stretch: normal;
+  font-weight: 800;
+  font-style: normal;
+  src: url('/resources/fonts/scaly sans/800.otf');
+}
+
+@font-face {
+  font-family: 'Scaly Sans';
+  font-stretch: normal;
+  font-weight: 800;
+  font-style: italic;
+  src: url('/resources/fonts/scaly sans/800 it.otf');
+}
+
+
+
+@font-face {
+  font-family: 'Scaly Sans Caps';
+  font-stretch: normal;
+  font-weight: 400;
+  font-style: normal;
+  src: url('/resources/fonts/scaly sans caps/400.otf');
+}
+
+@font-face {
+  font-family: 'Scaly Sans Caps';
+  font-stretch: normal;
+  font-weight: 400;
+  font-style: italic;
+  src: url('/resources/fonts/scaly sans caps/400 it.otf');
+}
+
+@font-face {
+  font-family: 'Scaly Sans Caps';
+  font-stretch: normal;
+  font-weight: 700;
+  font-style: normal;
+  src: url('/resources/fonts/scaly sans caps/700.otf');
+}
+
+@font-face {
+  font-family: 'Scaly Sans Caps';
+  font-stretch: normal;
+  font-weight: 700;
+  font-style: italic;
+  src: url('/resources/fonts/scaly sans caps/700 it.otf');
+}
+
+
+
+@font-face {
+  font-family: 'Solbera';
+  font-stretch: normal;
+  font-weight: 400;
+  font-style: normal;
+  src: url('/resources/fonts/solbera/400.otf');
+}
+
+
+
+@font-face {
   font-family: 'Source Sans Pro';
   font-stretch: normal;
   font-weight: 200;
@@ -81,33 +313,131 @@
 
 
 @font-face {
-  font-family: 'Kirvy';
-  font-stretch: normal;
-  font-weight: 100;
-  font-style: normal;
-  src: url('/resources/fonts/kirvy/100.otf');
-}
-
-@font-face {
-  font-family: 'Kirvy';
-  font-stretch: normal;
-  font-weight: 200;
-  font-style: normal;
-  src: url('/resources/fonts/kirvy/200.otf');
-}
-
-@font-face {
-  font-family: 'Kirvy';
-  font-stretch: normal;
-  font-weight: 300;
-  font-style: normal;
-  src: url('/resources/fonts/kirvy/300.otf');
-}
-
-@font-face {
-  font-family: 'Kirvy';
+  font-family: 'Zatanna Misdirection';
   font-stretch: normal;
   font-weight: 400;
   font-style: normal;
-  src: url('/resources/fonts/kirvy/400.otf');
+  src: url('/resources/fonts/zatanna misdirection/400.otf');
+}
+
+@font-face {
+  font-family: 'Zatanna Misdirection';
+  font-stretch: normal;
+  font-weight: 400;
+  font-style: italic;
+  src: url('/resources/fonts/zatanna misdirection/400 it.otf');
+}
+
+@font-face {
+  font-family: 'Zatanna Misdirection';
+  font-stretch: normal;
+  font-weight: 700;
+  font-style: normal;
+  src: url('/resources/fonts/zatanna misdirection/700.otf');
+}
+
+@font-face {
+  font-family: 'Zatanna Misdirection';
+  font-stretch: normal;
+  font-weight: 700;
+  font-style: italic;
+  src: url('/resources/fonts/zatanna misdirection/700 it.otf');
+}
+
+
+
+@font-face {
+  font-family: 'Cascadia Mono';
+  font-stretch: normal;
+  font-weight: 200;
+  font-style: normal;
+  src: url('/resources/fonts/cascadia mono/200.ttf');
+}
+
+@font-face {
+  font-family: 'Cascadia Mono';
+  font-stretch: normal;
+  font-weight: 200;
+  font-style: italic;
+  src: url('/resources/fonts/cascadia mono/200 it.ttf');
+}
+
+@font-face {
+  font-family: 'Cascadia Mono';
+  font-stretch: normal;
+  font-weight: 300;
+  font-style: normal;
+  src: url('/resources/fonts/cascadia mono/300.ttf');
+}
+
+@font-face {
+  font-family: 'Cascadia Mono';
+  font-stretch: normal;
+  font-weight: 300;
+  font-style: italic;
+  src: url('/resources/fonts/cascadia mono/300 it.ttf');
+}
+
+@font-face {
+  font-family: 'Cascadia Mono';
+  font-stretch: normal;
+  font-weight: 400;
+  font-style: normal;
+  src: url('/resources/fonts/cascadia mono/400.ttf');
+}
+
+@font-face {
+  font-family: 'Cascadia Mono';
+  font-stretch: normal;
+  font-weight: 400;
+  font-style: italic;
+  src: url('/resources/fonts/cascadia mono/400 it.ttf');
+}
+
+@font-face {
+  font-family: 'Cascadia Mono';
+  font-stretch: normal;
+  font-weight: 500;
+  font-style: normal;
+  src: url('/resources/fonts/cascadia mono/500.ttf');
+}
+
+@font-face {
+  font-family: 'Cascadia Mono';
+  font-stretch: normal;
+  font-weight: 500;
+  font-style: italic;
+  src: url('/resources/fonts/cascadia mono/500 it.ttf');
+}
+
+@font-face {
+  font-family: 'Cascadia Mono';
+  font-stretch: normal;
+  font-weight: 600;
+  font-style: normal;
+  src: url('/resources/fonts/cascadia mono/600.ttf');
+}
+
+@font-face {
+  font-family: 'Cascadia Mono';
+  font-stretch: normal;
+  font-weight: 600;
+  font-style: italic;
+  src: url('/resources/fonts/cascadia mono/600 it.ttf');
+}
+
+@font-face {
+  font-family: 'Cascadia Mono';
+  font-stretch: normal;
+  font-weight: 700;
+  font-style: normal;
+  src: url('/resources/fonts/cascadia mono/700.ttf');
+}
+
+@font-face {
+  font-family: 'Cascadia Mono';
+  font-stretch: normal;
+  font-weight: 700;
+  font-style: italic;
+  src: url('/resources/fonts/cascadia mono/700 it.ttf');
 }

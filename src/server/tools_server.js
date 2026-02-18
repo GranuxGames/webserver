@@ -1,3 +1,4 @@
+const { request } = require('http');
 const _PATH = require('path');
 const _SERVER = require(_PATH.join(global.__path.src, 'server', 'server'));
 const _UUID = require('uuid');
@@ -35,14 +36,21 @@ class ToolsServer extends _SERVER.Server {
                                  'insect_tracker.html'));
     });
 
-    expressServer.all('/' + this.url + '/canvas', (request, result) => {
-      result.redirect('/' + this.url + '/canvas/' + _UUID.v4());
+    expressServer.all('/' + this.url + '/phone-book-editor', (request, result) => {
+      result.sendFile(_PATH.join(global.__path.html, 'tools',
+                                 'phone_book_editor',
+                                 'phone_book_editor.html'));
     });
 
-    expressServer.all('/' + this.url + '/canvas{/*path}', (request, result) => {
-      result.sendFile(_PATH.join(global.__path.html, 'tools', 'canvas',
-                                 'canvas.html'));
-    });
+    // disable canvas until loading is fixed
+    // expressServer.all('/' + this.url + '/canvas', (request, result) => {
+    //   result.redirect('/' + this.url + '/canvas/' + _UUID.v4());
+    // });
+
+    // expressServer.all('/' + this.url + '/canvas{/*path}', (request, result) => {
+    //   result.sendFile(_PATH.join(global.__path.html, 'tools', 'canvas',
+    //                              'canvas.html'));
+    // });
 
     expressServer.all('/' + this.url, (request, result) => {
       result.sendFile(_PATH.join(global.__path.html, 'tools', 'tools.html'));

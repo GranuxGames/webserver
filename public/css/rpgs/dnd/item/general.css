@@ -1,0 +1,118 @@
+/* screens */
+@media (max-resolution : 130dpi) {
+
+  .dnd-item {
+    min-width: 45em;
+    max-width: 75em;
+  }
+
+}
+
+/* phones */
+@media (min-resolution : 130dpi) {
+
+  .dnd-item {
+    width: 100%;
+    max-width: 75em;
+  }
+
+}
+
+
+
+.dnd-item {
+  font-size: 12pt;
+  box-sizing: border-box;
+  background-color: #fff1dcff;
+  padding: 0.75em 1em 1.3em 1em;
+  border: 0 solid #f89401ff;
+  border-width: 0.3em 0;
+  font-family: 'Scaly Sans';
+  letter-spacing: 0.04cap;
+  line-height: 1.5;
+  overflow: hidden;
+}
+
+.dnd-item-image-container {
+  float: right;
+  display: block;
+  padding: 0 0 0.75em 0.75em;
+  box-sizing: border-box;
+  max-width: 30%;
+  background-color: #fff1dcff;
+}
+
+.dnd-item-image {
+  object-fit: contain;
+  width: 100%;
+}
+
+.dnd-item-name {
+  display: block;
+  font-family: 'Mr Eaves Caps';
+  font-size: 1.8em;
+  color: #952000ff;
+  font-weight: bold;
+}
+
+.dnd-item-header-line {
+  font-style: italic;
+}
+
+.dnd-item-separator {
+  width: 100%;
+  height: 2px;
+  background-color: #911800ff;
+  margin: 0.75em 0;
+}
+
+.dnd-item .json-text-line:not(:nth-child(1)) {
+  text-indent: 1.5em;
+}
+
+.dnd-item-effects {
+  margin-left: 1.5em;
+}
+
+.dnd-item-effect {
+  margin-top: 0.5em;
+}
+
+.dnd-item-effect-name {
+  margin-left: -1.5em;
+  font-weight: bold;
+  font-style: italic;
+}
+
+.dnd-item .json-text-table-name {
+  color: #777777ff;
+}
+
+.dnd-item .json-text-table {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+.dnd-item .json-text-table-cell {
+  padding: 0.1em 0.3em;
+}
+
+.dnd-item .json-text-table-row:nth-child(2n) {
+  background-color: #e4d8c3ff;
+}
+
+.dnd-item .json-text-table-row:nth-child(1) {
+  font-weight: bold;
+}
+
+.dnd-item .json-text-table-cell {
+  vertical-align: top;
+}
+
+.dnd-item .json-text-table-cell:nth-child(1) {
+  width: 3em;
+}
+
+.dnd-item .json-text-table-cell:nth-child(1) * {
+  white-space: nowrap;
+}

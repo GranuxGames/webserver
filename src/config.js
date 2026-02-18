@@ -7,6 +7,12 @@ const _UTILS = require(_PATH.join(global.__path.src, 'utils'));
  * The default config as an object.
  */
 const DEFAULT_CONFIG = {
+  obsidian: {
+    url: 'obsidian'
+  },
+  rpg: {
+    url: 'rpgs'
+  },
   tools: {
     url: 'tools',
     canvas: {
@@ -19,6 +25,19 @@ const DEFAULT_CONFIG = {
     https: {
       key: '',
       certificate: ''
+    },
+    users: {
+      session_secret: 'LUNA_SESSION_SECRET',
+      email_enc_key: 'LUNA_EMAIL_ENC',
+      email_hmac_key: 'LUNA_EMAIL_HMAC',
+      name: {
+        min_length: 3,
+        max_length: -1
+      },
+      password: {
+        min_length: 12,
+        max_length: -1
+      }
     }
   }
 };
@@ -66,6 +85,7 @@ function loadConfig(path) {
 function checkConfig(config) {
   _UTILS.checkURL(config.tools.url);
   checkHttps(config.server.https);
+  checkAuth(config.server.users);
 }
 
 
@@ -103,6 +123,19 @@ function checkHttps(https) {
   if (!_FS.existsSync(https.certificate))
     throw new Error('HTTPS certificate file must exist');
 
+  return true;
+}
+
+function checkAuth(auth) {
+  if (process.env[auth.session_secret] == null)
+    throw new Error('Authentication requires a session secret environment variable.');
+  if (process.env[auth.email_enc_key] == null)
+    throw new Error('Authentication requires an email encryption key environment variable.');
+  if (process.env[auth.email_hmac_key] == null)
+    throw new Error('Authentication requires an email hmac key environment variable.');
+  var key = Buffer.from(process.env[auth.email_enc_key], 'base64');
+  if (key.length != 32)
+    throw new Error('Authentication requires a 32 character long email encryption key.');
   return true;
 }
 

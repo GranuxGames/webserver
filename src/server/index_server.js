@@ -1,5 +1,6 @@
 const _PATH = require('path');
 const _SERVER = require(_PATH.join(global.__path.src, 'server', 'server'));
+const { UserDatabase } = require(_PATH.join(global.__path.src, 'database', 'index', 'user_database'));
 
 
 /**
@@ -30,6 +31,36 @@ class IndexServer extends _SERVER.Server {
   attachCallbacks(expressServer) {
     expressServer.all('', (request, result) => {
       result.sendFile(_PATH.join(global.__path.html, 'general', 'index.html'));
+    });
+
+    expressServer.all('/login', (request, result) => {
+      result.sendFile(_PATH.join(global.__path.html, 'general', 'login.html'));
+    });
+
+    expressServer.post('/api/login', async (request, result) => {
+      var error = await UserDatabase.instance.login(request.body.username || '', request.body.password || '', request, result);
+
+      if (error == UserDatabase.instance.ERROR.none)
+        return result.json({ ok: true });
+
+      return result.status(409).json({ ok: false, error: error });
+    });
+
+    expressServer.post('/api/logout', async (request, result) => {
+      await UserDatabase.instance.logout(request, result);
+    });
+
+    expressServer.all('/register', (request, result) => {
+      result.sendFile(_PATH.join(global.__path.html, 'general', 'register.html'));
+    });
+
+    expressServer.post('/api/register', async (request, result) => {
+      var error = await UserDatabase.instance.register(request.body.username || '', request.body.email || '', request.body.password || '');
+
+      if (error == UserDatabase.instance.ERROR.none)
+        return result.json({ ok: true });
+
+      return result.status(409).json({ ok: false, error: error });
     });
 
     expressServer.all('{/*path}', (request, result) => {
