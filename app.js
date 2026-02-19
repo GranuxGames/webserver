@@ -47,6 +47,7 @@ var HTTP_SERVER;
 if (global.__config.server.https.key.length <= 0) {
   HTTP_SERVER = _HTTP.createServer(EXPRESS_SERVER);
 } else {
+  _LOGGER.log('Enabling HTTPS...');
   const PRIVATE_KEY = _FS.readFileSync(global.__config.server.https.key, 'utf8');
   const CERTIFICATE = _FS.readFileSync(global.__config.server.https.certificate, 'utf8');
   const CREDENTIALS = { key: PRIVATE_KEY, cert: CERTIFICATE };
