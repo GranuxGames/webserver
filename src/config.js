@@ -127,8 +127,6 @@ function checkHttps(https) {
 }
 
 function checkAuth(auth) {
-  console.log(auth);
-  console.log(process.env);
   if (process.env[auth.session_secret] == null)
     throw new Error('Authentication requires a session secret environment variable.');
   if (process.env[auth.email_enc_key] == null)
