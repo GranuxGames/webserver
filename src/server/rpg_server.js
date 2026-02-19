@@ -2,6 +2,7 @@ const { request } = require('http');
 const _PATH = require('path');
 const { DNDDatabase } = require('../database/rpgs/dnd/dnd_database');
 const _SERVER = require(_PATH.join(global.__path.src, 'server', 'server'));
+const _FS = require('fs');
 
 class RPGServer extends _SERVER.Server {
 
@@ -23,6 +24,36 @@ class RPGServer extends _SERVER.Server {
 
     expressServer.all('/' + this.url + '/dnd/items', (request, result) => {
       result.sendFile(_PATH.join(global.__path.html, 'rpgs', 'dnd', 'items.html'));
+    });
+
+    expressServer.all('/' + this.url + '/dnd/items{/*path}', async (request, result) => {
+      var name = request.url.substring(('/' + this.url + '/dnd/items/').length);
+      var names = await DNDDatabase.instance.listItemNames();
+      for (var row of names) {
+        if ('' + row.id + '-' + row.name == name) {
+          var file = '' + _FS.readFileSync(_PATH.join(global.__path.html, 'rpgs', 'dnd', 'item.html'));
+          var item = await DNDDatabase.instance.getItem(row.id);
+          file = file.replaceAll('$TITLE$', item.name);
+          file = file.replaceAll('$ITEM$', JSON.stringify(item));
+          result.send(file);
+          return;
+        }
+
+        if ('' + row.id == name) {
+          result.redirect('' + row.id + '-' + row.name);
+          return;
+        }
+
+        if (row.name.toLowerCase() == name.toLowerCase()) {
+          result.redirect('' + row.id + '-' + row.name);
+          return;
+        }
+
+        if (('' + row.id + '-' + row.name).toLowerCase() == name.toLowerCase()) {
+          result.redirect('' + row.id + '-' + row.name);
+          return;
+        }
+      }
     });
 
     expressServer.post('/' + this.url + '/dnd/api/list-items', async (request, result) => {

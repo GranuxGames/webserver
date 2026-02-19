@@ -14,6 +14,15 @@ class DNDDatabase extends _DATABASE.Database {
     super(_PATH.join('rpgs', 'dnd', 'dnd.db'));
   }
 
+  async listItemNames() {
+    var table = await this.query('SELECT Items.ItemID AS id, Items.Name AS name FROM Items');
+    table = table.map((row) => {
+      row.name = row.name.replace(/\s/g, '-').replace(/[^a-zA-Z0-9-]/g, '');
+      return row;
+    });
+    return table;
+  }
+
   async listItemRarities() {
     var table = await this.query('SELECT DISTINCT ItemRarities.Name AS rarity FROM Items INNER JOIN ItemRarities ON Items.ItemRarityID = ItemRarities.ItemRarityID');
     table = table.map((row) => {

@@ -1,8 +1,8 @@
 const { request } = require('http');
 const _PATH = require('path');
 const _SERVER = require(_PATH.join(global.__path.src, 'server', 'server'));
-const _UUID = require('uuid');
-const _CANVAS_SOCKET = require(_PATH.join(global.__path.src, 'socket', 'tools', 'canvas_socket'));
+// const _UUID = require('uuid');
+// const _CANVAS_SOCKET = require(_PATH.join(global.__path.src, 'socket', 'tools', 'canvas_socket'));
 
 
 /**
@@ -68,10 +68,10 @@ class ToolsServer extends _SERVER.Server {
    *                    in any other case.
    */
   connectSocket(socket, url) {
-    if (url == '/canvas') {
-      new _CANVAS_SOCKET.CanvasSocket(socket);
-      return true;
-    }
+    // if (url == '/canvas') {
+    //   new _CANVAS_SOCKET.CanvasSocket(socket);
+    //   return true;
+    // }
     return false;
   }
 

@@ -445,6 +445,17 @@ function generateResult(row) {
         .then((item) => {
           dndItem = DNDItem.fromJSON(item);
           resultBody.appendChild(dndItem.getHTML());
+          
+          var detailsButton = document.createElement('a');
+          detailsButton.classList.add('search-result-details-button');
+          dndItem.getHTML().appendChild(detailsButton);
+          detailsButton.addEventListener('click', () => {
+            window.open('/rpgs/dnd/items/' + row.id, '_blank').focus();
+            // window.location.href = '/rpgs/dnd/items/' + row.id;
+          });
+
+          detailsButton.appendChild(document.createTextNode('VIEW DETAILS'));
+
           result.scrollIntoView({ block: 'nearest', behavior: 'smooth' });
         });
       }

@@ -26,14 +26,6 @@
   --search-type-size: 8em;
   --search-requirements-size: 8em;
   --search-tags-size: 13em;
-
-  /* --search-width-1: 0em;
-  --search-width-2: calc(var(--body-padding) * 2 + var(--search-header-padding) * 2 + var(--search-header-height) * 2 + var(--search-header-padding) * 2 + var(--search-name-size) + var(--search-type-size));
-  --search-width-3: calc(var(--search-width-2) + var(--search-header-padding) + var(--search-requirements-size));
-  --search-width-4: calc(var(--search-width-3) + var(--search-header-padding) + var(--search-tags-size)); */
-  /* 40.2em */
-  /* 48.6em */
-  /* 63em */
 }
 
 @media (min-width: 0em) and (max-width : 41em) {
@@ -164,12 +156,12 @@ body {
 }
 
 #search-header-container-collapse {
-  width: 1em;
-  height: 1em;
+  width: 2em;
+  height: 2em;
   position: absolute;
   background-color: black;
-  right: calc(var(--search-header-height) / 2 - 0.5em);
-  top: calc(var(--search-header-height) / 2 + 0.3em);
+  right: calc(var(--search-header-height) / 2 - 1em);
+  top: calc(var(--search-header-height) / 2 - 0.1em);
   cursor: pointer;
   clip-path: polygon(
     0% 10%,
@@ -374,4 +366,25 @@ body {
   font-weight: bold;
   font-size: 200%;
   user-select: none;
+}
+
+.dnd-item {
+  position: relative;
+  padding-bottom: 3.5em;
+}
+
+.search-result-details-button {
+  position: absolute;
+  bottom: 0.5em;
+  left: 0.5em;
+  padding: 0.5em;
+  background-color: #952000ff;
+  color: #fcf1ddff;
+  font-weight: bold;
+  border-radius: 0.5em;
+  cursor: pointer;
+}
+
+.search-result-details-button:hover {
+  background-color: #911800ff;
 }

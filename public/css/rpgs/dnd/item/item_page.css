@@ -1,0 +1,17 @@
+:root {
+  --body-padding: 0.8em;
+}
+
+body {
+  margin: 0;
+  padding: var(--body-padding);
+  font-size: 12pt;
+}
+
+#item-container {
+  width: 100%;
+}
+
+.dnd-item {
+  margin: auto;
+}
