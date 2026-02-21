@@ -3,6 +3,8 @@ class DNDCreature {
   constructor() {
     this.html = document.createElement('div');
     this.html.classList.add('dnd-creature');
+    if (isMobile())
+      this.html.classList.add('mobile');
 
     this.main = document.createElement('div');
     this.main.classList.add('dnd-creature-main');
@@ -380,11 +382,17 @@ class DNDCreatureHeaderSkills {
     this.skills = part.cloneNode(true);
     this.skills.querySelector('.dnd-creature-header-line-header').appendChild(document.createTextNode('Skills '));
 
-    this.resistances = part.cloneNode(true);
-    this.resistances.querySelector('.dnd-creature-header-line-header').appendChild(document.createTextNode('Damage Resistances '));
+    this.damageVulnerabilities = part.cloneNode(true);
+    this.damageVulnerabilities.querySelector('.dnd-creature-header-line-header').appendChild(document.createTextNode('Damage Vulnerabilities '));
 
-    this.immunities = part.cloneNode(true);
-    this.immunities.querySelector('.dnd-creature-header-line-header').appendChild(document.createTextNode('Damage Immunities'));
+    this.damageResistances = part.cloneNode(true);
+    this.damageResistances.querySelector('.dnd-creature-header-line-header').appendChild(document.createTextNode('Damage Resistances '));
+
+    this.damageImmunities = part.cloneNode(true);
+    this.damageImmunities.querySelector('.dnd-creature-header-line-header').appendChild(document.createTextNode('Damage Immunities'));
+
+    this.conditionImmunities = part.cloneNode(true);
+    this.conditionImmunities.querySelector('.dnd-creature-header-line-header').appendChild(document.createTextNode('Condition Immunities'));
 
     this.senses = part.cloneNode(true);
     this.senses.querySelector('.dnd-creature-header-line-header').appendChild(document.createTextNode('Senses '));
@@ -432,10 +440,10 @@ class DNDCreatureHeaderSkills {
         }).join(', ')));
     }
 
-    if (Object.keys(json.resistances).length > 0) {
-      this.html.appendChild(this.resistances);
-      this.resistances.querySelector('.dnd-creature-header-line-value').innerHTML = '';
-      this.resistances.querySelector('.dnd-creature-header-line-value').appendChild(document.createTextNode(Object.entries(json.resistances).map((entry) => {
+    if (Object.keys(json.damage_vulnerabilities).length > 0) {
+      this.html.appendChild(this.damageVulnerabilities);
+      this.damageVulnerabilities.querySelector('.dnd-creature-header-line-value').innerHTML = '';
+      this.damageVulnerabilities.querySelector('.dnd-creature-header-line-value').appendChild(document.createTextNode(Object.entries(json.damage_vulnerabilities).map((entry) => {
           var out = '';
           out += entry[0] + ' ';
           if (entry[1] >= 0)
@@ -445,10 +453,36 @@ class DNDCreatureHeaderSkills {
         }).join(', ')));
     }
 
-    if (Object.keys(json.immunities).length > 0) {
-      this.html.appendChild(this.immunities);
-      this.immunities.querySelector('.dnd-creature-header-line-value').innerHTML = '';
-      this.immunities.querySelector('.dnd-creature-header-line-value').appendChild(document.createTextNode(Object.entries(json.immunities).map((entry) => {
+    if (Object.keys(json.damage_resistances).length > 0) {
+      this.html.appendChild(this.damageResistances);
+      this.damageResistances.querySelector('.dnd-creature-header-line-value').innerHTML = '';
+      this.damageResistances.querySelector('.dnd-creature-header-line-value').appendChild(document.createTextNode(Object.entries(json.damage_resistances).map((entry) => {
+          var out = '';
+          out += entry[0] + ' ';
+          if (entry[1] >= 0)
+            out += '+';
+          out += entry[1];
+          return out;
+        }).join(', ')));
+    }
+
+    if (Object.keys(json.damage_immunities).length > 0) {
+      this.html.appendChild(this.damageImmunities);
+      this.damageImmunities.querySelector('.dnd-creature-header-line-value').innerHTML = '';
+      this.damageImmunities.querySelector('.dnd-creature-header-line-value').appendChild(document.createTextNode(Object.entries(json.damage_immunities).map((entry) => {
+          var out = '';
+          out += entry[0] + ' ';
+          if (entry[1] >= 0)
+            out += '+';
+          out += entry[1];
+          return out;
+        }).join(', ')));
+    }
+
+    if (Object.keys(json.condition_immunities).length > 0) {
+      this.html.appendChild(this.conditionImmunities);
+      this.conditionImmunities.querySelector('.dnd-creature-header-line-value').innerHTML = '';
+      this.conditionImmunities.querySelector('.dnd-creature-header-line-value').appendChild(document.createTextNode(Object.entries(json.condition_immunities).map((entry) => {
           var out = '';
           out += entry[0] + ' ';
           if (entry[1] >= 0)
@@ -872,17 +906,3 @@ class DNDCreatureLair {
   }
 
 }
-
-window.addEventListener('load', async () => {
-  var creature = await fetch("/rpgs/dnd/api/get-creature", {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ id: 1 })
-  });
-  creature = await creature.json();
-  creature = creature.creature;
-
-  console.log(creature);
-  var html = DNDCreature.fromJSON(creature);
-  document.body.appendChild(html.getHTML());
-});

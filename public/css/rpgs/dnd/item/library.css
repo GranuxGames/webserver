@@ -138,9 +138,6 @@ body {
 
 #search-header-container {
   box-shadow: 0 0 5px #0007;
-}
-
-#search-header-container {
   display: flex;
   flex-direction: row;
   padding: calc(var(--search-header-height) / 2) var(--search-header-height);

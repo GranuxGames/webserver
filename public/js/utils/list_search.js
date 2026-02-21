@@ -114,12 +114,19 @@ class ListSearch {
     }
 
     values.toSorted().forEach((value, index) => {
+      var valueString = value.split(' ').map((word) => {
+        if (word.length <= 0)
+          return word;
+
+        return word[0].toUpperCase() + word.substring(1);
+      }).join(' ');
+
       var element = document.createElement('div');
       element.classList.add('list-search-dropdown-value');
-      element.title = value;
+      element.title = valueString;
       this.dropdown.appendChild(element);
 
-      element.appendChild(document.createTextNode(value));
+      element.appendChild(document.createTextNode(valueString));
 
       if (index == 0)
         element.classList.add('list-search-dropdown-value-selected');

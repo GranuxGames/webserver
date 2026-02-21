@@ -1,5 +1,5 @@
-searchElements = {};
-items = null;
+var searchElements = {};
+var items = null;
 
 window.addEventListener('load', async () => {
   document.getElementById('search-header-container-collapse').addEventListener('click', () => {
@@ -318,9 +318,9 @@ function onFiltersChanged() {
       return false;
 
     return true;
-  })/*.toSorted((item1, item2) => {
+  }).toSorted((item1, item2) => {
     return item1.name.localeCompare(item2.name);
-  })*/.forEach((item) => {
+  }).forEach((item) => {
     var result = generateResult(item);
     container.appendChild(result);
   });
@@ -440,8 +440,8 @@ function generateResult(row) {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({ id: row.id })
-        }).then((item) => { return item.json() })
-        .then((item) => { return item.item })
+        }).then((item) => { return item.json(); })
+        .then((item) => { return item.item; })
         .then((item) => {
           dndItem = DNDItem.fromJSON(item);
           resultBody.appendChild(dndItem.getHTML());
@@ -451,7 +451,6 @@ function generateResult(row) {
           dndItem.getHTML().appendChild(detailsButton);
           detailsButton.addEventListener('click', () => {
             window.open('/rpgs/dnd/items/' + row.id, '_blank').focus();
-            // window.location.href = '/rpgs/dnd/items/' + row.id;
           });
 
           detailsButton.appendChild(document.createTextNode('VIEW DETAILS'));

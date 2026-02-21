@@ -5,10 +5,14 @@
   letter-spacing: 0.04cap;
   line-height: 1.5;
   overflow: hidden;
-  --column-count: calc(max(1, round(down, (100% - 2em + 1em) / (28.42em + 1em))));
+  --column-count: calc(min(max(1, round(down, (100% - 2em + 1em) / (28.42em + 1em))), 3));
   --width: calc(28.42em * var(--column-count) + 1em * (var(--column-count) - 1) + 2em);
   width: var(--width);
   margin: auto;
+}
+
+.dnd-creature.mobile {
+  width: 100%;
 }
 
 .dnd-creature-main {

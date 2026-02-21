@@ -6,17 +6,73 @@
     
     <title>GranuxGames | D&D Creatures</title>
     
+    <script src="/js/utils/mobile_check.js"></script>
     <script src="/js/utils/list_search.js"></script>
     <script src="/js/rpgs/json_text.js"></script>
     <script src="/js/rpgs/dice.js"></script>
     <script src="/js/rpgs/dnd/creatures/creature.js"></script>
+    <script src="/js/rpgs/dnd/creatures/library.js"></script>
 
     <link rel="stylesheet" href="/css/fonts.css">
     <link rel="stylesheet" href="/css/general.css">
     <link rel="stylesheet" href="/css/list_search.css">
     <link rel="stylesheet" href="/css/rpgs/json_text.css">
     <link rel="stylesheet" href="/css/rpgs/dnd/creature/general.css">
+    <link rel="stylesheet" href="/css/rpgs/dnd/creature/library.css">
   </head>
   <body>
+    <div id="search-container">
+      <div id="search-header-container" class="collapsed">
+        <div id="search-name-input-container">
+          <input type="text" placeholder="Creature Name"/>
+        </div>
+        <div id="search-cr-input-container" class="search-input-container">
+          <div class="search-input-container-header">
+            Challenge Rating
+          </div>
+          <div class="search-input-container-body">
+            From
+            <input class="search-input-min" type="text" placeholder="Minimum"/>
+            To
+            <input class="search-input-max" type="text" placeholder="Maximum"/>
+          </div>
+        </div>
+        <div id="search-ac-input-container" class="search-input-container">
+          <div class="search-input-container-header">
+            Armor Class
+          </div>
+          <div class="search-input-container-body">
+            From
+            <input class="search-input-min" type="text" placeholder="Minimum"/>
+            To
+            <input class="search-input-max" type="text" placeholder="Maximum"/>
+          </div>
+        </div>
+        <div id="search-hp-input-container" class="search-input-container">
+          <div class="search-input-container-header">
+            Average Hit Points
+          </div>
+          <div class="search-input-container-body">
+            From
+            <input class="search-input-min" type="text" placeholder="Minimum"/>
+            To
+            <input class="search-input-max" type="text" placeholder="Maximum"/>
+          </div>
+        </div>
+        <div id="search-header-container-collapse"></div>
+      </div>
+      <div id="search-body-header-container">
+        <div id="search-body-header-cr">CR</div>
+        <div id="search-body-header-name">NAME</div>
+        <div id="search-body-header-type">TYPE</div>
+        <div id="search-body-header-size">SIZE</div>
+        <div id="search-body-header-alignment">ALIGNMENT</div>
+        <div id="search-body-header-habitat">HABITAT</div>
+        <div id="search-body-header-tags">TAGS</div>
+      </div>
+      <div id="search-body-container">
+
+      </div>
+    </div>
   </body>
 </html>

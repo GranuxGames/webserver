@@ -3,6 +3,8 @@ class DNDItem {
   constructor() {
     this.html = document.createElement('div');
     this.html.classList.add('dnd-item');
+    if (isMobile())
+      this.html.classList.add('mobile');
 
     this.image = new DNDItemImage();
     this.html.appendChild(this.image.getHTML());
