@@ -318,9 +318,9 @@ function onFiltersChanged() {
       return false;
 
     return true;
-  }).toSorted((item1, item2) => {
+  })/*.toSorted((item1, item2) => {
     return item1.name.localeCompare(item2.name);
-  }).forEach((item) => {
+  })*/.forEach((item) => {
     var result = generateResult(item);
     container.appendChild(result);
   });

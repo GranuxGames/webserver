@@ -128,9 +128,6 @@ class DNDItemHeader {
       this.attributes.appendChild(document.createTextNode(combined.join(', ')));
       this.line1.appendChild(this.attributes);
 
-      if (json.bonus.length > 0)
-        this.attributes.appendChild(document.createTextNode(' ' + json.bonus));
-
       this.line1.appendChild(this.text5);
     }
     

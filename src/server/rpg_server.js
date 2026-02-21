@@ -56,6 +56,10 @@ class RPGServer extends _SERVER.Server {
       }
     });
 
+    expressServer.all('/' + this.url + '/dnd/creatures', (request, result) => {
+      result.sendFile(_PATH.join(global.__path.html, 'rpgs', 'dnd', 'creatures.html'));
+    });
+
     expressServer.post('/' + this.url + '/dnd/api/list-items', async (request, result) => {
       var items = await DNDDatabase.instance.listItems();
       return result.json({ ok: true, items: items });
@@ -106,6 +110,18 @@ class RPGServer extends _SERVER.Server {
         return result.status(409).json({ ok: false });
 
       return result.json({ ok: true, item: item });
+    });
+
+    expressServer.post('/' + this.url + '/dnd/api/get-creature', async (request, result) => {
+      if (request.body.id == null)
+        return result.status(409).json({ ok: false });
+
+      var creature = await DNDDatabase.instance.getCreature(request.body.id);
+
+      if (creature == null)
+        return result.status(409).json({ ok: false });
+
+      return result.json({ ok: true, creature, creature });
     });
   }
 

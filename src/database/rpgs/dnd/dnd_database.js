@@ -103,6 +103,29 @@ class DNDDatabase extends _DATABASE.Database {
     return item;
   }
 
+  async getCreature(id) {
+    var creature = await this.queryFirst('SELECT Creatures.CreatureID AS id, Creatures.Name AS name, Creatures.Image AS image, CreatureSizes.Name AS size, CreatureTypes.Name AS type, Creatures.Subtype AS subtype, Creatures.Alignment AS alignment, Creatures.ArmorClass AS ac, Creatures.Armor AS armor, Creatures.HitPoints AS hp, Creatures.Speed AS speed, CONCAT("{""str"": ", Creatures.Strength, ", ""dex"": ", Creatures.Dexterity, ", ""con"": ", Creatures.Constitution, ", ""int"": ", Creatures.Intelligence, ", ""wis"": ", Creatures.Wisdom, ", ""cha"": ", Creatures.Charisma, "}") AS stats, Creatures.SavingThrows AS saves, Creatures.Skills AS skills, Creatures.Resistances AS resistances, Creatures.Immunities AS immunities, Creatures.Senses AS senses, Creatures.Languages AS languages, Creatures.ChallengeRating AS cr, Creatures.ProficiencyBonus AS proficiency, Creatures.Traits AS traits, Creatures.Actions AS actions, Creatures.Reactions AS reactions, Creatures.LegendaryActions AS legendary_actions, Creatures.Description AS description, Creatures.Lair AS lair, Creatures.Habitat AS habitat, Creatures.Tags AS tags FROM Creatures INNER JOIN CreatureTypes ON Creatures.CreatureTypeID = CreatureTypes.CreatureTypeID INNER JOIN CreatureSizes ON Creatures.CreatureSizeID = CreatureSizes.CreatureSizeID WHERE Creatures.CreatureID = ?', [id]);
+    if (creature == null)
+      return null;
+    creature.armor = JSON.parse(creature.armor);
+    creature.speed = JSON.parse(creature.speed);
+    creature.stats = JSON.parse(creature.stats);
+    creature.saves = JSON.parse(creature.saves);
+    creature.skills = JSON.parse(creature.skills);
+    creature.resistances = JSON.parse(creature.resistances);
+    creature.immunities = JSON.parse(creature.immunities);
+    creature.senses = JSON.parse(creature.senses);
+    creature.languages = JSON.parse(creature.languages);
+    creature.traits = JSON.parse(creature.traits);
+    creature.actions = JSON.parse(creature.actions);
+    creature.reactions = JSON.parse(creature.reactions);
+    creature.legendary_actions = JSON.parse(creature.legendary_actions);
+    creature.description = JSON.parse(creature.description);
+    creature.lair = JSON.parse(creature.lair);
+    creature.tags = JSON.parse(creature.tags);
+    return creature;
+  }
+
 }
 
 DNDDatabase.instance = new DNDDatabase();
