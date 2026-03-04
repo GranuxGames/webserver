@@ -5,10 +5,12 @@ class ListSearch {
 
     this.container = document.createElement('div');
     this.container.classList.add('list-search-container');
+    this.container.classList.add('search-container');
 
     if (header.length > 0) {
       this.header = document.createElement('div');
       this.header.classList.add('list-search-header');
+      this.header.classList.add('search-header');
       this.container.appendChild(this.header);
 
       this.header.appendChild(document.createTextNode(header));
@@ -20,6 +22,7 @@ class ListSearch {
 
     this.input = document.createElement('input');
     this.input.classList.add('list-search-input');
+    this.input.classList.add('search-input');
     this.input.type = 'text';
     this.input.placeholder = placeholder;
     this.valuesContainer.appendChild(this.input);
@@ -96,7 +99,7 @@ class ListSearch {
     var values = this.values.filter((value) => {
       return value.toLowerCase().includes(this.input.value.toLowerCase());
     }).filter((value) => {
-      return !this.selectedValues.includes(value);
+      return !this.selectedValues.map((selectedValue) => { return selectedValue.toLowerCase(); }).includes(value.toLowerCase());
     });
 
     while (this.dropdown.children.length > 0)
@@ -159,6 +162,7 @@ class ListSearch {
   selectCurrentValue() {
     var value = this.dropdown.children[this.selectedElement].innerHTML;
     this.input.blur();
+    this.input.value = '';
 
     var element = document.createElement('div');
     element.classList.add('list-search-value');
@@ -184,6 +188,17 @@ class ListSearch {
     this.changeListeners.forEach((listener) => {
       listener(this.selectedValues);
     })
+  }
+
+  filter(rows) {
+    return rows.map((row) => {
+      row.score = 0;
+      return row;
+    });
+  }
+
+  getValue() {
+    return this.selectedValues;
   }
 
 }

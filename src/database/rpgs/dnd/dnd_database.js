@@ -17,7 +17,7 @@ class DNDDatabase extends _DATABASE.Database {
   async listItemNames() {
     var table = await this.query('SELECT Items.ItemID AS id, Items.Name AS name FROM Items');
     table = table.map((row) => {
-      row.name = row.name.replace(/\s/g, '-').replace(/[^a-zA-Z0-9-]/g, '');
+      row.name = row.name.replace(/\s|\//g, '-').replace(/[^a-zA-Z0-9-]/g, '');
       return row;
     });
     return table;
@@ -106,7 +106,7 @@ class DNDDatabase extends _DATABASE.Database {
   async listCreatureNames() {
     var table = await this.query('SELECT Creatures.CreatureID AS id, Creatures.Name AS name FROM Creatures');
     table = table.map((row) => {
-      row.name = row.name.replace(/\s/g, '-').replace(/[^a-zA-Z0-9-]/g, '');
+      row.name = row.name.replace(/\s|\//g, '-').replace(/[^a-zA-Z0-9-]/g, '');
       return row;
     });
     return table;
@@ -271,7 +271,7 @@ class DNDDatabase extends _DATABASE.Database {
   }
 
   async getCreature(id) {
-    var creature = await this.queryFirst('SELECT Creatures.CreatureID AS id, Creatures.Name AS name, Creatures.Image AS image, CreatureSizes.Name AS size, CreatureTypes.Name AS type, Creatures.Subtype AS subtype, Creatures.Alignment AS alignment, Creatures.ArmorClass AS ac, Creatures.Armor AS armor, Creatures.HitPoints AS hp, Creatures.Speed AS speed, CONCAT("{""str"": ", Creatures.Strength, ", ""dex"": ", Creatures.Dexterity, ", ""con"": ", Creatures.Constitution, ", ""int"": ", Creatures.Intelligence, ", ""wis"": ", Creatures.Wisdom, ", ""cha"": ", Creatures.Charisma, "}") AS stats, Creatures.SavingThrows AS saves, Creatures.Skills AS skills, Creatures.DamageVulnerabilities AS damage_vulnerabilities, Creatures.DamageResistances AS damage_resistances, Creatures.DamageImmunities AS damage_immunities, Creatures.ConditionImmunities AS condition_immunities, Creatures.Senses AS senses, Creatures.Languages AS languages, Creatures.ChallengeRating AS cr, Creatures.ProficiencyBonus AS proficiency, Creatures.Traits AS traits, Creatures.Actions AS actions, Creatures.Reactions AS reactions, Creatures.LegendaryActions AS legendary_actions, Creatures.Description AS description, Creatures.Lair AS lair, Creatures.Habitat AS habitat, Creatures.Tags AS tags FROM Creatures INNER JOIN CreatureTypes ON Creatures.CreatureTypeID = CreatureTypes.CreatureTypeID INNER JOIN CreatureSizes ON Creatures.CreatureSizeID = CreatureSizes.CreatureSizeID WHERE Creatures.CreatureID = ?', [id]);
+    var creature = await this.queryFirst('SELECT Creatures.BonusActions AS bonus_actions, Creatures.CreatureID AS id, Creatures.Name AS name, Creatures.Image AS image, CreatureSizes.Name AS size, CreatureTypes.Name AS type, Creatures.Subtype AS subtype, Creatures.Alignment AS alignment, Creatures.ArmorClass AS ac, Creatures.Armor AS armor, Creatures.HitPoints AS hp, Creatures.Speed AS speed, CONCAT("{""str"": ", Creatures.Strength, ", ""dex"": ", Creatures.Dexterity, ", ""con"": ", Creatures.Constitution, ", ""int"": ", Creatures.Intelligence, ", ""wis"": ", Creatures.Wisdom, ", ""cha"": ", Creatures.Charisma, "}") AS stats, Creatures.SavingThrows AS saves, Creatures.Skills AS skills, Creatures.DamageVulnerabilities AS damage_vulnerabilities, Creatures.DamageResistances AS damage_resistances, Creatures.DamageImmunities AS damage_immunities, Creatures.ConditionImmunities AS condition_immunities, Creatures.Senses AS senses, Creatures.Languages AS languages, Creatures.ChallengeRating AS cr, Creatures.ProficiencyBonus AS proficiency, Creatures.Traits AS traits, Creatures.Actions AS actions, Creatures.Reactions AS reactions, Creatures.LegendaryActions AS legendary_actions, Creatures.Description AS description, Creatures.Lair AS lair, Creatures.Habitat AS habitat, Creatures.Tags AS tags FROM Creatures INNER JOIN CreatureTypes ON Creatures.CreatureTypeID = CreatureTypes.CreatureTypeID INNER JOIN CreatureSizes ON Creatures.CreatureSizeID = CreatureSizes.CreatureSizeID WHERE Creatures.CreatureID = ?', [id]);
     if (creature == null)
       return null;
     creature.armor = JSON.parse(creature.armor);
@@ -287,12 +287,185 @@ class DNDDatabase extends _DATABASE.Database {
     creature.languages = JSON.parse(creature.languages);
     creature.traits = JSON.parse(creature.traits);
     creature.actions = JSON.parse(creature.actions);
+    creature.bonus_actions = JSON.parse(creature.bonus_actions);
     creature.reactions = JSON.parse(creature.reactions);
     creature.legendary_actions = JSON.parse(creature.legendary_actions);
     creature.description = JSON.parse(creature.description);
     creature.lair = JSON.parse(creature.lair);
     creature.tags = JSON.parse(creature.tags);
     return creature;
+  }
+
+  async listSpellNames() {
+    var table = await this.query('SELECT Spells.SpellID AS id, Spells.Name AS name FROM Spells');
+    table = table.map((row) => {
+      row.name = row.name.replace(/\s|\//g, '-').replace(/[^a-zA-Z0-9-]/g, '');
+      return row;
+    });
+    return table;
+  }
+
+  async listSpellLevels() {
+    var table = await this.query('SELECT DISTINCT Spells.Level AS level FROM Spells');
+    table = table.map((row) => {
+      if (row.level == 0)
+        return 'Cantrip';
+      if (row.level % 10 == 1)
+        return row.level + 'st';
+      if (row.level % 10 == 2)
+        return row.level + 'nd';
+      if (row.level % 10 == 3)
+        return row.level + 'rd';
+      return row.level + 'th';
+    });
+    return table;
+  }
+
+  async listSpellSchools() {
+    var table = await this.query('SELECT DISTINCT SpellSchools.Name AS school FROM Spells INNER JOIN SpellSchools ON Spells.SpellSchoolID = SpellSchools.SpellSchoolID');
+    table = table.map((row) => {
+      return row.school;
+    });
+    return table;
+  }
+
+  async listSpellCastingTimes() {
+    var table = await this.query('SELECT DISTINCT Spells.CastingTime AS casting_time FROM Spells');
+    table = table.map((row) => {
+      return JSON.parse(row.casting_time).type;
+    });
+    return [...new Set(table)];
+  }
+
+  async listSpellClasses() {
+    var table = await this.query('SELECT DISTINCT Spells.Classes AS classes FROM Spells');
+    table = table.map((row) => {
+      return JSON.parse(row.classes);
+    }).flat();
+    return [...new Set(table)];
+  }
+
+  async listSpellSaves() {
+    var table = await this.query('SELECT DISTINCT SpellSaves.Name AS save FROM Spells INNER JOIN SpellSaves ON Spells.SpellSaveID = SpellSaves.SpellSaveID');
+    table = table.map((row) => {
+      return row.save;
+    });
+    return [...new Set(table)];
+  }
+
+  async listSpellAttacks() {
+    var table = await this.query('SELECT DISTINCT SpellAttackTypes.Name AS attack FROM Spells INNER JOIN SpellAttackTypes ON Spells.SpellAttackTypeID = SpellAttackTypes.SpellAttackTypeID');
+    table = table.map((row) => {
+      return row.attack;
+    });
+    return [...new Set(table)];
+  }
+
+  async listSpellDamageTypes() {
+    var table = await this.query('SELECT DISTINCT Spells.DamageTypes AS damage FROM Spells');
+    table = table.map((row) => {
+      return JSON.parse(row.damage);
+    }).flat();
+    return [...new Set(table)];
+  }
+
+  async listSpellConditions() {
+    var table = await this.query('SELECT DISTINCT Spells.Conditions AS conditions FROM Spells');
+    table = table.map((row) => {
+      return JSON.parse(row.conditions);
+    }).flat();
+    return [...new Set(table)];
+  }
+
+  async listSpellComponents() {
+    var table = await this.query('SELECT DISTINCT Spells.Components AS components FROM Spells');
+    table = table.map((row) => {
+      return JSON.parse(row.components).map((component) => {
+        return component.type;
+      });
+    }).flat();
+    return [...new Set(table)];
+  }
+
+  async listSpellTags() {
+    var table = await this.query('SELECT DISTINCT Spells.Tags AS tags FROM Spells');
+    table = table.map((row) => {
+      return JSON.parse(row.tags);
+    }).flat();
+    return [...new Set(table)];
+  }
+
+  async listSpells() {
+    var table = await this.query('SELECT Spells.Ritual AS ritual, Spells.Concentration AS concentration, Spells.Conditions AS conditions, Spells.Classes AS classes, Spells.SpellID AS id, Spells.Name AS name, Spells.Image AS image, Spells.Level AS level, SpellSchools.Name AS school, Spells.Components AS components, Spells.CastingTime AS casting_time, Spells.Duration AS duration, Spells.Range AS range, Spells.Area AS area, SpellAttackTypes.Name AS attack, SpellSaves.Name AS save, Spells.DamageTypes AS damage, Spells.Effect AS effect, Spells.Tags AS tags FROM Spells INNER JOIN SpellSchools ON Spells.SpellSchoolID = SpellSchools.SpellSchoolID INNER JOIN SpellSaves ON Spells.SpellSaveID = SpellSaves.SpellSaveID INNER JOIN SpellAttackTypes ON Spells.SpellAttackTypeID = SpellAttackTypes.SpellAttackTypeID');
+    table = table.map((row) => {
+      if (row.level == 0)
+        row.level = 'Cantrip';
+      else if (row.level % 10 == 1)
+        row.level = row.level + 'st';
+      else if (row.level % 10 == 2)
+        row.level = row.level + 'nd';
+      else if (row.level % 10 == 3)
+        row.level = row.level + 'rd';
+      else
+        row.level = row.level + 'th';
+
+      row.components = JSON.parse(row.components);
+      row.subname = row.school + ' • ' + row.components.map((component) => {
+        if (component.type == 'verbal')
+          return 'V';
+        if (component.type == 'somatic')
+          return 'S';
+        if (component.type == 'material')
+          return 'M';
+        return '';
+      }).join(', ');
+      row.component_types = row.components.map((component) => {
+        return component.type;
+      });
+
+      row.casting_time = JSON.parse(row.casting_time).type;
+
+      row.range_area = row.range;
+      if (row.area.length > 0)
+        row.range_area += ' (' + row.area + ')';
+
+      row.damage = JSON.parse(row.damage);
+      row.damage_effect = [];
+      if (row.damage.length == 1)
+        row.damage_effect.push(row.damage[0])
+      else if (row.damage.length > 1)
+        row.damage_effect.push(row.damage[0] + ' (...)');
+      if (row.effect.length > 0)
+        row.damage_effect.push(row.effect);
+      row.damage_effect = row.damage_effect.join(', ');
+
+      row.tags = JSON.parse(row.tags);
+      row.classes = JSON.parse(row.classes);
+      row.conditions = JSON.parse(row.conditions);
+      row.ritual = row.ritual != 0;
+      row.concentration = row.concentration != 0;
+
+      return row;
+    });
+    return table;
+  }
+
+  async getSpell(id) {
+    var spell = await this.queryFirst('SELECT Spells.SpellID AS id, Spells.Name AS name, Spells.Image AS image, Spells.Level AS level, Spells.SpellSchoolID AS school_id, SpellSchools.Name AS school, Spells.Ritual AS ritual, Spells.Concentration AS concentration, Spells.CastingTime AS casting_time, Spells.Duration AS duration, Spells.Range AS range, Spells.Area AS area, Spells.SpellSaveID AS save_id, SpellSaves.Name AS save, Spells.SpellAttackTypeID AS attack_id, SpellAttackTypes.Name AS attack, Spells.DamageTypes AS damage, Spells.Conditions AS conditions, Spells.Components AS components, Spells.Description AS description, Spells.HigherLevels AS higher, Spells.Notes AS notes, Spells.Tags AS tags, Spells.Classes AS classes, Spells.Effect AS effect FROM Spells INNER JOIN SpellSchools ON Spells.SpellSchoolID = SpellSchools.SpellSchoolID INNER JOIN SpellSaves ON Spells.SpellSaveID = SpellSaves.SpellSaveID INNER JOIN SpellAttackTypes ON Spells.SpellAttackTypeID = SpellAttackTypes.SpellAttackTypeID WHERE Spells.SpellID = ?', [id]);
+    if (spell == null)
+      return null;
+    spell.damage = JSON.parse(spell.damage);
+    spell.conditions = JSON.parse(spell.conditions);
+    spell.components = JSON.parse(spell.components);
+    spell.description = JSON.parse(spell.description);
+    spell.higher = JSON.parse(spell.higher);
+    spell.notes = JSON.parse(spell.notes);
+    spell.tags = JSON.parse(spell.tags);
+    spell.classes = JSON.parse(spell.classes);
+    spell.ritual = spell.ritual != 0;
+    spell.concentration = spell.concentration != 0;
+    spell.casting_time = JSON.parse(spell.casting_time);
+    return spell;
   }
 
 }

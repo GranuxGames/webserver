@@ -3,6 +3,7 @@ class DNDItem {
   constructor() {
     this.html = document.createElement('div');
     this.html.classList.add('dnd-item');
+    this.html.classList.add('dnd-object');
     if (isMobile())
       this.html.classList.add('mobile');
 

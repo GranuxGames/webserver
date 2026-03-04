@@ -1,0 +1,7 @@
+#dice-roller {
+  position: fixed;
+  left: 0;
+  top: 0;
+  user-select: none;
+  pointer-events: none;
+}

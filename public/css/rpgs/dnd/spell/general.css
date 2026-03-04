@@ -1,0 +1,85 @@
+.dnd-spell {
+  font-size: 12pt;
+  box-sizing: border-box;
+  font-family: 'Scaly Sans';
+  letter-spacing: 0.04cap;
+  line-height: 1.5;
+  overflow: hidden;
+  margin: auto;
+  background-color: #fff1dcff;
+  padding: 0.75em 1em 1.3em 1em;
+  border: 0 solid #f89401ff;
+  border-width: 0.3em 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.dnd-spell-stats {
+  margin-top: 0.5em;
+}
+
+.dnd-spell-body {
+  margin-top: 0.5em;
+}
+
+.dnd-spell-name {
+  display: block;
+  font-family: 'Mr Eaves Caps';
+  font-size: 1.8em;
+  color: #952000ff;
+  font-weight: bold;
+}
+
+.dnd-spell-level {
+  font-style: italic;
+}
+
+.dnd-spell-stat-header {
+  font-weight: bold;
+}
+
+.dnd-spell-description .json-text-line + .json-text-line {
+  text-indent: 1.5em;
+}
+
+.dnd-spell-higher > :first-child {
+  text-indent: 1.5em;
+}
+
+.dnd-spell-notes {
+  font-style: italic;
+  font-size: 0.8em;
+}
+
+.dnd-spell .json-text-table-name {
+  color: #777777ff;
+}
+
+.dnd-spell .json-text-table {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+.dnd-spell .json-text-table-cell {
+  padding: 0.1em 0.3em;
+}
+
+.dnd-spell .json-text-table-row:nth-child(2n) {
+  background-color: #e4d8c3ff;
+}
+
+.dnd-spell .json-text-table-row:nth-child(1) {
+  font-weight: bold;
+}
+
+.dnd-spell .json-text-table-cell {
+  vertical-align: top;
+}
+
+.dnd-spell .json-text-table-cell:nth-child(1) {
+  width: 3em;
+}
+
+.dnd-spell .json-text-table-cell:nth-child(1) * {
+  white-space: nowrap;
+}

@@ -1,0 +1,11 @@
+instant summons
+black tentacles
+acid arrow
+faithful hound
+private sanctum
+freezing sphere
+
+SELECT Suffixes.SpellID, Suffixes.Name, Spells.SpellID, Spells.Name FROM (SELECT Spells.SpellID, Spells.Name, TRIM(SUBSTR(Spells.Name, INSTR(Spells.Name, "'") + 2)) AS Suffix FROM Spells) AS Suffixes INNER JOIN Spells ON Suffixes.Suffix = Spells.Name AND Suffixes.Name <> Spells.Name
+
+Select Spell references
+SELECT Spells1.Name, Spells2.Name FROM Spells AS Spells1, Spells AS Spells2 WHERE Spells1.Description LIKE CONCAT('%', Spells2.Name , '%')

@@ -200,3 +200,36 @@
 .json-text-line + .json-text-line {
   text-indent: 1.5em;
 }
+
+.dnd-creature .json-text-table-name {
+  color: #777777ff;
+}
+
+.dnd-creature .json-text-table {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+.dnd-creature .json-text-table-cell {
+  padding: 0.1em 0.3em;
+}
+
+.dnd-creature .json-text-table-row:nth-child(2n) {
+  background-color: #e4d8c3ff;
+}
+
+.dnd-creature .json-text-table-row:nth-child(1) {
+  font-weight: bold;
+}
+
+.dnd-creature .json-text-table-cell {
+  vertical-align: top;
+}
+
+.dnd-creature .json-text-table-cell:nth-child(1) {
+  width: 3em;
+}
+
+.dnd-creature .json-text-table-cell:nth-child(1) * {
+  white-space: nowrap;
+}

@@ -35,3 +35,9 @@
 .json-text-table-right-adjust {
   text-align: right;
 }
+
+.json-text-link {
+  text-decoration: none;
+  font-style: italic;
+  font-weight: bold;
+}

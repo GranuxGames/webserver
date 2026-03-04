@@ -84,7 +84,8 @@ class JSONText {
     var textParser = [
       { regex: /(?<!\\)\*(?:\\\*|[^\*])*(?<!\\)\*/gm, parser: this.parseItalic.bind(this) }, // italic
       { regex: /(?<!\\)_(?:\\_|[^_])*(?<!\\)_/gm, parser: this.parseBold.bind(this) }, // bold
-      { regex: /(?<!\\)\$(?:\\\$|[^\$])*(?<!\\)\$/gm, parser: this.parseDice.bind(this) } // dice
+      { regex: /(?<!\\)\$(?:\\\$|[^\$])*(?<!\\)\$/gm, parser: this.parseDice.bind(this) }, // dice
+      { regex: /(?<!\\)\[(?:\\\]|[^\]])*(?<!\\)\]\((?:\\\)|[^\)])*(?<!\\)\)/gm, parser: this.parseLink.bind(this) } // links
     ].map((parser) => {
       parser.match = [...line.matchAll(parser.regex)];
       if (parser.match.length <= 0)
@@ -121,6 +122,16 @@ class JSONText {
       startIndex = match.index + 1;
     });
     container.appendChild(document.createTextNode(text.substring(startIndex)));
+  }
+
+  parseLink(container, text) {
+    var parts = [...text.matchAll(/^\[((?:\\\]|[^\]])*)(?<!\\)\]\(((?:\\\)|[^\)])*)(?<!\\)\)$/gm)][0];
+    var a = document.createElement('a');
+    a.classList.add('json-text-link');
+    container.appendChild(a);
+    a.href = parts[2];
+
+    this.parseText(a, parts[1]);
   }
 
   parseItalic(container, text) {

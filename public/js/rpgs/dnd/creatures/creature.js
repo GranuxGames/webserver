@@ -3,6 +3,7 @@ class DNDCreature {
   constructor() {
     this.html = document.createElement('div');
     this.html.classList.add('dnd-creature');
+    this.html.classList.add('dnd-object');
     if (isMobile())
       this.html.classList.add('mobile');
 
@@ -21,6 +22,9 @@ class DNDCreature {
 
     this.actions = new DNDCreatureActions();
     this.main.appendChild(this.actions.getHTML());
+
+    this.bonusActions = new DNDCreatureBonusAction();
+    this.main.appendChild(this.bonusActions.getHTML());
 
     this.reactions = new DNDCreatureReactions();
     this.main.appendChild(this.reactions.getHTML());
@@ -54,6 +58,7 @@ class DNDCreature {
     this.header.loadJSON(json);
     this.traits.loadJSON(json);
     this.actions.loadJSON(json);
+    this.bonusActions.loadJSON(json);
     this.reactions.loadJSON(json);
     this.legendaryActions.loadJSON(json);
     this.description.loadJSON(json);
@@ -497,10 +502,7 @@ class DNDCreatureHeaderSkills {
       this.senses.querySelector('.dnd-creature-header-line-value').innerHTML = '';
       this.senses.querySelector('.dnd-creature-header-line-value').appendChild(document.createTextNode(Object.entries(json.senses).map((entry) => {
           var out = '';
-          out += entry[0] + ' ';
-          if (entry[1] >= 0)
-            out += '+';
-          out += entry[1];
+          out += entry[0] + ' ' + entry[1];
           return out;
         }).join(', ')));
     }
@@ -636,6 +638,81 @@ class DNDCreatureAction {
 
     this.name = document.createElement('span');
     this.name.classList.add('dnd-creature-action-name');
+  }
+
+  getHTML() {
+    return this.text.getHTML();
+  }
+
+  loadJSON(json) {
+    this.name.innerHTML = '';
+    this.name.appendChild(document.createTextNode(json.name + '. '));
+
+    if (json.type == 'attack') {
+      if (json.description.length <= 0)
+        json.description.push('');
+      json.description[0] = '*' + json.attack_type + ':* ' + json.attack + ' *Hit:* ' + json.description[0];
+    }
+    this.text.loadJSON(json.description);
+
+    if (this.text.getHTML().children.length <= 0) {
+      this.text.getHTML().appendChild(this.name);
+      return;
+    }
+
+    if (this.text.getHTML().firstChild.classList.contains('.json-text-line')) {
+      this.text.getHTML().firstChild.firstChild.firstChild.before(this.name);
+      return;
+    }
+
+    this.text.getHTML().firstChild.firstChild.before(this.name);
+  }
+
+}
+
+class DNDCreatureBonusActions {
+
+  constructor() {
+    this.html = document.createElement('div');
+    this.html.classList.add('dnd-creature-bonus-actions');
+
+    this.header = document.createElement('div');
+    this.header.classList.add('dnd-creature-section-header');
+    this.header.appendChild(document.createTextNode('Bonus Actions'));
+
+    this.bonusActions = document.createElement('div');
+    this.bonusActions.classList.add('dnd-creature-bonus-actions-body');
+  }
+
+  getHTML() {
+    return this.html;
+  }
+
+  loadJSON(json) {
+    this.html.innerHTML = '';
+
+    if (json.actions.length <= 0)
+      return;
+
+    this.html.appendChild(this.header);
+    this.html.appendChild(this.bonusActions);
+    json.bonus_actions.forEach((bonus_action) => {
+      var element = new DNDCreatureBonusAction();
+      element.loadJSON(bonus_action);
+      this.bonusActions.appendChild(element.getHTML());
+    });
+  }
+
+}
+
+class DNDCreatureBonusAction {
+
+  constructor() {
+    this.text = new JSONText();
+    this.text.getHTML().classList.add('dnd-creature-bonus-action');
+
+    this.name = document.createElement('span');
+    this.name.classList.add('dnd-creature-bonus-action-name');
   }
 
   getHTML() {
