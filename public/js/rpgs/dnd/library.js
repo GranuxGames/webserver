@@ -1,6 +1,17 @@
+function getLocalStorage(name) {
+  return window.localStorage.getItem(window.location.pathname + ' ' + name);
+}
+
+function setLocalStorage(name, value) {
+  return window.localStorage.setItem(window.location.pathname + ' ' + name, value);
+}
+
 class Library {
 
   constructor(objectFetchAddress, imgAddress, DNDClass, detailsAddress, list, headers) {
+    if (getLocalStorage('favorites') == null)
+      setLocalStorage('favorites', JSON.stringify([]));
+    
     this.objectFetchAddress = objectFetchAddress;
     this.imgAddress = imgAddress;
     this.DNDClass = DNDClass;
@@ -28,7 +39,7 @@ class Library {
     this.media.innerHTML = '';
     
     var minSize = '0em';
-    var maxSize = bodyPadding + ' + ' + headerHeight + ' + ' + headerHeight + ' + ' + bodyPadding;
+    var maxSize = bodyPadding + ' + ' + headerHeight + ' + ' + headerHeight + ' + ' + headerHeight + ' - ' + headerPadding + ' + ' + bodyPadding;
     this.headers = headers;
     this.headers.forEach((headerSetting, index) => {
       var div = document.createElement('div');
@@ -120,10 +131,17 @@ class Library {
     var rows = this.getFiltered();
     var container = document.getElementById('search-body-container');
     container.innerHTML = '';
+    var favorites = JSON.parse(getLocalStorage('favorites'));
     rows.toSorted((a, b) => {
       return a.name.localeCompare(b.name);
     }).toSorted((a, b) => {
       return b.score - a.score;
+    }).toSorted((a, b) => {
+      if (favorites.includes(a.id) == favorites.includes(b.id))
+        return 0;
+      if (favorites.includes(a.id))
+        return -1;
+      return 1;
     }).forEach((row) => {
       container.appendChild(this.generateResultRow(row));
     })
@@ -168,6 +186,28 @@ class Library {
 
         subtextElement.appendChild(document.createTextNode(subtext));
       }
+    });
+
+    div = document.createElement('div');
+    resultHeader.appendChild(div);
+
+    var favorite = document.createElement('div');
+    favorite.classList.add('search-favorite');
+    div.appendChild(favorite);
+    if (JSON.parse(getLocalStorage('favorites')).includes(row.id))
+      favorite.classList.add('active');
+
+    favorite.addEventListener('click', (e) => {
+      e.preventDefault();
+      e.stopPropagation();
+
+      favorite.classList.toggle('active');
+      var favorites = JSON.parse(getLocalStorage('favorites'));
+      if (favorite.classList.contains('active') && !favorites.includes(row.id))
+        favorites.push(row.id);
+      else if (!favorite.classList.contains('active') && favorites.includes(row.id))
+        favorites.splice(favorites.indexOf(row.id), 1);
+      setLocalStorage('favorites', JSON.stringify(favorites));
     });
 
     div = document.createElement('div');

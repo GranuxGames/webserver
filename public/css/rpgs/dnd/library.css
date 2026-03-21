@@ -217,6 +217,21 @@
   color: #0008;
 }
 
+:has(> .search-favorite) {
+  height: 100%;
+  flex: 0 0 calc(var(--search-header-height) - var(--search-header-padding) * 2);
+}
+
+.search-favorite {
+  width: 100%;
+  height: 100%;
+  background-image: url('/resources/imgs/rpgs/dnd/library/favorite_inactive.svg');
+}
+
+.search-favorite.active {
+  background-image: url('/resources/imgs/rpgs/dnd/library/favorite_active.svg');
+}
+
 :has(> .search-toggle) {
   height: 100%;
   flex: 0 0 calc(var(--search-header-height) - var(--search-header-padding) * 2);

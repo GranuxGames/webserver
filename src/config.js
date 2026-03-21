@@ -7,6 +7,12 @@ const _UTILS = require(_PATH.join(global.__path.src, 'utils'));
  * The default config as an object.
  */
 const DEFAULT_CONFIG = {
+  games: {
+    url: 'games',
+    hearthstone: {
+      url: 'hearthstone'
+    }
+  },
   obsidian: {
     url: 'obsidian'
   },

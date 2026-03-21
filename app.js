@@ -12,6 +12,7 @@ const _SERVER_MANAGER = require(_PATH.join(global.__path.src, 'server', 'server_
 const _TOOLS_SERVER = require(_PATH.join(global.__path.src, 'server', 'tools_server'));
 const _OBSIDIAN_SERVER = require(_PATH.join(global.__path.src, 'server', 'obsidian_server'));
 const _RPG_SERVER = require(_PATH.join(global.__path.src, 'server', 'rpg_server'));
+const _GAMES_SERVER = require(_PATH.join(global.__path.src, 'server', 'games_server'));
 const _INDEX_SERVER = require(_PATH.join(global.__path.src, 'server', 'index_server'));
 
 _LOGGER.init();
@@ -91,6 +92,7 @@ var serverManager = new _SERVER_MANAGER.ServerManager(EXPRESS_SERVER);
 serverManager.addServer(new _TOOLS_SERVER.ToolsServer());
 serverManager.addServer(new _OBSIDIAN_SERVER.ObsidianServer());
 serverManager.addServer(new _RPG_SERVER.RPGServer());
+serverManager.addServer(new _GAMES_SERVER.GamesServer());
 serverManager.addServer(new _INDEX_SERVER.IndexServer());
 
 // callback for socket connections
