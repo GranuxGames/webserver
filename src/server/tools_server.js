@@ -42,6 +42,12 @@ class ToolsServer extends _SERVER.Server {
                                  'phone_book_editor.html'));
     });
 
+    expressServer.all('/' + this.url + '/games/factorio/calculator', (reqeust, result) => {
+      result.sendFile(_PATH.join(global.__path.html, 'tools',
+                                 'games', 'factorio',
+                                 'calculator.html'));
+    });
+
     // disable canvas until loading is fixed
     // expressServer.all('/' + this.url + '/canvas', (request, result) => {
     //   result.redirect('/' + this.url + '/canvas/' + _UUID.v4());
