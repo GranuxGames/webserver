@@ -10,8 +10,105 @@
   padding: 0.75em 1em 1.3em 1em;
   border: 0 solid #f89401ff;
   border-width: 0.3em 0;
+}
+
+.dnd-spell-image-container {
+  float: right;
+  display: block;
+  padding: 0 0 0.75em 0.75em;
+  box-sizing: border-box;
+  width: 15em;
+  max-width: 30%;
+  background-color: #fff1dcff;
+  position: relative;
+}
+
+.dnd-spell-image-setting-hider {
+  position: absolute;
+  width: 1em;
+  height: 1em;
+  clip-path: polygon(
+    0% 0%, 100% 0%, 50% 100%);
+  background-color: #0003;
+}
+
+.dnd-spell-image-setting-hider-hidden {
+  clip-path: polygon(
+    0% 0%, 100% 50%, 0% 100%);
+}
+
+.dnd-spell-image-container:has(>.dnd-spell-image-setting-hider-hidden) .dnd-spell-image-settings {
+  display: none;
+}
+
+.dnd-spell-image {
+  width: 100%;
+  aspect-ratio: 1;
+}
+
+.dnd-spell-image-settings {
   display: flex;
   flex-direction: column;
+  gap: 0.5em;
+}
+
+.dnd-spell-image-settings select {
+  outline: none;
+  font-size: 1em;
+  font-family: 'Scaly Sans';
+}
+
+.dnd-spell-image-setting {
+  display: flex;
+  flex-direction: row;
+  position: relative;
+  height: 1.5em;
+  gap: 0.25em;
+  z-index: 1;
+}
+
+.dnd-spell-image-setting-number span {
+  position: absolute;
+  font-size: 0.65em;
+  transform: translateY(-0.65em);
+  pointer-events: none;
+  user-select: none;
+}
+
+.dnd-spell-image-setting input[type="number"] {
+  min-width: 0;
+  min-height: 0;
+  font-size: 1em;
+  font-family: 'Scaly Sans';
+  outline: none;
+  border: none;
+  background-color: #0000;
+  height: 100%;
+  flex: 1 0 0;
+  padding: 0;
+  margin: 0;
+  border-bottom: 1px solid #000;
+}
+
+/* Chrome, Safari, Edge, Opera */
+.dnd-spell-image-setting input[type="number"]::-webkit-outer-spin-button,
+.dnd-spell-image-setting input[type="number"]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+.dnd-spell-image-setting input[type=number] {
+  -moz-appearance: textfield;
+}
+
+.dnd-spell-image-setting input[type="range"] {
+  min-width: 0;
+  min-height: 0;
+  height: 100%;
+  flex: 0 0 65%;
+  padding: 0;
+  margin: 0;
 }
 
 .dnd-spell-stats {

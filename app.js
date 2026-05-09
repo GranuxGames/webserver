@@ -88,7 +88,67 @@ EXPRESS_SERVER.use((req, res, next) => {
   }
 });
 
+    // expressServer.all('/sitemap.xml', (request, result) => {
+      // result.sendFile(_PATH.join(global.__path.public, 'root_files', 'sitemap.xml'));
+      
+/*
+<?xml version="1.0" encoding="UTF-8"?>
+<sitemapindex xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+
+  <sitemap>
+    <loc>https://example.com/pages-sitemap.xml</loc>
+    <lastmod>2026-05-09</lastmod>
+  </sitemap>
+
+  <sitemap>
+    <loc>https://example.com/posts-sitemap.xml</loc>
+    <lastmod>2026-05-08</lastmod>
+  </sitemap>
+
+  <sitemap>
+    <loc>https://example.com/products-sitemap.xml</loc>
+    <lastmod>2026-05-07</lastmod>
+  </sitemap>
+
+</sitemapindex>*/
+    // });
+
 var serverManager = new _SERVER_MANAGER.ServerManager(EXPRESS_SERVER);
+
+EXPRESS_SERVER.all('/favicon.ico', (request, result) => {
+  result.sendFile(_PATH.join(global.__path.public, 'favicon.ico'));
+});
+
+EXPRESS_SERVER.all('/.well-known/security.txt', (request, result) => {
+  result.set('Content-Type', 'text/plain');
+  result.send('Contact: mailto:granuxgames@gmail.com\n' +
+              'Expires: 2099-12-31T23:00:00.000Z\n' +
+              'Preferred-Languages: en, ger');
+});
+
+EXPRESS_SERVER.all('/robots.txt', (request, result) => {
+  result.set('Content-Type', 'text/plain');
+  result.send('User-agent: *\nDisallow:\n\nSitemap: ' +
+              (global.__config.server.https.key.length <= 0?'http://':'https://') +
+              global.__config.base_url + ':' + global.__config.server.port +
+              '/sitemap.xml');
+});
+
+EXPRESS_SERVER.all('/sitemap.xml', (request, result) => {
+  result.set('Content-Type', 'text/xml');
+  result.send('<?xml version="1.0" encoding="UTF-8"?>\n' +
+              '<sitemapindex xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n' +
+              serverManager.servers.map((server) => {
+                return '  <url>\n' +
+                       '    <loc>' + (global.__config.server.https.key.length <= 0?'http://':'https://') +
+                       global.__config.base_url + ':' + global.__config.server.port +
+                       (server.url.length > 0?'/':'') + server.url + '/sitemap-local.xml' + '</loc>\n' +
+                       '    <lastmod>' + new Date().toISOString().replace(/T/, ' ').replace(/\..+/, '') + '</lastmod>\n' +
+                       '  </url>\n';
+              }).join('') +
+              '</sitemapindex>');
+});
+
 serverManager.addServer(new _TOOLS_SERVER.ToolsServer());
 serverManager.addServer(new _OBSIDIAN_SERVER.ObsidianServer());
 serverManager.addServer(new _RPG_SERVER.RPGServer());

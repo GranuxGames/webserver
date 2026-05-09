@@ -19,6 +19,10 @@ class IndexServer extends _SERVER.Server {
    */
   constructor() {
     super('');
+    
+    this.sites.push('');
+    this.sites.push('/login');
+    this.sites.push('/register');
   }
 
   

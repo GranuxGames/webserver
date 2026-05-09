@@ -15,6 +15,7 @@ class Server {
    */
   constructor(url) {
     this.url = url;
+    this.sites = [];
   }
 
   /**
@@ -49,6 +50,20 @@ class Server {
    */
   connectSocket(socket, url) {
     return false;
+  }
+
+  getSitemap() {
+    return '<?xml version="1.0" encoding="UTF-8"?>\n' +
+           '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n' +
+           this.sites.map((site) => {
+             return '  <url>\n' +
+                    '    <loc>' + (global.__config.server.https.key.length <= 0?'http://':'https://') +
+                    global.__config.base_url + ':' + global.__config.server.port +
+                    (this.url.length > 0?'/':'') + this.url + site + '</loc>\n' +
+                    '    <lastmod>' + new Date().toISOString().replace(/T/, ' ').replace(/\..+/, '') + '</lastmod>\n' +
+                    '  </url>\n';
+           }).join('') +
+           '</urlset>';
   }
 
 }

@@ -691,7 +691,7 @@ class DNDCreatureBonusActions {
   loadJSON(json) {
     this.html.innerHTML = '';
 
-    if (json.actions.length <= 0)
+    if (json.bonus_actions.length <= 0)
       return;
 
     this.html.appendChild(this.header);

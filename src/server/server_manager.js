@@ -26,6 +26,11 @@ class ServerManager {
    */
   addServer(server) {
     this.servers.push(server);
+    this.expressServer.all((server.url.length > 0?'/' + server.url:'') + '/sitemap-local.xml', (request, result) => {
+      console.log('test');
+      result.set('Content-Type', 'text/xml');
+      result.send(server.getSitemap());
+    });
     server.attachCallbacks(this.expressServer);
   }
 

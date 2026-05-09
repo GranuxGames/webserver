@@ -6,6 +6,8 @@ class GamesServer extends _SERVER.Server {
 
   constructor() {
     super(global.__config.games.url);
+    
+    this.sites.push('/' + global.__config.games.hearthstone.url);
   }
   
     

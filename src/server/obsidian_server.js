@@ -6,6 +6,8 @@ class ObsidianServer extends _SERVER.Server {
 
   constructor() {
     super(global.__config.obsidian.url);
+    
+    this.sites.push('');
   }
   
     

@@ -21,6 +21,11 @@ class ToolsServer extends _SERVER.Server {
    */
   constructor() {
     super(global.__config.tools.url);
+    
+    this.sites.push('/insect-tracker');
+    this.sites.push('/phone-book-editor');
+    this.sites.push('/games/factorio/calculator');
+    this.sites.push('');
   }
 
   

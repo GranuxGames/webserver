@@ -8,6 +8,11 @@ class RPGServer extends _SERVER.Server {
 
   constructor() {
     super(global.__config.rpg.url);
+    
+    this.sites.push('/dnd/character-sheet');
+    this.sites.push('/dnd/items');
+    this.sites.push('/dnd/creatures');
+    this.sites.push('/dnd/spells');
   }
   
     

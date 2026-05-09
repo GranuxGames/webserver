@@ -7,6 +7,7 @@ const _UTILS = require(_PATH.join(global.__path.src, 'utils'));
  * The default config as an object.
  */
 const DEFAULT_CONFIG = {
+  base_url: 'www.granuxgames.de',
   games: {
     url: 'games',
     hearthstone: {
