@@ -68,6 +68,15 @@
   text-indent: 1.5em;
 }
 
+.dnd-item-notes {
+  margin-top: 0.5em;
+  font-style: italic;
+}
+
+.dnd-item-notes .json-text-line + .json-text-line {
+  text-indent: 0em;
+}
+
 .dnd-item-effects {
   margin-left: 1.5em;
 }

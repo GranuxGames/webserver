@@ -172,6 +172,10 @@ class DNDItemBody {
     this.effects = document.createElement('div');
     this.effects.classList.add('dnd-item-effects');
     this.html.appendChild(this.effects);
+
+    this.notes = new JSONText();
+    this.notes.getHTML().classList.add('dnd-item-notes');
+    this.html.appendChild(this.notes.getHTML());
   }
 
   getHTML() {
@@ -180,6 +184,7 @@ class DNDItemBody {
 
   loadJSON(json) {
     this.description.loadJSON(json.description);
+    this.notes.loadJSON(json.notes);
 
     this.effects.innerHTML = '';
     json.effects.forEach((effect) => {
