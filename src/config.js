@@ -12,6 +12,9 @@ const DEFAULT_CONFIG = {
     url: 'games',
     hearthstone: {
       url: 'hearthstone'
+    },
+    stickerball: {
+      url: 'sticker_ball'
     }
   },
   obsidian: {

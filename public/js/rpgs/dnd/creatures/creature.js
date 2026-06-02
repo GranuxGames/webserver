@@ -23,7 +23,7 @@ class DNDCreature {
     this.actions = new DNDCreatureActions();
     this.main.appendChild(this.actions.getHTML());
 
-    this.bonusActions = new DNDCreatureBonusAction();
+    this.bonusActions = new DNDCreatureBonusActions();
     this.main.appendChild(this.bonusActions.getHTML());
 
     this.reactions = new DNDCreatureReactions();
@@ -330,9 +330,9 @@ class DNDCreatureHeaderAbilities {
 
 const CRS = {
   '0': 10,
-  '0.125': 25,
-  '0.25': 50,
-  '0.5': 100,
+  '1/8': 25,
+  '1/4': 50,
+  '1/2': 100,
   '1': 200,
   '2': 450,
   '3': 700,

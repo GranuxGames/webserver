@@ -7,7 +7,8 @@ class GamesServer extends _SERVER.Server {
   constructor() {
     super(global.__config.games.url);
     
-    this.sites.push('/' + global.__config.games.hearthstone.url);
+    // this.sites.push('/' + global.__config.games.hearthstone.url);
+    this.sites.push('/' + global.__config.games.stickerball.url);
   }
   
     
@@ -18,9 +19,13 @@ class GamesServer extends _SERVER.Server {
    * @param {Express} expressServer 
    */
   attachCallbacks(expressServer) {
-    expressServer.all('/' + this.url + '/' + global.__config.games.hearthstone.url, (request, result) => {
-      result.sendFile(_PATH.join(global.__path.html, 'games', 'hearthstone', 'game.html'));
-      // result.sendFile(_PATH.join(global.__path.public, 'exports', 'godot', 'hearthstone', 'index.html'));
+    // expressServer.all('/' + this.url + '/' + global.__config.games.hearthstone.url, (request, result) => {
+    //   result.sendFile(_PATH.join(global.__path.html, 'games', 'hearthstone', 'game.html'));
+    //   // result.sendFile(_PATH.join(global.__path.public, 'exports', 'godot', 'hearthstone', 'index.html'));
+    // });
+
+    expressServer.all('/' + this.url + '/' + global.__config.games.stickerball.url, (request, result) => {
+      result.sendFile(_PATH.join(global.__path.html, 'games', 'stickerball', 'game.html'));
     });
   }
 

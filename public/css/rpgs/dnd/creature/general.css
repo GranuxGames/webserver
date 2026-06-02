@@ -145,6 +145,19 @@
   margin-top: 0.5em;
 }
 
+.dnd-creature-bonus-action-name {
+  font-weight: bold;
+  font-style: italic;
+}
+
+.dnd-creature-bonus-action {
+  margin-top: 0.5em;
+}
+
+.dnd-creature-bonus-action > div {
+  margin-top: 0.5em;
+}
+
 .dnd-creature-action-name {
   font-weight: bold;
   font-style: italic;

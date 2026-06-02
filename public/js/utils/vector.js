@@ -86,4 +86,9 @@ class Vector {
     return new Vector(this.x * cs - this.y * sn, this.x * sn + this.y * cs);
   }
 
+  *[Symbol.iterator]() {
+    yield this.x;
+    yield this.y;
+  }
+
 }
