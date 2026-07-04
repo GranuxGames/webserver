@@ -394,10 +394,10 @@ class DNDCreatureHeaderSkills {
     this.damageResistances.querySelector('.dnd-creature-header-line-header').appendChild(document.createTextNode('Damage Resistances '));
 
     this.damageImmunities = part.cloneNode(true);
-    this.damageImmunities.querySelector('.dnd-creature-header-line-header').appendChild(document.createTextNode('Damage Immunities'));
+    this.damageImmunities.querySelector('.dnd-creature-header-line-header').appendChild(document.createTextNode('Damage Immunities '));
 
     this.conditionImmunities = part.cloneNode(true);
-    this.conditionImmunities.querySelector('.dnd-creature-header-line-header').appendChild(document.createTextNode('Condition Immunities'));
+    this.conditionImmunities.querySelector('.dnd-creature-header-line-header').appendChild(document.createTextNode('Condition Immunities '));
 
     this.senses = part.cloneNode(true);
     this.senses.querySelector('.dnd-creature-header-line-header').appendChild(document.createTextNode('Senses '));
@@ -450,7 +450,6 @@ class DNDCreatureHeaderSkills {
       this.damageVulnerabilities.querySelector('.dnd-creature-header-line-value').innerHTML = '';
       this.damageVulnerabilities.querySelector('.dnd-creature-header-line-value').appendChild(document.createTextNode(Object.entries(json.damage_vulnerabilities).map((entry) => {
           var out = '';
-          out += entry[0] + ' ';
           if (entry[1] >= 0)
             out += '+';
           out += entry[1];
@@ -463,7 +462,6 @@ class DNDCreatureHeaderSkills {
       this.damageResistances.querySelector('.dnd-creature-header-line-value').innerHTML = '';
       this.damageResistances.querySelector('.dnd-creature-header-line-value').appendChild(document.createTextNode(Object.entries(json.damage_resistances).map((entry) => {
           var out = '';
-          out += entry[0] + ' ';
           if (entry[1] >= 0)
             out += '+';
           out += entry[1];
@@ -476,7 +474,6 @@ class DNDCreatureHeaderSkills {
       this.damageImmunities.querySelector('.dnd-creature-header-line-value').innerHTML = '';
       this.damageImmunities.querySelector('.dnd-creature-header-line-value').appendChild(document.createTextNode(Object.entries(json.damage_immunities).map((entry) => {
           var out = '';
-          out += entry[0] + ' ';
           if (entry[1] >= 0)
             out += '+';
           out += entry[1];
@@ -489,7 +486,6 @@ class DNDCreatureHeaderSkills {
       this.conditionImmunities.querySelector('.dnd-creature-header-line-value').innerHTML = '';
       this.conditionImmunities.querySelector('.dnd-creature-header-line-value').appendChild(document.createTextNode(Object.entries(json.condition_immunities).map((entry) => {
           var out = '';
-          out += entry[0] + ' ';
           if (entry[1] >= 0)
             out += '+';
           out += entry[1];
@@ -497,15 +493,16 @@ class DNDCreatureHeaderSkills {
         }).join(', ')));
     }
 
-    if (Object.keys(json.senses).length > 0) {
-      this.html.appendChild(this.senses);
-      this.senses.querySelector('.dnd-creature-header-line-value').innerHTML = '';
-      this.senses.querySelector('.dnd-creature-header-line-value').appendChild(document.createTextNode(Object.entries(json.senses).map((entry) => {
-          var out = '';
-          out += entry[0] + ' ' + entry[1];
-          return out;
-        }).join(', ')));
-    }
+    this.html.appendChild(this.senses);
+    this.senses.querySelector('.dnd-creature-header-line-value').innerHTML = '';
+    var senses = [];
+    senses = Object.entries(json.senses).map((entry) => {
+      var out = '';
+      out += entry[0] + ' ' + entry[1];
+      return out;
+    });
+    senses.push('passive Perception ' + (10 + (Object.keys(json.skills).includes('Perception')?(json.skills['Perception']):(Math.floor((json.stats.wis - 10) / 2)))));
+    this.senses.querySelector('.dnd-creature-header-line-value').appendChild(document.createTextNode(senses.join(', ')));
 
     if (Object.keys(json.languages).length > 0) {
       this.html.appendChild(this.languages);
@@ -523,6 +520,19 @@ class DNDCreatureHeaderSkills {
     this.proficiency.querySelector('.dnd-creature-header-line-value').appendChild(document.createTextNode('+' + json.proficiency));
   }
   
+}
+
+function rechargeToString(recharge) {
+  if (recharge == null)
+    return '';
+
+  var out = ' (';
+  if (recharge.type == 'daily')
+    out += recharge.count + '/day';
+  if (recharge.type == 'turn')
+    out += 'Recharge ' + recharge.count + '–' + 6;
+
+  return out + ')';
 }
 
 class DNDCreatureTraits {
@@ -576,7 +586,7 @@ class DNDCreatureTrait {
 
   loadJSON(json) {
     this.name.innerHTML = '';
-    this.name.appendChild(document.createTextNode(json.name + '. '));
+    this.name.appendChild(document.createTextNode(json.name + rechargeToString(json.recharge) + '. '));
 
     this.text.loadJSON(json.description);
 
@@ -646,7 +656,7 @@ class DNDCreatureAction {
 
   loadJSON(json) {
     this.name.innerHTML = '';
-    this.name.appendChild(document.createTextNode(json.name + '. '));
+    this.name.appendChild(document.createTextNode(json.name + rechargeToString(json.recharge) + '. '));
 
     if (json.type == 'attack') {
       if (json.description.length <= 0)
@@ -721,7 +731,7 @@ class DNDCreatureBonusAction {
 
   loadJSON(json) {
     this.name.innerHTML = '';
-    this.name.appendChild(document.createTextNode(json.name + '. '));
+    this.name.appendChild(document.createTextNode(json.name + rechargeToString(json.recharge) + '. '));
 
     if (json.type == 'attack') {
       if (json.description.length <= 0)
@@ -796,7 +806,7 @@ class DNDCreatureReaction {
 
   loadJSON(json) {
     this.name.innerHTML = '';
-    this.name.appendChild(document.createTextNode(json.name + '. '));
+    this.name.appendChild(document.createTextNode(json.name + rechargeToString(json.recharge) + '. '));
 
     this.text.loadJSON(json.description);
 
@@ -873,7 +883,7 @@ class DNDCreatureLegendaryAction {
 
   loadJSON(json) {
     this.name.innerHTML = '';
-    this.name.appendChild(document.createTextNode(json.name + '. '));
+    this.name.appendChild(document.createTextNode(json.name + (json.cost>1?(" (Costs " + json.cost + " Actions)"):("")) + '. '));
 
     this.text.loadJSON(json.description);
 

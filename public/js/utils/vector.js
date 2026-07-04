@@ -80,6 +80,10 @@ class Vector {
     return new Vector(Math.max(this.x, vector.x), Math.max(this.y, vector.y));
   }
 
+  clamp(start, end) {
+    return this.max(start).min(end);
+  }
+
   rotate(angle) {
     var sn = Math.sin(angle);
     var cs = Math.cos(angle);

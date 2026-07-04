@@ -1,8 +1,9 @@
 const { request } = require('http');
 const _PATH = require('path');
 const _SERVER = require(_PATH.join(global.__path.src, 'server', 'server'));
-// const _UUID = require('uuid');
+const _UUID = require('uuid');
 // const _CANVAS_SOCKET = require(_PATH.join(global.__path.src, 'socket', 'tools', 'canvas_socket'));
+const { EldenRingDatabase } = require('../database/tools/eldenring_database');
 
 
 /**
@@ -47,10 +48,33 @@ class ToolsServer extends _SERVER.Server {
                                  'phone_book_editor.html'));
     });
 
-    expressServer.all('/' + this.url + '/games/factorio/calculator', (reqeust, result) => {
+    expressServer.all('/' + this.url + '/games/factorio/calculator', (request, result) => {
       result.sendFile(_PATH.join(global.__path.html, 'tools',
                                  'games', 'factorio',
                                  'calculator.html'));
+    });
+
+    expressServer.all('/' + this.url + '/games/eldenring/randomizer-graph', (request, result) => {
+      result.redirect('/' + this.url + '/games/eldenring/randomizer-graph/' + _UUID.v4());
+    });
+
+    expressServer.post('/' + this.url + '/games/eldenring/randomizer-graph/api/save', async (request, result) => {
+      var url = request.headers.referer.split('/').at(-1);
+      var graph = request.body;
+      EldenRingDatabase.instance.saveRandomizerGraph(graph, url);
+    });
+
+    expressServer.all('/' + this.url + '/games/eldenring/randomizer-graph{/*path}', (request, result) => {
+      result.sendFile(_PATH.join(global.__path.html, 'tools',
+                                 'games', 'eldenring',
+                                 'randomizer_graph.html'));
+      var url = request.url.split('/').at(-1);
+      EldenRingDatabase.instance.loadRandomizerGraph(url);
+    });
+
+    expressServer.all('/' + this.url + '/simulations/lattice-boltzman', (request, result) => {
+      result.sendFile(_PATH.join(global.__path.html, 'tools', 'simulations',
+                                 'lattice_boltzman', 'simulation.html'));
     });
 
     // disable canvas until loading is fixed

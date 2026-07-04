@@ -63,8 +63,95 @@ class CanvasScreen {
     this.mouseDragListeners = [];
     window.addEventListener('mouseup', this.onMouseUpRaw.bind(this));
     this.mouseUpListeners = [];
+    window.addEventListener('touchstart', this.onTouchStart.bind(this));
+    this.touchStartListeners = [];
+    this.activeTouches = {};
+    window.addEventListener('touchmove', this.onTouchMove.bind(this), {passive:false});
+    this.touchMoveListeners = [];
+    window.addEventListener('touchend', this.onTouchEnd.bind(this));
+    this.touchEndListeners = [];
 
     requestAnimationFrame(this.animationFrameCallback.bind(this));
+  }
+
+  addTouchStartListener(count, listener) {
+    this.touchStartListeners.push({ count: count, callback: listener });
+  }
+
+  onTouchStart(e) {
+    if (e.srcElement != this.canvas)
+      return;
+
+    var touches = {};
+    [...e.touches].forEach((touch) => {
+      touches[touch.identifier] = {
+        pos: this.getMousePos(touch)
+      };
+    });
+    [...e.touches].forEach((touch) => {
+      this.activeTouches[touch.identifier] = {
+        pos: this.getMousePos(touch)
+      };
+    });
+
+    this.touchStartListeners.forEach((listener) => {
+      if (Object.keys(touches).length != listener.count)
+        return;
+
+      listener.callback(touches);
+      e.preventDefault();
+    });
+  }
+
+  addTouchMoveListener(count, listener) {
+    this.touchMoveListeners.push({ count: count, callback: listener });
+  }
+
+  onTouchMove(e) {
+    if (e.srcElement != this.canvas)
+      return;
+
+    var touches = {};
+    [...e.touches].forEach((touch) => {
+      touches[touch.identifier] = {
+        start: this.activeTouches[touch.identifier].pos,
+        end: this.getMousePos(touch)
+      };
+    });
+    [...e.touches].forEach((touch) => {
+      this.activeTouches[touch.identifier] = {
+        pos: this.getMousePos(touch)
+      };
+    });
+
+    this.touchMoveListeners.forEach((listener) => {
+      if (Object.keys(touches).length != listener.count)
+        return;
+
+      listener.callback(touches);
+      e.preventDefault();
+    });
+  }
+
+  addTouchEndListener() {
+    this.touchEndListeners.push({ callback: listener });
+  }
+
+  onTouchEnd(e) {
+    if (e.srcElement != this.canvas)
+      return;
+
+    var touches = {};
+    [...e.changedTouches].forEach((touch) => {
+      touches[touch.identifier] = {
+        pos: this.getMousePos(touch)
+      };
+    });
+
+    this.touchEndListeners.forEach((listener) => {
+      listener.callback(touches);
+      e.preventDefault();
+    });
   }
 
   onUpdate() {
@@ -120,7 +207,9 @@ class CanvasScreen {
 
   changeZoom(mouse, deltaY) {
     var mouseBefore = this.screenToCanvas(mouse);
-    this.zoom = Math.max(Math.min(this.zoom - Math.round(deltaY / 100),
+    if (Math.abs(deltaY) > 99)
+      deltaY = 8 * Math.sign(deltaY);
+    this.zoom = Math.max(Math.min(this.zoom - deltaY / 8,
                                   this.maxZoom),
                          this.minZoom);
     var mouseAfter = this.screenToCanvas(mouse);
@@ -179,7 +268,7 @@ class CanvasScreen {
       modifier.push(CanvasScreen.MOUSE_MODIFIER.ctrl);
     if (e.altKey)
       modifier.push(CanvasScreen.MOUSE_MODIFIER.alt);
-    this.mouseButtons[e.button] = modifier;
+    this.mouseModifier[e.button] = modifier;
 
     var mouse = this.getMousePos(e);
     this.mouseDownListeners.forEach((listener) => {
@@ -238,7 +327,7 @@ class CanvasScreen {
   }
 
   onMouseUpRaw(e) {
-    e.preventDefault();
+    // e.preventDefault();
     this.mouseButtons[e.button] = false;
     var modifier = this.mouseModifier[e.button];
     this.mouseModifier[e.button] = [];

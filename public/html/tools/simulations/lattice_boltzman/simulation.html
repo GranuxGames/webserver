@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<meta charset="UTF-8">
+<html>
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    
+    <title>GranuxGames | Lattice Boltzman Simulation</title>
+    
+    <script src="/js/utils/vector.js"></script>
+    <script src="/js/utils/utils.js"></script>
+    <script src="/js/utils/canvas_screen.js"></script>
+    <script src="/js/tools/simulations/lattice_boltzman/main.js"></script>
+    <script src="/js/tools/simulations/lattice_boltzman/canvas.js"></script>
+
+    <link rel="stylesheet" href="/css/fonts.css">
+    <link rel="stylesheet" href="/css/general.css">
+    <link rel="stylesheet" href="/css/tools/simulations/lattice_boltzman/general.css">
+  </head>
+  <body>
+    <canvas id="simulation"></canvas>
+    <div id="settings-bar">
+      <div id="settings-header">
+        <div id="expand-button" class="collapsed"></div>
+        <span>Settings:</span>
+      </div>
+      <div class="settings-header">Resolution:</div>
+      <div class="settings-input number-input" id="nx">
+        <span>Width</span>
+        <input type="number" value="400"/>
+        <input type="range" min="50" max="1000" step="1" value="400"/>
+      </div>
+      <div class="settings-input number-input" id="ny">
+        <span>Height</span>
+        <input type="number" value="100"/>
+        <input type="range" min="50" max="1000" step="1" value="100"/>
+      </div>
+      <div class="settings-header">Parameters:</div>
+      <div class="settings-input number-input" id="rho0">
+        <span>Initial Density (ρ<sub>0</sub>)</span>
+        <input type="number" value="1"/>
+        <input type="range" min="0.5" max="2" step="0.01" value="1"/>
+      </div>
+      <div class="settings-input number-input" id="tau">
+        <span>Relaxation Time (τ)</span>
+        <input type="number" value="0.57"/>
+        <input type="range" min="0.55" max="0.9" step="0.01" value="0.57"/>
+      </div>
+      <div class="settings-input number-input" id="vin">
+        <span>Inlet Velocity (v<sub>in</sub>)</span>
+        <input type="number" value="0.055"/>
+        <input type="range" min="0.01" max="0.1" step="0.001" value="0.055"/>
+      </div>
+      <div class="settings-header">Simulation Settings:</div>
+      <div class="settings-input number-input" id="rtps">
+        <span>Render Ticks per Second</span>
+        <input type="number" value="100"/>
+        <input type="range" min="1" max="100" step="1" value="100"/>
+      </div>
+      <div class="settings-input number-input" id="ptprt">
+        <span>Physics Ticks per Render Tick</span>
+        <input type="number" value="5"/>
+        <input type="range" min="1" max="20" step="1" value="5"/>
+      </div>
+      <div class="settings-input">
+        <span>Render Mode</span>
+        <select id="render-mode">
+          <option value="1">Vorticity</option>
+          <option value="2">Speed</option>
+          <option value="0">Density</option>
+        </select>
+      </div>
+      <div class="settings-input number-input" id="render-color-scale">
+        <span>Render Color Scale</span>
+        <input type="number" value="20"/>
+        <input type="range" min="5" max="35" step="0.25" value="20"/>
+      </div>
+      <div class="settings-input">
+        <span>Rendering Gradient</span>
+        <div id="gradient">
+          <canvas id="gradient-preview"></canvas>
+        </div>
+        <div id="gradient-point">
+          <input type="color"/>
+          <input type="number" value="0.5"/>
+          <input type="range" min="0" max="1" step="0.01" value="0.5"/>
+          <div id="gradient-point-remove"><b>×</b></div>
+        </div>
+      </div>
+      <div id="restart-button">Restart Simulation</div>
+      <div id="reset-button">Reset Drawing</div>
+    </div>
+  </body>
+</html>
