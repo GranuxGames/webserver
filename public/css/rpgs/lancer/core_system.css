@@ -1,0 +1,20 @@
+.lancer-core-system {
+  font-family: 'Helvetica Neue';
+  font-weight: 300;
+  color: var(--color-black);
+}
+
+.lancer-core-system-name {
+  font-size: 1.4em;
+  font-weight: 600;
+  text-transform: uppercase;
+}
+
+.lancer-core-system-flavor {
+  font-style: italic;
+  margin-bottom: 0.5em;
+}
+
+.lancer-core-system-flavor .json-text-line {
+  text-align: left;
+}

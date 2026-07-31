@@ -1,0 +1,27 @@
+body {
+  --lancer-core-bonus-header-color: #C22026;
+}
+
+.lancer-core-bonus {
+  font-family: 'Helvetica Neue';
+  font-weight: 300;
+  color: var(--color-black);
+}
+
+.lancer-core-bonus-name {
+  font-family: 'Helvetica Neue';
+  background-color: var(--lancer-core-bonus-header-color);
+  color: white;
+  text-transform: uppercase;
+  font-weight: 400;
+  padding: 0.1em 0.25em;
+}
+
+.lancer-core-bonus-flavor {
+  font-style: italic;
+  margin-bottom: 0.5em;
+}
+
+.lancer-core-bonus-flavor .json-text-line {
+  text-align: left;
+}

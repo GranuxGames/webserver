@@ -1,0 +1,33 @@
+body {
+  --lancer-trait-header-color: #C22026;
+  --lancer-trait-background-color: #C220261B;
+}
+
+.lancer-trait {
+  font-family: 'Helvetica Neue';
+  font-weight: 300;
+  color: var(--color-black);
+}
+
+.lancer-trait-name {
+  background-color: var(--lancer-trait-header-color);
+  color: white;
+  font-weight: 400;
+  text-transform: uppercase;
+  padding: 0 0.2em;
+  line-height: 1.2em;
+  clip-path: polygon(
+    0% 0%,
+    calc(100% - 2em) 0%,
+    100% 100%,
+    0% 100%);
+}
+
+.lancer-trait-effect {
+  background-color: var(--lancer-trait-background-color);
+  padding: 0 0.2em 0.2em 0.2em;
+}
+
+.lancer-trait-effect .json-text-line {
+  text-align: left;
+}

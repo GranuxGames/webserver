@@ -1,0 +1,9 @@
+.lancer-invasion {
+  font-family: 'Helvetica Neue';
+  font-weight: 300;
+  color: var(--color-black);
+  --lancer-invasion-color: #7E2477;
+
+  border: 0.15em solid var(--lancer-invasion-color);
+  border-width: 0.15em 0;
+}

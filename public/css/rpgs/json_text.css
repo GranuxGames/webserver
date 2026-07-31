@@ -1,5 +1,6 @@
 .json-text {
   white-space: pre-wrap;
+  --indent-size: 1.5em;
 }
 
 .json-text-italic {
@@ -13,14 +14,14 @@
 .json-text-unordered-element:before {
   content: '•';
   position: absolute;
-  left: -1.5em;
-  width: 1.5em;
+  left: calc(var(--indent-size) * -1);
+  width: var(--indent-size);
   text-align: center;
   vertical-align: middle;
 }
 
 .json-text-unordered-element {
-  margin-left: 1.5em;
+  margin-left: var(--indent-size);
   position: relative;
 }
 

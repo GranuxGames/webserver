@@ -1,0 +1,62 @@
+body {
+  --color-red: #C22026;
+  --color-black: #231F20;
+  
+  --circle-number-0: 0;
+  --circle-number-1: 0.19509;
+  --circle-number-2: 0.382683;
+  --circle-number-3: 0.55557;
+  --circle-number-4: 0.707107;
+  --circle-number-5: 0.83147;
+  --circle-number-6: 0.92388;
+  --circle-number-7: 0.980785;
+  --circle-number-8: 1;
+
+  --lancer-column-width: 24em;
+  --lancer-column-gap: 2.4em;
+}
+
+.lancer-json-text-keyword {
+  font-weight: 500;
+  font-variant: small-caps;
+}
+
+.lancer-json-text {
+  --indent-size: 1em;
+}
+
+.lancer-json-text .json-text-line {
+  text-align: justify;
+}
+
+.lancer-json-text .json-text-line:not(:first-child) {
+  margin-top: 1em;
+}
+
+.lancer-json-text .json-text-bold {
+  font-weight: 500;
+}
+
+.lancer-symbol {
+  font-family: 'Lancer';
+}
+
+.lancer-error {
+  color: red;
+  background-color: lime;
+}
+
+.lancer-json-text .json-text-unordered-element:before {
+  content: '•';
+  content: '∙';
+  font-weight: 800;
+  margin-top: -0.13em;
+}
+
+.lancer-attachment-link {
+  cursor: pointer;
+}
+
+.lancer-inline-element {
+  margin: 0.4em 0;
+}

@@ -1,6 +1,7 @@
 const { request } = require('http');
 const _PATH = require('path');
 const { DNDDatabase } = require('../database/rpgs/dnd/dnd_database');
+const { LancerDatabase } = require('../database/rpgs/lancer/lancer_database');
 const _SERVER = require(_PATH.join(global.__path.src, 'server', 'server'));
 const _FS = require('fs');
 
@@ -23,6 +24,19 @@ class RPGServer extends _SERVER.Server {
    * @param {Express} expressServer 
    */
   attachCallbacks(expressServer) {
+    expressServer.all('/' + this.url + '/lancer/licenses', (request, result) => {
+      result.sendFile(_PATH.join(global.__path.html, 'rpgs', 'lancer', 'licenses.html'));
+    });
+
+    expressServer.post('/' + this.url + '/lancer/api/fetch-manufacturers', async (request, result) => {
+      // var table = await LancerDatabase.instance.fetchReactions();
+      // var table = await LancerDatabase.instance.fetchManufacturers();
+      var table = await LancerDatabase.instance.fetchTalents();
+      return result.json({ ok: true, result: table });
+    });
+
+
+
     expressServer.all('/' + this.url + '/dnd/character-sheet', (request, result) => {
       result.sendFile(_PATH.join(global.__path.html, 'rpgs', 'dnd', 'character.html'));
     });

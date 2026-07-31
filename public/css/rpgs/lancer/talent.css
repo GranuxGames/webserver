@@ -1,0 +1,23 @@
+.lancer-talent {
+  font-family: 'Helvetica Neue';
+  font-weight: 300;
+  color: var(--color-black);
+  --lancer-talent-color: #3A82C4;
+}
+
+.lancer-talent-name {
+  background-color: var(--lancer-talent-color);
+  color: white;
+  font-size: 1.8em;
+  font-weight: 500;
+  padding: 0 0.15em;
+  text-transform: uppercase;
+}
+
+.lancer-talent-flavor {
+  font-style: italic;
+}
+
+.lancer-talent-ranks > * {
+  margin-top: 1.5em;
+}

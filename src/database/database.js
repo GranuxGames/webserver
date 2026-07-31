@@ -90,6 +90,14 @@ class Database {
     });
   }
 
+  tableToDict(table, idColumn = 'ID') {
+    var dict = {};
+    table.forEach((row) => {
+      dict[row[idColumn]] = row;
+    });
+    return dict;
+  }
+
 }
 
 module.exports.Database = Database;

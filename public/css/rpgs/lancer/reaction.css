@@ -1,0 +1,60 @@
+.lancer-reaction {
+  font-family: 'Helvetica Neue';
+  font-weight: 300;
+
+  --lancer-reaction-header-color: #0B7675;
+  --lancer-reaction-background-color: #0B76751A;
+  --lancer-reaction-cutout-size: 1.5em;
+}
+
+.lancer-reaction-header {
+  background-color: var(--lancer-reaction-header-color);
+  color: white;
+  padding: 0.15em 0.4em 0.3em 0.4em;
+  clip-path: polygon(
+    0% 0%,
+    calc(100% - var(--lancer-reaction-cutout-size) / 13 * 13) calc(var(--lancer-reaction-cutout-size) / 13 * 0),
+    100% calc(var(--lancer-reaction-cutout-size) / 13 * 0),
+    100% calc(var(--lancer-reaction-cutout-size) / 13 * 1),
+    calc(100% - var(--lancer-reaction-cutout-size) / 13 * 12) calc(var(--lancer-reaction-cutout-size) / 13 * 1),
+    calc(100% - var(--lancer-reaction-cutout-size) / 13 * 10) calc(var(--lancer-reaction-cutout-size) / 13 * 3),
+    100% calc(var(--lancer-reaction-cutout-size) / 13 * 3),
+    100% calc(var(--lancer-reaction-cutout-size) / 13 * 4),
+    calc(100% - var(--lancer-reaction-cutout-size) / 13 * 9) calc(var(--lancer-reaction-cutout-size) / 13 * 4),
+    calc(100% - var(--lancer-reaction-cutout-size) / 13 * 7) calc(var(--lancer-reaction-cutout-size) / 13 * 6),
+    100% calc(var(--lancer-reaction-cutout-size) / 13 * 6),
+    100% calc(var(--lancer-reaction-cutout-size) / 13 * 7),
+    calc(100% - var(--lancer-reaction-cutout-size) / 13 * 6) calc(var(--lancer-reaction-cutout-size) / 13 * 7),
+    calc(100% - var(--lancer-reaction-cutout-size) / 13 * 4) calc(var(--lancer-reaction-cutout-size) / 13 * 9),
+    100% calc(var(--lancer-reaction-cutout-size) / 13 * 9),
+    100% calc(var(--lancer-reaction-cutout-size) / 13 * 10),
+    calc(100% - var(--lancer-reaction-cutout-size) / 13 * 3) calc(var(--lancer-reaction-cutout-size) / 13 * 10),
+    calc(100% - var(--lancer-reaction-cutout-size) / 13 * 1) calc(var(--lancer-reaction-cutout-size) / 13 * 12),
+    100% calc(var(--lancer-reaction-cutout-size) / 13 * 12),
+    100% calc(var(--lancer-reaction-cutout-size) / 13 * 13),
+    100% 100%,
+    0% 100%);
+}
+
+.lancer-reaction-name {
+  font-weight: 500;
+  font-size: 1.2em;
+}
+
+.lancer-reaction-type {
+  font-family: 'Consolas';
+}
+
+.lancer-reaction-trigger {
+  padding: 0.1em 0.4em 0.2em 0.4em;
+}
+
+.lancer-reaction-effect {
+  padding: 0.2em 0.4em 0.4em 0.4em;
+  background-color: var(--lancer-reaction-background-color);
+}
+
+.lancer-reaction-trigger .json-text-line,
+.lancer-reaction-effect .json-text-line {
+  text-align: left;
+}

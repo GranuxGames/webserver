@@ -1,0 +1,34 @@
+.lancer-license-rank {
+  margin-top: 2em;
+}
+
+.lancer-license-rank-1 {
+  --lancer-license-rank-header-color: #E1484C;
+}
+
+.lancer-license-rank-2 {
+  --lancer-license-rank-header-color: #900002;
+}
+
+.lancer-license-rank-3 {
+  --lancer-license-rank-header-color: #450304;
+}
+
+.lancer-license-rank-header {
+  font-weight: 500;
+  text-transform: uppercase;
+  color: white;
+  background-color: var(--lancer-license-rank-header-color);
+  padding: 0.2em 0.4em 0.2em 0.4em;
+}
+
+.lancer-license-rank-rewards {
+  column-width: var(--lancer-column-width);
+  column-gap: var(--lancer-column-gap);
+  padding-top: 1em;
+}
+
+.lancer-license-rank-rewards > * {
+  break-inside: avoid;
+  margin-bottom: 1em;
+}

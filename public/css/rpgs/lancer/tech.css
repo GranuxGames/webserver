@@ -1,0 +1,68 @@
+.lancer-tech {
+  font-family: 'Helvetica Neue';
+  font-weight: 300;
+  color: var(--color-black);
+  --lancer-tech-header-color: #7E2477;
+  --lancer-tech-background-color: #7E24771B;
+  --lancer-tech-cutout-size: 1.5em;
+}
+
+.lancer-tech-header {
+  background-color: var(--lancer-tech-header-color);
+  color: white;
+  padding: 0.15em 0.4em 0.1em 0.4em;
+  clip-path: polygon(
+    0% 0%,
+    calc(100% - var(--lancer-tech-cutout-size)) 0%,
+    calc(100% - var(--lancer-tech-cutout-size)) calc(var(--lancer-tech-cutout-size) / 15 * 7),
+    calc(100% - var(--lancer-tech-cutout-size) / 15 * 7) calc(var(--lancer-tech-cutout-size) / 15 * 7),
+    calc(100% - var(--lancer-tech-cutout-size) / 15 * 7) calc(var(--lancer-tech-cutout-size) / 15 * 3),
+    calc(100% - var(--lancer-tech-cutout-size) / 15 * 3) calc(var(--lancer-tech-cutout-size) / 15 * 3),
+    calc(100% - var(--lancer-tech-cutout-size) / 15 * 3) calc(var(--lancer-tech-cutout-size) / 15 * 0),
+    calc(100% - var(--lancer-tech-cutout-size) / 15 * 0) calc(var(--lancer-tech-cutout-size) / 15 * 0),
+    calc(100% - var(--lancer-tech-cutout-size) / 15 * 0) calc(var(--lancer-tech-cutout-size) / 15 * 3),
+    calc(100% - var(--lancer-tech-cutout-size) / 15 * 3) calc(var(--lancer-tech-cutout-size) / 15 * 3),
+    calc(100% - var(--lancer-tech-cutout-size) / 15 * 3) calc(var(--lancer-tech-cutout-size) / 15 * 7),
+    calc(100% - var(--lancer-tech-cutout-size) / 15 * 7) calc(var(--lancer-tech-cutout-size) / 15 * 7),
+    calc(100% - var(--lancer-tech-cutout-size) / 15 * 7) calc(var(--lancer-tech-cutout-size) / 15 * 15),
+    100% calc(var(--lancer-tech-cutout-size) / 15 * 15),
+    100% 100%,
+    0% 100%);
+}
+
+.lancer-tech-body {
+  background-color: var(--lancer-tech-background-color);
+  padding: 0.1em 0.4em 0.4em 0.4em;
+}
+
+.lancer-tech-effect:has(*) ~ .lancer-tech-flavor:has(*) {
+  --lancer-tech-flavor-border-width: 0.1em;
+  --lancer-tech-flavor-border-dash: 0.25em;
+
+  background-image: linear-gradient(to right, black calc(1% * 100 * (var(--lancer-tech-flavor-border-width) / (var(--lancer-tech-flavor-border-width) + var(--lancer-tech-flavor-border-dash)))), rgba(255,255,255,0) 0%);
+  background-position: top;
+  background-size: calc(var(--lancer-tech-flavor-border-dash) + var(--lancer-tech-flavor-border-width)) var(--lancer-tech-flavor-border-width);
+  background-repeat: repeat-x;
+
+  margin-top: 0.25em;
+  padding-top: 0.25em;
+}
+
+.lancer-tech-flavor {
+  font-style: italic;
+}
+
+.lancer-tech-name {
+  font-size: 1.4em;
+  font-weight: 500;
+}
+
+.lancer-tech-tags {
+  margin-top: -0.2em;
+  font-family: 'Consolas';
+}
+
+.lancer-tech-effect .json-text-line,
+.lancer-tech-flavor .json-text-line {
+  text-align: left;
+}

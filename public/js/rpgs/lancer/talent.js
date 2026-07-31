@@ -1,0 +1,51 @@
+class Talent {
+
+  constructor() {
+    this.json = null;
+
+    this.html = document.createElement('div');
+    this.html.classList.add('lancer-talent');
+
+    this.name = document.createElement('div');
+    this.name.classList.add('lancer-talent-name');
+    this.html.appendChild(this.name);
+
+    this.flavor = new LancerJSONText();
+    this.flavor.getHTML().classList.add('lancer-talent-flavor');
+    this.html.appendChild(this.flavor.getHTML());
+    
+    this.ranks = document.createElement('div');
+    this.ranks.classList.add('lancer-talent-ranks');
+    this.html.appendChild(this.ranks);
+    this.ranksArray = [];
+  }
+
+  getHTML() {
+    return this.html;
+  }
+
+  static fromJSON(json) {
+    var talent = new Talent();
+    talent.loadJSON(json);
+    return talent;
+  }
+
+  loadJSON(json) {
+    this.json = json;
+
+    this.name.innerHTML = '';
+    this.name.appendChild(document.createTextNode(json.name));
+
+    this.flavor.loadJSON(json.flavor);
+    
+    this.ranks.innerHTML = '';
+    this.ranksArray = [];
+    json.ranks.forEach((element, index) => {
+      element.rank = index + 1;
+      var rank = TalentRank.fromJSON(element);
+      this.ranksArray.push(rank);
+      this.ranks.appendChild(rank.getHTML());
+    });
+  }
+
+}

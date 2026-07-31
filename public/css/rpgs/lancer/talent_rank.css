@@ -1,0 +1,25 @@
+.lancer-talent-rank {
+  font-family: 'Helvetica Neue';
+  font-weight: 300;
+  color: var(--color-black);
+  --lancer-talent-rank-color: #3A82C4;
+  border-top: 0.2em solid var(--lancer-talent-rank-color);
+}
+
+.lancer-talent-rank-header {
+  font-size: 1.8em;
+  font-weight: 500;
+}
+
+.lancer-talent-rank-header > * {
+  display: inline-block;
+}
+
+.lancer-talent-rank-rank {
+  font-family: 'Lancer';
+  color: var(--lancer-talent-rank-color);
+}
+
+.lancer-talent-rank-name {
+  text-transform: uppercase;
+}

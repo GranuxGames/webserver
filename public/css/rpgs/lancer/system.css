@@ -1,0 +1,114 @@
+.lancer-system {
+  --lancer-system-active-header-color: #68BD45;
+  --lancer-system-active-background-color: #68BD4534;
+
+  --lancer-system-passive-header-color: #C22026;
+  --lancer-system-passive-background-color: #C220261B;
+
+  --lancer-system-ai-header-color: #C22026;
+  --lancer-system-ai-background-color: #C220261B;
+
+  --lancer-system-protocol-header-color: #C75A00;
+  --lancer-system-protocol-background-color: #C75A001B;
+
+  font-family: 'Helvetica Neue';
+  font-weight: 300;
+  color: var(--color-black);
+  --lancer-system-cutout-size: 1.5em;
+  --lancer-system-inner-cutout-size: 1.0em;
+}
+
+.lancer-system.lancer-system-active {
+  --lancer-system-header-color: var(--lancer-system-active-header-color);
+  --lancer-system-background-color: var(--lancer-system-active-background-color);
+}
+
+.lancer-system.lancer-system-passive {
+  --lancer-system-header-color: var(--lancer-system-passive-header-color);
+  --lancer-system-background-color: var(--lancer-system-passive-background-color);
+}
+
+.lancer-system.lancer-system-ai {
+  --lancer-system-header-color: var(--lancer-system-ai-header-color);
+  --lancer-system-background-color: var(--lancer-system-ai-background-color);
+}
+
+.lancer-system.lancer-system-protocol {
+  --lancer-system-header-color: var(--lancer-system-protocol-header-color);
+  --lancer-system-background-color: var(--lancer-system-protocol-background-color);
+}
+
+.lancer-system-header {
+  background-color: var(--lancer-system-header-color);
+  color: white;
+  padding: 0.15em 0.4em 0.1em 0.4em;
+  clip-path: polygon(
+    0% 0%,
+    calc(100% - var(--lancer-system-cutout-size)) 0%,
+    100% var(--lancer-system-cutout-size),
+    100% 100%,
+    0% 100%);
+}
+
+.lancer-system-header.lancer-system-protocol {
+  clip-path: polygon(
+    0% 0%,
+    100% 0%,
+    calc(100% - var(--lancer-system-inner-cutout-size) * var(--circle-number-0)) calc(var(--lancer-system-inner-cutout-size) * var(--circle-number-8)),
+    calc(100% - var(--lancer-system-inner-cutout-size) * var(--circle-number-1)) calc(var(--lancer-system-inner-cutout-size) * var(--circle-number-7)),
+    calc(100% - var(--lancer-system-inner-cutout-size) * var(--circle-number-2)) calc(var(--lancer-system-inner-cutout-size) * var(--circle-number-6)),
+    calc(100% - var(--lancer-system-inner-cutout-size) * var(--circle-number-3)) calc(var(--lancer-system-inner-cutout-size) * var(--circle-number-5)),
+    calc(100% - var(--lancer-system-inner-cutout-size) * var(--circle-number-4)) calc(var(--lancer-system-inner-cutout-size) * var(--circle-number-4)),
+    calc(100% - var(--lancer-system-inner-cutout-size) * var(--circle-number-5)) calc(var(--lancer-system-inner-cutout-size) * var(--circle-number-3)),
+    calc(100% - var(--lancer-system-inner-cutout-size) * var(--circle-number-6)) calc(var(--lancer-system-inner-cutout-size) * var(--circle-number-2)),
+    calc(100% - var(--lancer-system-inner-cutout-size) * var(--circle-number-7)) calc(var(--lancer-system-inner-cutout-size) * var(--circle-number-1)),
+    calc(100% - var(--lancer-system-inner-cutout-size) * var(--circle-number-8)) calc(var(--lancer-system-inner-cutout-size) * var(--circle-number-0)),
+    calc(100% - var(--lancer-system-cutout-size) * var(--circle-number-8)) calc(var(--lancer-system-cutout-size) * var(--circle-number-0)),
+    calc(100% - var(--lancer-system-cutout-size) * var(--circle-number-7)) calc(var(--lancer-system-cutout-size) * var(--circle-number-1)),
+    calc(100% - var(--lancer-system-cutout-size) * var(--circle-number-6)) calc(var(--lancer-system-cutout-size) * var(--circle-number-2)),
+    calc(100% - var(--lancer-system-cutout-size) * var(--circle-number-5)) calc(var(--lancer-system-cutout-size) * var(--circle-number-3)),
+    calc(100% - var(--lancer-system-cutout-size) * var(--circle-number-4)) calc(var(--lancer-system-cutout-size) * var(--circle-number-4)),
+    calc(100% - var(--lancer-system-cutout-size) * var(--circle-number-3)) calc(var(--lancer-system-cutout-size) * var(--circle-number-5)),
+    calc(100% - var(--lancer-system-cutout-size) * var(--circle-number-2)) calc(var(--lancer-system-cutout-size) * var(--circle-number-6)),
+    calc(100% - var(--lancer-system-cutout-size) * var(--circle-number-1)) calc(var(--lancer-system-cutout-size) * var(--circle-number-7)),
+    calc(100% - var(--lancer-system-cutout-size) * var(--circle-number-0)) calc(var(--lancer-system-cutout-size) * var(--circle-number-8)),
+    100% 100%,
+    0% 100%);
+}
+
+.lancer-system-body {
+  background-color: var(--lancer-system-background-color);
+  padding: 0.1em 0.4em 0.4em 0.4em;
+}
+
+.lancer-system-effect:has(*) ~ .lancer-system-flavor:has(*) {
+  --lancer-system-flavor-border-width: 0.1em;
+  --lancer-system-flavor-border-dash: 0.25em;
+
+  background-image: linear-gradient(to right, black calc(1% * 100 * (var(--lancer-system-flavor-border-width) / (var(--lancer-system-flavor-border-width) + var(--lancer-system-flavor-border-dash)))), rgba(255,255,255,0) 0%);
+  background-position: top;
+  background-size: calc(var(--lancer-system-flavor-border-dash) + var(--lancer-system-flavor-border-width)) var(--lancer-system-flavor-border-width);
+  background-repeat: repeat-x;
+
+  margin-top: 0.25em;
+  padding-top: 0.25em;
+}
+
+.lancer-system-flavor {
+  font-style: italic;
+}
+
+.lancer-system-name {
+  font-size: 1.4em;
+  font-weight: 500;
+}
+
+.lancer-system-tags {
+  margin-top: -0.2em;
+  font-family: 'Consolas';
+}
+
+.lancer-system-effect .json-text-line,
+.lancer-system-flavor .json-text-line {
+  text-align: left;
+}

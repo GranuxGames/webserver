@@ -3,11 +3,26 @@ class JSONText {
   constructor() {
     this.html = document.createElement('div');
     this.html.classList.add('json-text');
+    this.customContent = {};
+  }
+
+  createNewJSONText() {
+    return new this.constructor();
   }
 
   getHTML() {
     return this.html;
   }
+
+  setCustomContent(customContent) {
+    this.customContent = customContent;
+  }
+
+  parseMiscTag(container, text) {
+    return text;
+  }
+
+  parseMiscElement(container, element) {}
 
   loadJSON(json) {
     this.html.innerHTML = '';
@@ -23,6 +38,7 @@ class JSONText {
         return this.parseTable(container, element);
       if (element.type == 'unordered')
         return this.parseUnordered(container, element);
+      this.parseMiscElement(container, element);
     });
   }
 
@@ -32,7 +48,8 @@ class JSONText {
       rowElement.classList.add('json-text-unordered-element');
       container.appendChild(rowElement);
 
-      var text = new JSONText();
+      var text = this.createNewJSONText();
+      text.setCustomContent(this.customContent);
       text.loadJSON(row);
       rowElement.appendChild(text.getHTML());
     });
@@ -59,7 +76,8 @@ class JSONText {
         cellElement.classList.add('json-text-table-' + element.alignment[i] + '-adjust');
         rowElement.appendChild(cellElement);
 
-        var text = new JSONText();
+        var text = this.createNewJSONText();
+        text.setCustomContent(this.customContent);
         text.loadJSON(cell);
         cellElement.appendChild(text.getHTML());
       });
@@ -85,7 +103,8 @@ class JSONText {
       { regex: /(?<!\\)\*(?:\\\*|[^\*])*(?<!\\)\*/gm, parser: this.parseItalic.bind(this) }, // italic
       { regex: /(?<!\\)_(?:\\_|[^_])*(?<!\\)_/gm, parser: this.parseBold.bind(this) }, // bold
       { regex: /(?<!\\)\$(?:\\\$|[^\$])*(?<!\\)\$/gm, parser: this.parseDice.bind(this) }, // dice
-      { regex: /(?<!\\)\[(?:\\\]|[^\]])*(?<!\\)\]\((?:\\\)|[^\)])*(?<!\\)\)/gm, parser: this.parseLink.bind(this) } // links
+      { regex: /(?<!\\)\[(?:\\\]|[^\]])*(?<!\\)\]\((?:\\\)|[^\)])*(?<!\\)\)/gm, parser: this.parseLink.bind(this) }, // links
+      { regex: /(?<!\\)\§(?:\\\§|[^\§])*(?<!\\)\§/gm, parser: this.parseCustomTag.bind(this) }, // dice
     ].map((parser) => {
       parser.match = [...line.matchAll(parser.regex)];
       if (parser.match.length <= 0)
@@ -111,6 +130,17 @@ class JSONText {
     parser.parser(container, parser.match[0]);
 
     this.parseText(container, line.substring(parser.match.index + parser.match[0].length));
+  }
+
+  parseCustomTag(container, text) {
+    var span = document.createElement('span');
+    span.classList.add('json-text-custom');
+    container.appendChild(span);
+
+    text = text.substring(1, text.length - 1);
+    text = this.parseMiscTag(span, text);
+
+    this.parseText(span, text);
   }
 
   parseString(container, text) {

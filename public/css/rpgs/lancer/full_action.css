@@ -1,0 +1,38 @@
+.lancer-full-action {
+  font-family: 'Helvetica Neue';
+  font-weight: 300;
+
+  --lancer-full-action-header-color: #0B7675;
+  --lancer-full-action-background-color: #0B76751A;
+  --lancer-full-action-cutout-size: 1.5em;
+}
+
+.lancer-full-action-header {
+  background-color: var(--lancer-full-action-header-color);
+  color: white;
+  padding: 0.15em 0.4em 0.3em 0.4em;
+  clip-path: polygon(
+    0% 0%,
+    calc(100% - var(--lancer-full-action-cutout-size)) 0%,
+    100% var(--lancer-full-action-cutout-size),
+    100% 100%,
+    0% 100%);
+}
+
+.lancer-full-action-name {
+  font-weight: 500;
+  font-size: 1.2em;
+}
+
+.lancer-full-action-type {
+  font-family: 'Consolas';
+}
+
+.lancer-full-action-body {
+  background-color: var(--lancer-full-action-background-color);
+  padding: 0.1em 0.4em 0.4em 0.4em;
+}
+
+.lancer-full-action-effect .json-text-line {
+  text-align: left;
+}

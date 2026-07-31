@@ -1,0 +1,38 @@
+.lancer-quick-action {
+  font-family: 'Helvetica Neue';
+  font-weight: 300;
+
+  --lancer-quick-action-header-color: #0B7675;
+  --lancer-quick-action-background-color: #0B76751A;
+  --lancer-quick-action-cutout-size: 1.5em;
+}
+
+.lancer-quick-action-header {
+  background-color: var(--lancer-quick-action-header-color);
+  color: white;
+  padding: 0.15em 0.4em 0.3em 0.4em;
+  clip-path: polygon(
+    0% 0%,
+    calc(100% - var(--lancer-quick-action-cutout-size)) 0%,
+    100% var(--lancer-quick-action-cutout-size),
+    100% 100%,
+    0% 100%);
+}
+
+.lancer-quick-action-name {
+  font-weight: 500;
+  font-size: 1.2em;
+}
+
+.lancer-quick-action-type {
+  font-family: 'Consolas';
+}
+
+.lancer-quick-action-body {
+  background-color: var(--lancer-quick-action-background-color);
+  padding: 0.1em 0.4em 0.4em 0.4em;
+}
+
+.lancer-quick-action-effect .json-text-line {
+  text-align: left;
+}

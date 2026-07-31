@@ -1,0 +1,95 @@
+.lancer-weapon {
+  font-family: 'Helvetica Neue';
+  font-weight: 300;
+  color: var(--color-black);
+  --lancer-weapon-cutout-offset: 0.4em;
+  --lancer-weapon-cutout-size: 1em;
+  --lancer-weapon-inner-cutout-size: 0.7em;
+  --lancer-weapon-header-color: #000000;
+  --lancer-weapon-background-color: #0000000D;
+}
+
+.lancer-weapon-header {
+  background-color: var(--lancer-weapon-header-color);
+  color: white;
+  clip-path: polygon(
+    0% 0%,
+    100% 0%,
+    calc(100% - var(--lancer-weapon-cutout-size) * var(--circle-number-0)) calc(var(--lancer-weapon-cutout-offset) + var(--lancer-weapon-cutout-size) - var(--lancer-weapon-cutout-size) * var(--circle-number-8)),
+    calc(100% - var(--lancer-weapon-cutout-size) * var(--circle-number-1)) calc(var(--lancer-weapon-cutout-offset) + var(--lancer-weapon-cutout-size) - var(--lancer-weapon-cutout-size) * var(--circle-number-7)),
+    calc(100% - var(--lancer-weapon-cutout-size) * var(--circle-number-2)) calc(var(--lancer-weapon-cutout-offset) + var(--lancer-weapon-cutout-size) - var(--lancer-weapon-cutout-size) * var(--circle-number-6)),
+    calc(100% - var(--lancer-weapon-cutout-size) * var(--circle-number-3)) calc(var(--lancer-weapon-cutout-offset) + var(--lancer-weapon-cutout-size) - var(--lancer-weapon-cutout-size) * var(--circle-number-5)),
+    calc(100% - var(--lancer-weapon-cutout-size) * var(--circle-number-4)) calc(var(--lancer-weapon-cutout-offset) + var(--lancer-weapon-cutout-size) - var(--lancer-weapon-cutout-size) * var(--circle-number-4)),
+    calc(100% - var(--lancer-weapon-cutout-size) * var(--circle-number-5)) calc(var(--lancer-weapon-cutout-offset) + var(--lancer-weapon-cutout-size) - var(--lancer-weapon-cutout-size) * var(--circle-number-3)),
+    calc(100% - var(--lancer-weapon-cutout-size) * var(--circle-number-6)) calc(var(--lancer-weapon-cutout-offset) + var(--lancer-weapon-cutout-size) - var(--lancer-weapon-cutout-size) * var(--circle-number-2)),
+    calc(100% - var(--lancer-weapon-cutout-size) * var(--circle-number-7)) calc(var(--lancer-weapon-cutout-offset) + var(--lancer-weapon-cutout-size) - var(--lancer-weapon-cutout-size) * var(--circle-number-1)),
+    calc(100% - var(--lancer-weapon-cutout-size) * var(--circle-number-8)) calc(var(--lancer-weapon-cutout-offset) + var(--lancer-weapon-cutout-size) + var(--lancer-weapon-cutout-size) * var(--circle-number-0)),
+    calc(100% - var(--lancer-weapon-cutout-size) * var(--circle-number-7)) calc(var(--lancer-weapon-cutout-offset) + var(--lancer-weapon-cutout-size) + var(--lancer-weapon-cutout-size) * var(--circle-number-1)),
+    calc(100% - var(--lancer-weapon-cutout-size) * var(--circle-number-6)) calc(var(--lancer-weapon-cutout-offset) + var(--lancer-weapon-cutout-size) + var(--lancer-weapon-cutout-size) * var(--circle-number-2)),
+    calc(100% - var(--lancer-weapon-cutout-size) * var(--circle-number-5)) calc(var(--lancer-weapon-cutout-offset) + var(--lancer-weapon-cutout-size) + var(--lancer-weapon-cutout-size) * var(--circle-number-3)),
+    calc(100% - var(--lancer-weapon-cutout-size) * var(--circle-number-4)) calc(var(--lancer-weapon-cutout-offset) + var(--lancer-weapon-cutout-size) + var(--lancer-weapon-cutout-size) * var(--circle-number-4)),
+    calc(100% - var(--lancer-weapon-cutout-size) * var(--circle-number-3)) calc(var(--lancer-weapon-cutout-offset) + var(--lancer-weapon-cutout-size) + var(--lancer-weapon-cutout-size) * var(--circle-number-5)),
+    calc(100% - var(--lancer-weapon-cutout-size) * var(--circle-number-2)) calc(var(--lancer-weapon-cutout-offset) + var(--lancer-weapon-cutout-size) + var(--lancer-weapon-cutout-size) * var(--circle-number-6)),
+    calc(100% - var(--lancer-weapon-cutout-size) * var(--circle-number-1)) calc(var(--lancer-weapon-cutout-offset) + var(--lancer-weapon-cutout-size) + var(--lancer-weapon-cutout-size) * var(--circle-number-7)),
+    calc(100% - var(--lancer-weapon-cutout-size) * var(--circle-number-0)) calc(var(--lancer-weapon-cutout-offset) + var(--lancer-weapon-cutout-size) + var(--lancer-weapon-cutout-size) * var(--circle-number-8)),
+    calc(100% - var(--lancer-weapon-inner-cutout-size) * var(--circle-number-0)) calc(var(--lancer-weapon-cutout-offset) + var(--lancer-weapon-cutout-size) + var(--lancer-weapon-inner-cutout-size) * var(--circle-number-8)),
+    calc(100% - var(--lancer-weapon-inner-cutout-size) * var(--circle-number-1)) calc(var(--lancer-weapon-cutout-offset) + var(--lancer-weapon-cutout-size) + var(--lancer-weapon-inner-cutout-size) * var(--circle-number-7)),
+    calc(100% - var(--lancer-weapon-inner-cutout-size) * var(--circle-number-2)) calc(var(--lancer-weapon-cutout-offset) + var(--lancer-weapon-cutout-size) + var(--lancer-weapon-inner-cutout-size) * var(--circle-number-6)),
+    calc(100% - var(--lancer-weapon-inner-cutout-size) * var(--circle-number-3)) calc(var(--lancer-weapon-cutout-offset) + var(--lancer-weapon-cutout-size) + var(--lancer-weapon-inner-cutout-size) * var(--circle-number-5)),
+    calc(100% - var(--lancer-weapon-inner-cutout-size) * var(--circle-number-4)) calc(var(--lancer-weapon-cutout-offset) + var(--lancer-weapon-cutout-size) + var(--lancer-weapon-inner-cutout-size) * var(--circle-number-4)),
+    calc(100% - var(--lancer-weapon-inner-cutout-size) * var(--circle-number-5)) calc(var(--lancer-weapon-cutout-offset) + var(--lancer-weapon-cutout-size) + var(--lancer-weapon-inner-cutout-size) * var(--circle-number-3)),
+    calc(100% - var(--lancer-weapon-inner-cutout-size) * var(--circle-number-6)) calc(var(--lancer-weapon-cutout-offset) + var(--lancer-weapon-cutout-size) + var(--lancer-weapon-inner-cutout-size) * var(--circle-number-2)),
+    calc(100% - var(--lancer-weapon-inner-cutout-size) * var(--circle-number-7)) calc(var(--lancer-weapon-cutout-offset) + var(--lancer-weapon-cutout-size) + var(--lancer-weapon-inner-cutout-size) * var(--circle-number-1)),
+    calc(100% - var(--lancer-weapon-inner-cutout-size) * var(--circle-number-8)) calc(var(--lancer-weapon-cutout-offset) + var(--lancer-weapon-cutout-size) + var(--lancer-weapon-inner-cutout-size) * var(--circle-number-0)),
+    calc(100% - var(--lancer-weapon-inner-cutout-size) * var(--circle-number-7)) calc(var(--lancer-weapon-cutout-offset) + var(--lancer-weapon-cutout-size) - var(--lancer-weapon-inner-cutout-size) * var(--circle-number-1)),
+    calc(100% - var(--lancer-weapon-inner-cutout-size) * var(--circle-number-6)) calc(var(--lancer-weapon-cutout-offset) + var(--lancer-weapon-cutout-size) - var(--lancer-weapon-inner-cutout-size) * var(--circle-number-2)),
+    calc(100% - var(--lancer-weapon-inner-cutout-size) * var(--circle-number-5)) calc(var(--lancer-weapon-cutout-offset) + var(--lancer-weapon-cutout-size) - var(--lancer-weapon-inner-cutout-size) * var(--circle-number-3)),
+    calc(100% - var(--lancer-weapon-inner-cutout-size) * var(--circle-number-4)) calc(var(--lancer-weapon-cutout-offset) + var(--lancer-weapon-cutout-size) - var(--lancer-weapon-inner-cutout-size) * var(--circle-number-4)),
+    calc(100% - var(--lancer-weapon-inner-cutout-size) * var(--circle-number-3)) calc(var(--lancer-weapon-cutout-offset) + var(--lancer-weapon-cutout-size) - var(--lancer-weapon-inner-cutout-size) * var(--circle-number-5)),
+    calc(100% - var(--lancer-weapon-inner-cutout-size) * var(--circle-number-2)) calc(var(--lancer-weapon-cutout-offset) + var(--lancer-weapon-cutout-size) - var(--lancer-weapon-inner-cutout-size) * var(--circle-number-6)),
+    calc(100% - var(--lancer-weapon-inner-cutout-size) * var(--circle-number-1)) calc(var(--lancer-weapon-cutout-offset) + var(--lancer-weapon-cutout-size) - var(--lancer-weapon-inner-cutout-size) * var(--circle-number-7)),
+    calc(100% - var(--lancer-weapon-inner-cutout-size) * var(--circle-number-0)) calc(var(--lancer-weapon-cutout-offset) + var(--lancer-weapon-cutout-size) - var(--lancer-weapon-inner-cutout-size) * var(--circle-number-8)),
+    100% 100%,
+    0% 100%);
+  padding: 0.15em 0.4em 0.3em 0.4em;
+}
+
+.lancer-weapon-name {
+  font-weight: 500;
+  font-size: 1.2em;
+}
+
+.lancer-weapon-tags {
+  font-family: 'Consolas';
+}
+
+.lancer-weapon-damage {
+  font-family: 'Consolas';
+}
+
+.lancer-weapon-body {
+  background-color: var(--lancer-weapon-background-color);
+  padding: 0.1em 0.4em 0.4em 0.4em;
+}
+
+.lancer-weapon-effect:has(*) ~ .lancer-weapon-flavor:has(*) {
+  --lancer-weapon-flavor-border-width: 0.1em;
+  --lancer-weapon-flavor-border-dash: 0.25em;
+
+  background-image: linear-gradient(to right, black calc(1% * 100 * (var(--lancer-weapon-flavor-border-width) / (var(--lancer-weapon-flavor-border-width) + var(--lancer-weapon-flavor-border-dash)))), rgba(255,255,255,0) 0%);
+  background-position: top;
+  background-size: calc(var(--lancer-weapon-flavor-border-dash) + var(--lancer-weapon-flavor-border-width)) var(--lancer-weapon-flavor-border-width);
+  background-repeat: repeat-x;
+
+  margin-top: 0.25em;
+  padding-top: 0.25em;
+}
+
+.lancer-weapon-flavor {
+  font-style: italic;
+}
+
+.lancer-weapon-effect .json-text-line,
+.lancer-weapon-flavor .json-text-line {
+  text-align: left;
+}
