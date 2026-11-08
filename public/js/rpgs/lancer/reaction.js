@@ -39,16 +39,16 @@ class Reaction {
     return this.html;
   }
 
-  static fromJSON(json) {
+  static fromJSON(json, loadChildren = true) {
     var reaction = new Reaction();
-    reaction.loadJSON(json);
+    reaction.loadJSON(json, loadChildren);
     return reaction;
   }
 
-  loadJSON(json) {
+  loadJSON(json, loadChildren = true) {
     this.json = json;
 
-    this.attachments.loadJSON(json.attachments);
+    this.attachments.loadJSON(json.attachments, loadChildren);
 
     this.name.innerHTML = '';
     this.name.appendChild(document.createTextNode(json.name));
@@ -57,7 +57,7 @@ class Reaction {
     var type = ['Reaction'];
     if (json.frequency.type != 'any')
       type.push(json.frequency.frequency + '/' + json.frequency.type);
-    appendTags(this.type, json.tags, json.cost, type);
+    appendTags(this.type, json.tags, json.cost, { start: type });
 
     if (json.trigger.length < 0)
       json.trigger.push('_Trigger:_');

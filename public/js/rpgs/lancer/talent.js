@@ -24,13 +24,13 @@ class Talent {
     return this.html;
   }
 
-  static fromJSON(json) {
+  static fromJSON(json, loadChildren = true) {
     var talent = new Talent();
-    talent.loadJSON(json);
+    talent.loadJSON(json, loadChildren);
     return talent;
   }
 
-  loadJSON(json) {
+  loadJSON(json, loadChildren = true) {
     this.json = json;
 
     this.name.innerHTML = '';
@@ -38,14 +38,16 @@ class Talent {
 
     this.flavor.loadJSON(json.flavor);
     
-    this.ranks.innerHTML = '';
-    this.ranksArray = [];
-    json.ranks.forEach((element, index) => {
-      element.rank = index + 1;
-      var rank = TalentRank.fromJSON(element);
-      this.ranksArray.push(rank);
-      this.ranks.appendChild(rank.getHTML());
-    });
+    if (loadChildren) {
+      this.ranks.innerHTML = '';
+      this.ranksArray = [];
+      json.ranks.forEach((element, index) => {
+        element.rank = index + 1;
+        var rank = TalentRank.fromJSON(element, loadChildren);
+        this.ranksArray.push(rank);
+        this.ranks.appendChild(rank.getHTML());
+      });
+    }
   }
 
 }

@@ -29,9 +29,12 @@ class RPGServer extends _SERVER.Server {
     });
 
     expressServer.post('/' + this.url + '/lancer/api/fetch-manufacturers', async (request, result) => {
-      // var table = await LancerDatabase.instance.fetchReactions();
-      // var table = await LancerDatabase.instance.fetchManufacturers();
-      var table = await LancerDatabase.instance.fetchTalents();
+      var table = await LancerDatabase.instance.fetchManufacturers();
+      return result.json({ ok: true, result: table });
+    });
+
+    expressServer.post('/' + this.url + '/lancer/api/fetch-statics', async (request, result) => {
+      var table = await LancerDatabase.instance.fetchStatics();
       return result.json({ ok: true, result: table });
     });
 

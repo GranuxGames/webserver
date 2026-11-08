@@ -1,0 +1,18 @@
+.string-search-container {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25em;
+  position: relative;
+}
+
+.string-search-header {
+  font-weight: bold;
+}
+
+.string-search-input {
+  border: 1px solid black;
+  border-radius: 0.25em;
+  padding: 0.42em 0.25em;
+  box-sizing: border-box;
+  outline: none;
+}

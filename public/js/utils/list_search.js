@@ -187,7 +187,7 @@ class ListSearch {
     
     this.changeListeners.forEach((listener) => {
       listener(this.selectedValues);
-    })
+    });
   }
 
   filter(rows) {

@@ -36,22 +36,22 @@ class QuickAction {
     return this.html;
   }
 
-  static fromJSON(json) {
+  static fromJSON(json, loadChildren = true) {
     var quickAction = new QuickAction();
-    quickAction.loadJSON(json);
+    quickAction.loadJSON(json, loadChildren);
     return quickAction;
   }
 
-  loadJSON(json) {
+  loadJSON(json, loadChildren = true) {
     this.json = json;
 
-    this.attachments.loadJSON(json.attachments);
+    this.attachments.loadJSON(json.attachments, loadChildren);
 
     this.name.innerHTML = '';
     this.name.appendChild(document.createTextNode(json.name));
     
     this.type.innerHTML = '';
-    appendTags(this.type, json.tags, json.cost, ['Quick Action']);
+    appendTags(this.type, json.tags, json.cost, { start: ['Quick Action'] });
 
     this.effect.setCustomContent(this.attachments);
     this.effect.loadJSON(json.effect);

@@ -1,7 +1,18 @@
-function appendTags(container, tags, costs, start = [], end = [], actionCostName = 'Action') {
+function appendTags(container, tags, costs, inputOptions = {}) {
   var first = true;
 
-  start.forEach((element) => {
+  options = {
+    start: [],
+    end: [],
+    actionCostName: 'Action',
+    beforeTags: [],
+    afterTags: []
+  };
+  Object.entries(inputOptions).forEach(([key, value]) => {
+    options[key] = value;
+  });
+
+  options.start.forEach((element) => {
     if (!first)
       container.appendChild(document.createTextNode(', '));
     container.appendChild(document.createTextNode(element));
@@ -15,6 +26,13 @@ function appendTags(container, tags, costs, start = [], end = [], actionCostName
     first = false;
   }
 
+  options.beforeTags.forEach((element) => {
+    if (!first)
+      container.appendChild(document.createTextNode(', '));
+    container.appendChild(document.createTextNode(element));
+    first = false;
+  });
+
   tags.forEach((tag) => {
     if (!first)
       container.appendChild(document.createTextNode(', '));
@@ -24,6 +42,13 @@ function appendTags(container, tags, costs, start = [], end = [], actionCostName
     first = false;
   })
 
+  options.afterTags.forEach((element) => {
+    if (!first)
+      container.appendChild(document.createTextNode(', '));
+    container.appendChild(document.createTextNode(element));
+    first = false;
+  });
+
   if (costs['heat'] != null) {
     if (!first)
       container.appendChild(document.createTextNode(', '));
@@ -31,18 +56,18 @@ function appendTags(container, tags, costs, start = [], end = [], actionCostName
     var symbol = document.createElement('span');
     symbol.classList.add('lancer-symbol');
     container.appendChild(symbol);
-    symbol.appendChild('M');
+    symbol.appendChild(document.createTextNode('M'));
     container.appendChild(document.createTextNode(' (Self)'));
     first = false;
   }
   if (costs['action'] != null) {
     if (!first)
       container.appendChild(document.createTextNode(', '));
-    container.appendChild(document.createTextNode(costs['action'].value.charAt(0).toUpperCase() + costs['action'].value.slice(1) + ' ' + actionCostName));
+    container.appendChild(document.createTextNode(costs['action'].value.charAt(0).toUpperCase() + costs['action'].value.slice(1) + ' ' + options.actionCostName));
     first = false;
   }
 
-  end.forEach((element) => {
+  options.end.forEach((element) => {
     if (!first)
       container.appendChild(document.createTextNode(', '));
     container.appendChild(document.createTextNode(element));

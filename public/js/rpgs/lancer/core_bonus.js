@@ -27,16 +27,16 @@ class CoreBonus {
     return this.html;
   }
 
-  static fromJSON(json) {
+  static fromJSON(json, loadChildren = true) {
     var coreBonus = new CoreBonus();
-    coreBonus.loadJSON(json);
+    coreBonus.loadJSON(json, loadChildren);
     return coreBonus;
   }
 
-  loadJSON(json) {
+  loadJSON(json, loadChildren = true) {
     this.json = json;
 
-    this.attachments.loadJSON(json.attachments);
+    this.attachments.loadJSON(json.attachments, loadChildren);
 
     this.name.innerHTML = '';
     this.name.appendChild(document.createTextNode(json.name));

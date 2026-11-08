@@ -23,16 +23,16 @@ class Trait {
     return this.html;
   }
 
-  static fromJSON(json) {
+  static fromJSON(json, loadChildren = true) {
     var trait = new Trait();
-    trait.loadJSON(json);
+    trait.loadJSON(json, loadChildren);
     return trait;
   }
 
-  loadJSON(json) {
+  loadJSON(json, loadChildren = true) {
     this.json = json;
 
-    this.attachments.loadJSON(json.attachments);
+    this.attachments.loadJSON(json.attachments, loadChildren);
 
     this.name.innerHTML = '';
     this.name.appendChild(document.createTextNode(json.name));

@@ -1,0 +1,26 @@
+.range-search-container {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25em;
+  position: relative;
+}
+
+.range-search-header {
+  font-weight: bold;
+}
+
+.range-search-input {
+  border: 1px solid black;
+  border-radius: 0.25em;
+  padding: 0.2em;
+  box-sizing: border-box;
+  outline: none;
+}
+
+.range-search-body {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  gap: 0.2em;
+  align-items: center;
+}

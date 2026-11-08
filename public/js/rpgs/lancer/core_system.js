@@ -24,13 +24,13 @@ class CoreSystem {
     return this.html;
   }
 
-  static fromJSON(json) {
+  static fromJSON(json, loadChildren = true) {
     var coreSystem = new CoreSystem();
-    coreSystem.loadJSON(json);
+    coreSystem.loadJSON(json, loadChildren);
     return coreSystem;
   }
 
-  loadJSON(json) {
+  loadJSON(json, loadChildren = true) {
     this.json = json;
 
     this.name.innerHTML = '';
@@ -43,9 +43,9 @@ class CoreSystem {
     json.systems.forEach((element) => {
       var system = null;
       if (element.element_type == 'system')
-        system = System.fromJSON(element);
+        system = System.fromJSON(element, loadChildren);
       else if (element.element_type == 'tech')
-        system = Tech.fromJSON(element);
+        system = Tech.fromJSON(element, loadChildren);
       else if (element.element_type == 'weapon') {
         var integratedMountHeader = document.createElement('div');
         integratedMountHeader.classList.add('lancer-core-system-integrated-mount-header');
@@ -57,7 +57,7 @@ class CoreSystem {
         integratedMountHeader.appendChild(integratedMountName);
         integratedMountName.appendChild(document.createTextNode(element.name));
 
-        system = Weapon.fromJSON(element);
+        system = Weapon.fromJSON(element, loadChildren);
       }
       if (element == null)
         return;

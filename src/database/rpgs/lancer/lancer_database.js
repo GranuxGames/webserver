@@ -3,6 +3,15 @@ const _DATABASE = require(_PATH.join(global.__path.src, 'database', 'database'))
 
 
 
+Object.groupBy = function(items, callbackFn) {
+  return items.reduce((result, item) => {
+    const key = callbackFn(item);
+    if (!result[key]) result[key] = [];
+    result[key].push(item);
+    return result;
+  }, Object.create(null));
+};
+
 class LancerDatabase extends _DATABASE.Database {
 
   /**
@@ -76,7 +85,6 @@ class LancerDatabase extends _DATABASE.Database {
     var coreBonus = {};
     coreBonus.element_type = 'corebonus';
     coreBonus.id = row.ID;
-    coreBonus.manufacturer_id = row.ManufacturerID;
     coreBonus.name = row.Name;
     coreBonus.flavor = JSON.parse(row.Flavor);
     coreBonus.effect = JSON.parse(row.Effect);
@@ -91,7 +99,7 @@ class LancerDatabase extends _DATABASE.Database {
   }
 
   async fetchCoreBonussByManufacturerID(id) {
-    var coreBonuss = await this.query('SELECT * FROM CoreBonus WHERE CoreBonus.ManufacturerID == ?', [id]);
+    var coreBonuss = await this.query('SELECT CoreBonus.* FROM CoreBonus, Manufacturers WHERE CONCAT(",", REPLACE(SUBSTR(Manufacturers.CoreBonuss, 2, LENGTH(Manufacturers.CoreBonuss) - 2), " ", ""), ",") LIKE CONCAT("%,", CoreBonus.ID, ",%") AND Manufacturers.ID = ?', [id]);
     coreBonuss = await Promise.all(coreBonuss.map(async (coreBonus) => {
       return await this.handleCoreBonus(coreBonus);
     }));
@@ -146,10 +154,20 @@ class LancerDatabase extends _DATABASE.Database {
   }
 
   async handleFrame(row) {
+    var roles = await this.query('SELECT * FROM Roles');
+    roles = this.tableToDict(roles);
+    var mounts = await this.query('SELECT * FROM Mounts');
+    mounts = this.tableToDict(mounts);
     var frame = {};
     frame.element_type = 'frame';
     frame.id = row.ID;
     frame.name = row.Name;
+    frame.roles = JSON.parse(row.Roles).map((role) => {
+      return {
+        role_id: role,
+        role: roles[role].Name
+      };
+    });
     frame.role_id = row.RoleID;
     frame.role = row.Role;
     frame.flavor = JSON.parse(row.Flavor);
@@ -168,20 +186,26 @@ class LancerDatabase extends _DATABASE.Database {
       sp: row.SP,
       heat_cap: row.HeatCap
     };
-    frame.mounts = JSON.parse(row.Mounts);
+    frame.mounts = JSON.parse(row.Mounts).map((mount) => {
+      return {
+        mount_id: mount,
+        mount: mounts[mount].Name,
+        slots: JSON.parse(mounts[mount].Slots)
+      };
+    })
     frame.traits = await this.fetchTraitsByFrameID(frame.id);
     frame.core = await this.fetchCoreSystemByFrameID(frame.id);
     return frame;
   }
 
   async fetchFrame(id) {
-    var frame = await this.queryFirst('SELECT Frames.*, Roles.Name AS Role FROM Frames INNER JOIN Roles ON Frames.RoleID == Roles.ID WHERE Frames.ID == ?', [id]);
+    var frame = await this.queryFirst('SELECT * FROM Frames WHERE Frames.ID == ?', [id]);
     frame = await this.handleFrame(frame);
     return frame;
   }
 
   async fetchFramesByLicenseID(id) {
-    var frames = await this.query('SELECT Frames.*, Roles.Name AS Role FROM Frames INNER JOIN Roles ON Frames.RoleID == Roles.ID WHERE Frames.LicenseID == ?', [id]);
+    var frames = await this.query('SELECT * FROM Frames, Licenses WHERE CONCAT(",", REPLACE(SUBSTR(Licenses.Frames, 2, LENGTH(Licenses.Frames) - 2), " ", ""), ",") LIKE CONCAT("%,", Frames.ID, ",%") AND Licenses.ID = ?', [id]);
     frames = await Promise.all(frames.map(async (frame) => {
       return await this.handleFrame(frame);
     }));
@@ -189,7 +213,7 @@ class LancerDatabase extends _DATABASE.Database {
   }
 
   async fetchFrames() {
-    var frames = await this.query('SELECT Frames.*, Roles.Name AS Role FROM Frames INNER JOIN Roles ON Frames.RoleID == Roles.ID');
+    var frames = await this.query('SELECT * FROM Frames');
     frames = await Promise.all(frames.map(async (frame) => {
       return await this.handleFrame(frame);
     }));
@@ -292,7 +316,6 @@ class LancerDatabase extends _DATABASE.Database {
     var licenseRank = {};
     licenseRank.element_type = 'licenserank';
     licenseRank.id = row.ID;
-    licenseRank.license_id = row.LicenseID;
     licenseRank.rewards = await Promise.all(JSON.parse(row.Values).map(async (reward) => {
       if (reward.type == 'weapon')
         return await this.fetchWeapon(reward.value);
@@ -312,7 +335,7 @@ class LancerDatabase extends _DATABASE.Database {
   }
 
   async fetchLicenseRanksByLicenseID(id) {
-    var licenseRanks = await this.query('SELECT * FROM LicenseRanks WHERE LicenseRanks.LicenseID == ?', [id]);
+    var licenseRanks = await this.query('SELECT LicenseRanks.* FROM LicenseRanks, Licenses WHERE CONCAT(",", REPLACE(SUBSTR(Licenses.LicenseRanks, 2, LENGTH(Licenses.LicenseRanks) - 2), " ", ""), ",") LIKE CONCAT("%,", LicenseRanks.ID, ",%") AND Licenses.ID = ?', [id]);
     licenseRanks = licenseRanks.sort((licenseRankA, licenseRankB) => {
       return licenseRankA.Rank - licenseRankB.Rank;
     });
@@ -338,7 +361,7 @@ class LancerDatabase extends _DATABASE.Database {
   }
 
   async fetchLicensesByManufacturerID(id) {
-    var licenses = await this.query('SELECT * FROM Licenses WHERE Licenses.ManufacturerID == ?', [id]);
+    var licenses = await this.query('SELECT Licenses.* FROM Licenses, Manufacturers WHERE CONCAT(",", REPLACE(SUBSTR(Manufacturers.Licenses, 2, LENGTH(Manufacturers.Licenses) - 2), " ", ""), ",") LIKE CONCAT("%,", Licenses.ID, ",%") AND Manufacturers.ID = ?', [id]);
     licenses = await Promise.all(licenses.map(async (license) => {
       return await this.handleLicense(license);
     }));
@@ -362,6 +385,8 @@ class LancerDatabase extends _DATABASE.Database {
     manufacturer.motd = row.MOTD;
     manufacturer.flavor = JSON.parse(row.Flavor);
     manufacturer.core_bonuss = await this.fetchCoreBonussByManufacturerID(manufacturer.id);
+    manufacturer.weapons = await this.fetchWeaponsByManufacturerID(manufacturer.id);
+    manufacturer.systems = await this.fetchSystemsByManufacturerID(manufacturer.id);
     manufacturer.licenses = await this.fetchLicensesByManufacturerID(manufacturer.id);
     return manufacturer;
   }
@@ -479,6 +504,14 @@ class LancerDatabase extends _DATABASE.Database {
     return system;
   }
 
+  async fetchSystemsByManufacturerID(id) {
+    var systems = await this.query('SELECT Systems.*, SystemTypes.Name AS Type FROM Systems INNER JOIN SystemTypes ON Systems.SystemTypeID == SystemTypes.ID, Manufacturers WHERE CONCAT(",", REPLACE(SUBSTR(Manufacturers.Systems, 2, LENGTH(Manufacturers.Systems) - 2), " ", ""), ",") LIKE CONCAT("%,", Systems.ID, ",%") AND Manufacturers.ID = ?', [id]);
+    systems = await Promise.all(systems.map(async (system) => {
+      return await this.handleSystem(system);
+    }));
+    return systems;
+  }
+
   async fetchSystems() {
     var systems = await this.query('SELECT Systems.*, SystemTypes.Name AS Type FROM Systems INNER JOIN SystemTypes ON Systems.SystemTypeID == SystemTypes.ID');
     systems = await Promise.all(systems.map(async (system) => {
@@ -505,7 +538,7 @@ class LancerDatabase extends _DATABASE.Database {
   }
 
   async fetchTalentRanksByTalentID(id) {
-    var talentRanks = await this.query('SELECT * FROM TalentRanks WHERE TalentRanks.TalentID == ?', [id]);
+    var talentRanks = await this.query('SELECT TalentRanks.* FROM TalentRanks, Talents WHERE CONCAT(",", REPLACE(SUBSTR(Talents.TalentRanks, 2, LENGTH(Talents.TalentRanks) - 2), " ", ""), ",") LIKE CONCAT("%,", TalentRanks.ID, ",%") AND Talents.ID = ?', [id]);
     talentRanks = talentRanks.sort((talentRankA, talentRankB) => {
       return talentRankA.Rank - talentRankB.Rank;
     });
@@ -653,12 +686,114 @@ class LancerDatabase extends _DATABASE.Database {
     return weapon;
   }
 
+  async fetchWeaponsByManufacturerID(id) {
+    var weapons = await this.query('SELECT Weapons.*, WeaponTypes.Name AS Type FROM Weapons INNER JOIN WeaponTypes ON Weapons.WeaponTypeID == WeaponTypes.ID, Manufacturers WHERE CONCAT(",", REPLACE(SUBSTR(Manufacturers.Weapons, 2, LENGTH(Manufacturers.Weapons) - 2), " ", ""), ",") LIKE CONCAT("%,", Weapons.ID, ",%") AND Manufacturers.ID = ?', [id]);
+    weapons = await Promise.all(weapons.map(async (weapon) => {
+      return await this.handleWeapon(weapon);
+    }));
+    return weapons;
+  }
+
   async fetchWeapons() {
     var weapons = await this.query('SELECT Weapons.*, WeaponTypes.Name AS Type FROM Weapons INNER JOIN WeaponTypes ON Weapons.WeaponTypeID == WeaponTypes.ID');
     weapons = await Promise.all(weapons.map(async (weapon) => {
       return await this.handleWeapon(weapon);
     }));
     return weapons;
+  }
+
+  async fetchStatics() {
+    var systemTypes = await this.query('SELECT * FROM SystemTypes');
+    systemTypes = this.tableToDict(systemTypes.map((systemType) => {
+      return {
+        id: systemType.ID,
+        name: systemType.Name
+      };
+    }), 'id');
+    
+    var tags = await this.query('SELECT * FROM Tags');
+    tags = this.tableToDict(tags.map((tag) => {
+      return {
+        id: tag.ID,
+        name: tag.Name
+      };
+    }), 'id');
+
+    var costs = await this.query('SELECT FreeActions.Cost FROM FreeActions UNION SELECT FullActions.Cost FROM FullActions UNION SELECT QuickActions.Cost FROM QuickActions UNION SELECT Reactions.Cost FROM Reactions UNION SELECT Systems.Cost FROM Systems UNION SELECT Techs.Cost FROM Techs UNION SELECT Weapons.Cost FROM Weapons');
+    costs = Object.groupBy(costs.map((cost) => {
+      return JSON.parse(cost.Cost);
+    }).flat(), (cost) => {
+      return cost.type;
+    });
+    costs = this.tableToDict(Object.entries(costs).map(([type, values]) => {
+      values = [...new Set(values.map((cost) => {
+        return cost.value;
+      }))];
+      return {
+        name: type,
+        values: values
+      };
+    }), 'name');
+    
+    var weaponTypes = await this.query('SELECT * FROM WeaponTypes');
+    weaponTypes = this.tableToDict(weaponTypes.map((weaponType) => {
+      return {
+        id: weaponType.ID,
+        name: weaponType.Name
+      };
+    }), 'id');
+
+    var rangeTypes = await this.query('SELECT * FROM Ranges');
+    rangeTypes = this.tableToDict(rangeTypes.map((rangeType) => {
+      return {
+        id: rangeType.ID,
+        name: rangeType.Name
+      };
+    }), 'id');
+    var ranges = await this.query('SELECT DISTINCT Weapons.Range FROM Weapons');
+    ranges = Object.groupBy(ranges.map((range) => {
+      return JSON.parse(range.Range);
+    }).flat(), (range) => {
+      return range.type;
+    });
+    ranges = this.tableToDict(Object.entries(ranges).map(([type, values]) => {
+      values = [...new Set(values.map((range) => {
+        return range.value;
+      }))];
+      return {
+        id: type,
+        name: rangeTypes[type].name,
+        values: values
+      };
+    }), 'id');
+    
+    var damageTypes = await this.query('SELECT * FROM DamageTypes');
+    damageTypes = this.tableToDict(damageTypes.map((damageType) => {
+      return {
+        id: damageType.ID,
+        name: damageType.Name
+      };
+    }), 'id');
+    
+    var techTypes = await this.query('SELECT * FROM TechTypes');
+    techTypes = this.tableToDict(techTypes.map((techType) => {
+      return {
+        id: techType.ID,
+        name: techType.Name
+      };
+    }), 'id');
+
+    var statics = {
+      system_types: systemTypes,
+      tags: tags,
+      costs: costs,
+      weapon_types: weaponTypes,
+      ranges: ranges,
+      damage_types: damageTypes,
+      tech_types: techTypes
+    };
+
+    return statics;
   }
 
 }

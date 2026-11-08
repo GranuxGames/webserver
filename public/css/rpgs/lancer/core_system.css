@@ -4,6 +4,16 @@
   color: var(--color-black);
 }
 
+.lancer-core-system-integrated-mount-header {
+  font-style: italic;
+  font-weight: 500;
+  margin-bottom: 0.4em;
+}
+
+.lancer-core-system-integrated-mount-name {
+  font-weight: 300;
+}
+
 .lancer-core-system-name {
   font-size: 1.4em;
   font-weight: 600;

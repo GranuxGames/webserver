@@ -39,16 +39,16 @@ class System {
     return this.html;
   }
 
-  static fromJSON(json) {
+  static fromJSON(json, loadChildren = true) {
     var system = new System();
-    system.loadJSON(json);
+    system.loadJSON(json, loadChildren);
     return system;
   }
 
-  loadJSON(json) {
+  loadJSON(json, loadChildren = true) {
     this.json = json;
 
-    this.attachments.loadJSON(json.attachments);
+    this.attachments.loadJSON(json.attachments, loadChildren);
 
     this.html.classList.forEach((className) => {
       if (className.startsWith('lancer-system-'))
@@ -60,7 +60,13 @@ class System {
     this.name.appendChild(document.createTextNode(json.name));
 
     this.tags.innerHTML = '';
-    appendTags(this.tags, json.tags, json.cost);
+    var beforeTags = [];
+    var afterTags = [];
+    if (json.type_id == 3)
+      afterTags.push(json.type);
+    if (json.type_id == 4)
+      beforeTags.push(json.type);
+    appendTags(this.tags, json.tags, json.cost, { afterTags: afterTags, beforeTags: beforeTags });
 
     this.effect.setCustomContent(this.attachments);
     this.effect.loadJSON(json.effect);

@@ -28,13 +28,13 @@ class LicenseRank {
     return this.html;
   }
 
-  static fromJSON(json) {
+  static fromJSON(json, loadChildren = true) {
     var licenseRank = new LicenseRank();
-    licenseRank.loadJSON(json);
+    licenseRank.loadJSON(json, loadChildren);
     return licenseRank;
   }
 
-  loadJSON(json) {
+  loadJSON(json, loadChildren = true) {
     this.json = json;
 
     this.html.classList.forEach((className) => {
@@ -51,19 +51,21 @@ class LicenseRank {
       return reward.name;
     }).join(', ')));
 
-    this.rewards.innerHTML = '';
-    this.rewardsArray = [];
-    json.rewards.forEach((element) => {
-      var reward = null;
-      if (element.element_type == 'weapon')
-        reward = Weapon.fromJSON(element);
-      if (element.element_type == 'system')
-        reward = System.fromJSON(element);
-      if (element.element_type == 'tech')
-        reward = Tech.fromJSON(element);
-      this.rewardsArray.push(reward);
-      this.rewards.appendChild(reward.getHTML());
-    });
+    if (loadChildren) {
+      this.rewards.innerHTML = '';
+      this.rewardsArray = [];
+      json.rewards.forEach((element) => {
+        var reward = null;
+        if (element.element_type == 'weapon')
+          reward = Weapon.fromJSON(element, loadChildren);
+        if (element.element_type == 'system')
+          reward = System.fromJSON(element, loadChildren);
+        if (element.element_type == 'tech')
+          reward = Tech.fromJSON(element, loadChildren);
+        this.rewardsArray.push(reward);
+        this.rewards.appendChild(reward.getHTML());
+      });
+    }
   }
 
 }

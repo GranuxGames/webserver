@@ -39,22 +39,22 @@ class Tech {
     return this.html;
   }
 
-  static fromJSON(json) {
+  static fromJSON(json, loadChildren = true) {
     var tech = new Tech();
-    tech.loadJSON(json);
+    tech.loadJSON(json, loadChildren);
     return tech;
   }
 
-  loadJSON(json) {
+  loadJSON(json, loadChildren = true) {
     this.json = json;
 
-    this.attachments.loadJSON(json.attachments);
+    this.attachments.loadJSON(json.attachments, loadChildren);
 
     this.name.innerHTML = '';
     this.name.appendChild(document.createTextNode(json.name));
 
     this.tags.innerHTML = '';
-    appendTags(this.tags, json.tags, json.cost, [], [], 'Tech');
+    appendTags(this.tags, json.tags, json.cost, { actionCostName: 'Tech' });
 
     this.effect.setCustomContent(this.attachments);
     this.effect.loadJSON(json.effect);

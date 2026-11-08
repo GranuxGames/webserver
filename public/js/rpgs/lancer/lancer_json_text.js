@@ -58,7 +58,7 @@ class LancerJSONText extends JSONText {
         span.classList.add('lancer-error');
         return '_RANGES NEEDS TO BE AN INTEGER:' + text + '_';
       }
-      if (range <= 0) {
+      if (range < 0) {
         span.classList.add('lancer-error');
         return '_RANGES MUST BE POSITIVE:' + text + '_';
       }
@@ -66,7 +66,8 @@ class LancerJSONText extends JSONText {
       symbol.classList.add('lancer-symbol');
       span.appendChild(symbol);
       symbol.appendChild(document.createTextNode('C'));
-      span.appendChild(document.createTextNode(' ' + range));
+      if (range > 0)
+        span.appendChild(document.createTextNode(' ' + range));
       span.classList.add('json-text-bold');
       return '';
     }
@@ -77,7 +78,7 @@ class LancerJSONText extends JSONText {
         span.classList.add('lancer-error');
         return '_THREAT NEEDS TO BE AN INTEGER:' + text + '_';
       }
-      if (threat <= 0) {
+      if (threat < 0) {
         span.classList.add('lancer-error');
         return '_THREAT MUST BE POSITIVE:' + text + '_';
       }
@@ -85,7 +86,8 @@ class LancerJSONText extends JSONText {
       symbol.classList.add('lancer-symbol');
       span.appendChild(symbol);
       symbol.appendChild(document.createTextNode('D'));
-      span.appendChild(document.createTextNode(' ' + threat));
+      if (threat > 0)
+        span.appendChild(document.createTextNode(' ' + threat));
       span.classList.add('json-text-bold');
       return '';
     }
@@ -96,7 +98,7 @@ class LancerJSONText extends JSONText {
         span.classList.add('lancer-error');
         return '_LINE NEEDS TO BE AN INTEGER:' + text + '_';
       }
-      if (line <= 0) {
+      if (line < 0) {
         span.classList.add('lancer-error');
         return '_LINE MUST BE POSITIVE:' + text + '_';
       }
@@ -104,7 +106,8 @@ class LancerJSONText extends JSONText {
       symbol.classList.add('lancer-symbol');
       span.appendChild(symbol);
       symbol.appendChild(document.createTextNode('E'));
-      span.appendChild(document.createTextNode(' ' + line));
+      if (line > 0)
+        span.appendChild(document.createTextNode(' ' + line));
       span.classList.add('json-text-bold');
       return '';
     }
@@ -115,7 +118,7 @@ class LancerJSONText extends JSONText {
         span.classList.add('lancer-error');
         return '_CONE NEEDS TO BE AN INTEGER:' + text + '_';
       }
-      if (cone <= 0) {
+      if (cone < 0) {
         span.classList.add('lancer-error');
         return '_CONE MUST BE POSITIVE:' + text + '_';
       }
@@ -123,7 +126,8 @@ class LancerJSONText extends JSONText {
       symbol.classList.add('lancer-symbol');
       span.appendChild(symbol);
       symbol.appendChild(document.createTextNode('F'));
-      span.appendChild(document.createTextNode(' ' + cone));
+      if (cone > 0)
+        span.appendChild(document.createTextNode(' ' + cone));
       span.classList.add('json-text-bold');
       return '';
     }
@@ -134,7 +138,7 @@ class LancerJSONText extends JSONText {
         span.classList.add('lancer-error');
         return '_BLAST NEEDS TO BE AN INTEGER:' + text + '_';
       }
-      if (blast <= 0) {
+      if (blast < 0) {
         span.classList.add('lancer-error');
         return '_BLAST MUST BE POSITIVE:' + text + '_';
       }
@@ -142,7 +146,8 @@ class LancerJSONText extends JSONText {
       symbol.classList.add('lancer-symbol');
       span.appendChild(symbol);
       symbol.appendChild(document.createTextNode('G'));
-      span.appendChild(document.createTextNode(' ' + blast));
+      if (blast > 0)
+        span.appendChild(document.createTextNode(' ' + blast));
       span.classList.add('json-text-bold');
       return '';
     }
@@ -153,7 +158,7 @@ class LancerJSONText extends JSONText {
         span.classList.add('lancer-error');
         return '_BURST NEEDS TO BE AN INTEGER:' + text + '_';
       }
-      if (burst <= 0) {
+      if (burst < 0) {
         span.classList.add('lancer-error');
         return '_BURST MUST BE POSITIVE:' + text + '_';
       }
@@ -161,7 +166,8 @@ class LancerJSONText extends JSONText {
       symbol.classList.add('lancer-symbol');
       span.appendChild(symbol);
       symbol.appendChild(document.createTextNode('H'));
-      span.appendChild(document.createTextNode(' ' + burst));
+      if (burst > 0)
+        span.appendChild(document.createTextNode(' ' + burst));
       span.classList.add('json-text-bold');
       return '';
     }

@@ -57,13 +57,7 @@ class Birthday {
       }
     }
     
-    var date = new Date();
-    date.setFullYear(parseInt(dateParts[2]));
-    date.setMonth(parseInt(dateParts[1]) - 1);
-    date.setDate(parseInt(dateParts[0]));
-    date.setHours(0);
-    date.setMinutes(0);
-    date.setSeconds(0);
+    var date = new Date(('' + parseInt(dateParts[2])).padStart(4, '0') + '-' + ('' + parseInt(dateParts[1])).padStart(2, '0') + '-' + ('' + parseInt(dateParts[0])).padStart(2, '0') + 'T00:00:00');
     date.setMilliseconds(0);
     birthday.date = date;
 

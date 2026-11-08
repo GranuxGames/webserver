@@ -34,13 +34,13 @@ class Attachments {
     return this.html;
   }
 
-  static fromJSON(json) {
+  static fromJSON(json, loadChildren = true) {
     var attachments = new Attachments();
-    attachments.loadJSON(attachments);
+    attachments.loadJSON(json, loadChildren);
     return attachments;
   }
 
-  loadJSON(json) {
+  loadJSON(json, loadChildren = true) {
     this.json = json;
 
     this.html.innerHTML = '';
@@ -53,7 +53,7 @@ class Attachments {
 
       attachment.getHTML().classList.add('lancer-attachment');
       this.html.appendChild(attachment.getHTML());
-      attachment.loadJSON(element);
+      attachment.loadJSON(element, loadChildren);
       this.attachments.push(attachment);
     });
     json.inline.forEach((element) => {
@@ -61,7 +61,7 @@ class Attachments {
         return;
 
       var attachment = new this.attachmentTypes[element.element_type]();
-      attachment.loadJSON(element);
+      attachment.loadJSON(element, loadChildren);
       this.attachments.push(attachment);
     })
   }

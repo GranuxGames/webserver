@@ -43,16 +43,16 @@ class Weapon {
     return this.html;
   }
 
-  static fromJSON(json) {
+  static fromJSON(json, loadChildren = true) {
     var weapon = new Weapon();
-    weapon.loadJSON(json);
+    weapon.loadJSON(json, loadChildren);
     return weapon;
   }
 
-  loadJSON(json) {
+  loadJSON(json, loadChildren = true) {
     this.json = json;
 
-    this.attachments.loadJSON(json.attachments);
+    this.attachments.loadJSON(json.attachments, loadChildren);
 
     this.name.innerHTML = '';
     this.name.appendChild(document.createTextNode(json.name));
@@ -70,7 +70,7 @@ class Weapon {
     if (json.size == 4)
       tags.push('Superheavy ');
     tags[tags.length - 1] += json.type;
-    appendTags(this.tags, json.tags, json.cost, tags);
+    appendTags(this.tags, json.tags, json.cost, { start: tags });
 
     this.damage.innerHTML = '';
     json.range.forEach((range) => {

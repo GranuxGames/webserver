@@ -9,9 +9,15 @@
     <!-- <script src="/js/libraries/ammo.js"></script> -->
     <script src="/js/utils/mobile_check.js"></script>
     <script src="/js/utils/vector.js"></script>
+    <script src="/js/utils/units.js"></script>
+    <script src="/js/utils/list_search.js"></script>
+    <script src="/js/utils/string_search.js"></script>
+    <script src="/js/utils/range_search.js"></script>
+
     <script src="/js/rpgs/json_text.js"></script>
     <script src="/js/rpgs/dice.js"></script>
-    <script src="/js/utils/units.js"></script>
+
+    <script src="/js/rpgs/lancer/lancer_data_storage.js"></script>
     <script src="/js/rpgs/lancer/lancer_json_text.js"></script>
     <script src="/js/rpgs/lancer/tags.js"></script>
     <script src="/js/rpgs/lancer/attachments.js"></script>
@@ -32,10 +38,14 @@
     <script src="/js/rpgs/lancer/license.js"></script>
     <script src="/js/rpgs/lancer/core_bonus.js"></script>
     <script src="/js/rpgs/lancer/manufacturer.js"></script>
+    <script src="/js/rpgs/lancer/pages/licenses_page.js"></script>
 
     <link rel="stylesheet" href="/css/fonts.css">
     <link rel="stylesheet" href="/css/general.css">
     <link rel="stylesheet" href="/css/rpgs/json_text.css">
+    <link rel="stylesheet" href="/css/list_search.css">
+    <link rel="stylesheet" href="/css/string_search.css">
+    <link rel="stylesheet" href="/css/range_search.css">
 
     <link rel="stylesheet" href="/css/rpgs/lancer/general.css">
     <link rel="stylesheet" href="/css/rpgs/lancer/attachments.css">
@@ -56,8 +66,14 @@
     <link rel="stylesheet" href="/css/rpgs/lancer/license.css">
     <link rel="stylesheet" href="/css/rpgs/lancer/core_bonus.css">
     <link rel="stylesheet" href="/css/rpgs/lancer/manufacturer.css">
+    <link rel="stylesheet" href="/css/rpgs/lancer/pages/licenses_page.css">
   </head>
   <body>
-
+    <div id="lancer-licenses-page-search-container" class="diagonal-border">
+      <div id="lancer-licenses-page-rewards-container">
+        <div id="lancer-licenses-page-rewards-add"></div>
+      </div>
+    </div>
+    <div id="lancer-licenses-page-licenses"></div>
   </body>
 </html>

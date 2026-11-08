@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg width="100%" height="100%" viewBox="0 0 512 560" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" xmlns:serif="http://www.serif.com/" style="fill-rule:evenodd;clip-rule:evenodd;stroke-linejoin:round;stroke-miterlimit:2;">
+    <g id="striker">
+        <g transform="matrix(8.66667,0,0,13.2174,-1962.67,-3759.65)">
+            <path d="M253,324.849L253,302L247.692,298.671L256,288.079L264.308,298.671L259,302L259,324.849L256,326.816L253,324.849Z"/>
+        </g>
+        <g transform="matrix(8.144,2.96417,-4.52061,12.4203,-258.913,-4280.23)">
+            <path d="M253,325L253,311.018L247.692,307.689L256,297.096L264.308,307.689L259,311.018L259,325L256,326.967L253,325Z"/>
+        </g>
+        <g transform="matrix(-8.144,2.96417,4.52061,12.4203,770.913,-4280.23)">
+            <path d="M253,325L253,311.018L247.692,307.689L256,297.096L264.308,307.689L259,311.018L259,325L256,326.967L253,325Z"/>
+        </g>
+    </g>
+</svg>

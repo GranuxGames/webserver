@@ -57,14 +57,16 @@
   display: none;
 }
 
-.lancer-manufacturer-core-boni {
-  margin-top: 2.5em;
-  column-width: var(--manufacturer-column-width);
-  column-gap: var(--manufacturer-column-gap);
+.lancer-manufacturer-core-bonus-header {
+  margin-top: 0.5em;
+  margin-bottom: 0.5em;
+  font-weight: 500;
+  font-size: 1.8em;
 }
 
-.lancer-minified .lancer-manufacturer-core-boni {
-  margin-top: 0;
+.lancer-manufacturer-core-boni {
+  column-width: var(--manufacturer-column-width);
+  column-gap: var(--manufacturer-column-gap);
 }
 
 .lancer-manufacturer-core-boni > * {
@@ -72,8 +74,46 @@
   margin-bottom: 1.5em;
 }
 
+.lancer-manufacturer-weapons-header {
+  margin-top: 0.5em;
+  margin-bottom: 0.5em;
+  font-weight: 500;
+  font-size: 1.8em;
+}
+
+.lancer-manufacturer-weapons {
+  column-width: var(--manufacturer-column-width);
+  column-gap: var(--manufacturer-column-gap);
+}
+
+.lancer-manufacturer-weapons > * {
+  break-inside: avoid;
+  margin-bottom: 1.5em;
+}
+
+.lancer-manufacturer-systems-header {
+  margin-top: 0.5em;
+  margin-bottom: 0.5em;
+  font-weight: 500;
+  font-size: 1.8em;
+}
+
+.lancer-manufacturer-systems {
+  column-width: var(--manufacturer-column-width);
+  column-gap: var(--manufacturer-column-gap);
+}
+
+.lancer-manufacturer-systems > * {
+  break-inside: avoid;
+  margin-bottom: 1.5em;
+}
+
 .lancer-manufacturer-licenses {
   margin-top: 2em;
+}
+
+.lancer-manufacturer-licenses > *:not(:first-child) {
+  margin-top: 1em;
 }
 
 .lancer-minified .lancer-manufacturer-licenses {

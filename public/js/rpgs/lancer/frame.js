@@ -6,6 +6,10 @@ class Frame {
     this.html = document.createElement('div');
     this.html.classList.add('lancer-frame');
 
+    this.symbols = document.createElement('div');
+    this.symbols.classList.add('lancer-frame-symbols');
+    this.html.appendChild(this.symbols);
+
     this.name = document.createElement('div');
     this.name.classList.add('lancer-frame-name');
     this.html.appendChild(this.name);
@@ -18,9 +22,13 @@ class Frame {
     this.flavor.getHTML().classList.add('lancer-frame-flavor');
     this.html.appendChild(this.flavor.getHTML());
 
+    this.imageContainer = document.createElement('div');
+    this.imageContainer.classList.add('lancer-frame-image-container');
+    this.html.appendChild(this.imageContainer);
+
     this.image = document.createElement('img');
     this.image.classList.add('lancer-frame-image');
-    this.html.appendChild(this.image);
+    this.imageContainer.appendChild(this.image);
 
     this.description = document.createElement('div');
     this.description.classList.add('lancer-frame-description');
@@ -258,6 +266,14 @@ class Frame {
     this.mounts.classList.add('lancer-frame-mounts');
     this.descriptionStats.appendChild(this.mounts);
 
+    this.firstMount = document.createElement('div');
+    this.firstMount.classList.add('lancer-frame-first-mount');
+    this.mounts.appendChild(this.firstMount);
+    
+    this.otherMounts = document.createElement('div');
+    this.otherMounts.classList.add('lancer-frame-other-mounts');
+    this.mounts.appendChild(this.otherMounts);
+
 
 
     this.descriptionSeparator = document.createElement('div');
@@ -282,20 +298,28 @@ class Frame {
     return this.html;
   }
 
-  static fromJSON(json) {
+  static fromJSON(json, loadChildren = true) {
     var frame = new Frame();
-    frame.loadJSON(json);
+    frame.loadJSON(json, loadChildren);
     return frame;
   }
 
-  loadJSON(json) {
+  loadJSON(json, loadChildren = true) {
     this.json = json;
+
+    this.symbols.innerHTML = '';
+    this.symbols.appendChild(document.createTextNode(String.fromCharCode('Q'.charCodeAt(0) + json.stats.size)));
+    json.roles.forEach((role) => {
+      this.symbols.appendChild(document.createTextNode(String.fromCharCode('\\'.charCodeAt(0) - 1 + role.role_id)));
+    });
 
     this.name.innerHTML = '';
     this.name.appendChild(document.createTextNode(json.name));
 
     this.role.innerHTML = '';
-    this.role.appendChild(document.createTextNode(json.role));
+    this.role.appendChild(document.createTextNode(json.roles.map((role) => {
+      return role.role;
+    }).join('/')));
 
     this.flavor.loadJSON(json.flavor);
 
@@ -329,7 +353,7 @@ class Frame {
     this.eDefenseValue.appendChild(document.createTextNode(json.stats.e_defense));
 
     this.techAttackValue.innerHTML = '';
-    this.techAttackValue.appendChild(document.createTextNode(json.stats.tech_attack));
+    this.techAttackValue.appendChild(document.createTextNode((json.stats.tech_attack>=0?'+':'') + json.stats.tech_attack));
 
     this.spValue.innerHTML = '';
     this.spValue.appendChild(document.createTextNode(json.stats.sp));
@@ -340,32 +364,31 @@ class Frame {
     this.traits.innerHTML = '';
     this.traitsArray = [];
     json.traits.forEach((trait) => {
-      var trai = Trait.fromJSON(trait);
+      var trai = Trait.fromJSON(trait, loadChildren);
       this.traitsArray.push(trai);
       this.traits.appendChild(trai.getHTML());
     });
 
-    this.mounts.innerHTML = '';
-    json.mounts.forEach((mount) => {
-      var mnt = document.createElement('div');
-      mnt.classList.add('lancer-frame-mount');
-      this.mounts.appendChild(mnt);
+    this.firstMount.innerHTML = '';
+    this.otherMounts.innerHTML = '';
+    if (json.mounts.length > 0) {
+      var createMount = (container, mount) => {
+        var mnt = document.createElement('div');
+        mnt.classList.add('lancer-frame-mount');
+        container.appendChild(mnt);
 
-      if (JSON.stringify(mount) == JSON.stringify([[2]]))
-        mnt.appendChild(document.createTextNode('Main/Aux'));
-      else if (JSON.stringify(mount) == JSON.stringify([[3]]))
-        mnt.appendChild(document.createTextNode('Heavy'));
-      else if (JSON.stringify(mount) == JSON.stringify([[1, 1]]))
-        mnt.appendChild(document.createTextNode('Aux/Aux'));
-      else if (JSON.stringify(mount) == JSON.stringify([[2, 1], [1, 1]]))
-        mnt.appendChild(document.createTextNode('Main/Aux'));
-      else if (JSON.stringify(mount) == JSON.stringify([[2], [1, 1]]))
-        mnt.appendChild(document.createTextNode('Flex'));
-      mnt.appendChild(document.createElement('br'));
-      mnt.appendChild(document.createTextNode('Mount'));
-    });
+        mnt.appendChild(document.createTextNode(mount.mount));
+        mnt.appendChild(document.createElement('br'));
+        mnt.appendChild(document.createTextNode('Mount'));
+      };
 
-    this.coreSystem.loadJSON(json.core);
+      createMount(this.firstMount, json.mounts[0]);
+      json.mounts.slice(1).forEach((mount) => {
+        createMount(this.otherMounts, mount);
+      });
+    }
+
+    this.coreSystem.loadJSON(json.core, loadChildren);
   }
 
 }

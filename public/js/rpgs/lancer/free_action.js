@@ -36,22 +36,22 @@ class FreeAction {
     return this.html;
   }
 
-  static fromJSON(json) {
+  static fromJSON(json, loadChildren = true) {
     var freeAction = new FreeAction();
-    freeAction.loadJSON(json);
+    freeAction.loadJSON(json, loadChildren);
     return freeAction;
   }
 
-  loadJSON(json) {
+  loadJSON(json, loadChildren = true) {
     this.json = json;
 
-    this.attachments.loadJSON(json.attachments);
+    this.attachments.loadJSON(json.attachments, loadChildren);
 
     this.name.innerHTML = '';
     this.name.appendChild(document.createTextNode(json.name));
 
     this.type.innerHTML = '';
-    appendTags(this.type, json.tags, json.cost, ['Free Action']);
+    appendTags(this.type, json.tags, json.cost, { start: ['Free Action'] });
 
     this.effect.setCustomContent(this.attachments);
     this.effect.loadJSON(json.effect);

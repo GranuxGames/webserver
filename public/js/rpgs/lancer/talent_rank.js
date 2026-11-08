@@ -33,16 +33,16 @@ class TalentRank {
     return this.html;
   }
 
-  static fromJSON(json) {
+  static fromJSON(json, loadChildren = true) {
     var talentRank = new TalentRank();
-    talentRank.loadJSON(json);
+    talentRank.loadJSON(json, loadChildren);
     return talentRank;
   }
 
-  loadJSON(json) {
+  loadJSON(json, loadChildren = true) {
     this.json = json;
 
-    this.attachments.loadJSON(json.attachments);
+    this.attachments.loadJSON(json.attachments, loadChildren);
 
     this.rank.innerHTML = '';
     this.rank.appendChild(document.createTextNode(String.fromCharCode('N'.charCodeAt(0) - 1 + json.rank)));

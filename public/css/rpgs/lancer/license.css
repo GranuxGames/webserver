@@ -21,3 +21,7 @@
 .lancer-license-ranks {
   margin-top: 1em;
 }
+
+.lancer-license-ranks > .lancer-license-rank:not(:first-child) {
+  margin-top: 2em;
+}

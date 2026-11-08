@@ -19,16 +19,16 @@ class Invasion {
     return this.html;
   }
 
-  static fromJSON(json) {
+  static fromJSON(json, loadChildren = true) {
     var invasion = new Invasion();
-    invasion.loadJSON(json);
+    invasion.loadJSON(json, loadChildren);
     return invasion;
   }
 
-  loadJSON(json) {
+  loadJSON(json, loadChildren = true) {
     this.json = json;
 
-    this.attachments.loadJSON(json.attachments);
+    this.attachments.loadJSON(json.attachments, loadChildren);
 
     if (json.effect.length <= 0)
       json.effect.push('§key:' + json.name + ':§');

@@ -1,0 +1,367 @@
+@property --cutin-1 {
+  syntax: "<length>";
+  inherits: true;
+  initial-value: 0px;
+}
+
+@property --cutin-2 {
+  syntax: "<length>";
+  inherits: true;
+  initial-value: 0px;
+}
+
+@property --cutin-3 {
+  syntax: "<length>";
+  inherits: true;
+  initial-value: 0px;
+}
+
+@property --cutin-4 {
+  syntax: "<length>";
+  inherits: true;
+  initial-value: 0px;
+}
+
+#lancer-licenses-page-licenses {
+  font-family: 'Helvetica Neue';
+  font-weight: 300;
+  color: var(--color-black);
+  min-width: calc(var(--lancer-column-width) * 1.5);
+  display: flex;
+  flex-direction: column;
+}
+
+.lancer-licenses-page-license-header {
+  font-size: 2.4em;
+  font-weight: 600;
+  text-transform: uppercase;
+  background-color: var(--color-red);
+  color: white;
+  padding: 0.1em 0.2em;
+  clip-path: polygon(
+    0% 0%,
+    100% 0%,
+    100% calc(100% - 0.75em),
+    calc(100% - 0.75em) 100%,
+    0% 100%);
+  display: flex;
+  flex-direction: row;
+  gap: 0.2em;
+  align-items: center;
+  cursor: pointer;
+}
+
+.lancer-licenses-page-license-header > :first-child {
+  flex: 1 0 0;
+}
+
+.lancer-license-rank-header {
+  display: flex;
+  flex-direction: row;
+  gap: 0.2em;
+  align-items: center;
+  cursor: pointer;
+}
+
+.lancer-license-rank-header > :first-child {
+  flex: 1 0 0;
+}
+
+.lancer-license.collapsed .lancer-license-ranks {
+  display: none;
+}
+
+.lancer-licenses-page-license-rank-expander,
+.lancer-licenses-page-license-expander {
+  flex: 0 0 2em;
+  aspect-ratio: 1;
+  display: block;
+}
+
+.lancer-licenses-page-license-expander {
+  flex: 0 0 0.75em;
+}
+
+.lancer-licenses-page-license-rank-expander::after,
+.lancer-licenses-page-license-expander::after {
+  content: '';
+  background-color: white;
+  width: 100%;
+  height: 100%;
+  display: block;
+  --symbol-padding: 10%;
+  --symbol-width: 20%;
+
+  clip-path: polygon(
+    var(--symbol-padding) calc(50% - var(--symbol-width) / 2),
+    calc(100% - var(--symbol-padding)) calc(50% - var(--symbol-width) / 2),
+    calc(100% - var(--symbol-padding)) calc(50% + var(--symbol-width) / 2),
+    var(--symbol-padding) calc(50% + var(--symbol-width) / 2));
+}
+
+.lancer-license-rank.collapsed .lancer-licenses-page-license-rank-expander::after,
+.lancer-license.collapsed .lancer-licenses-page-license-expander::after {
+  clip-path: polygon(
+    var(--symbol-padding) calc(50% - var(--symbol-width) / 2),
+    calc(50% - var(--symbol-width) / 2) calc(50% - var(--symbol-width) / 2),
+    calc(50% - var(--symbol-width) / 2) var(--symbol-padding),
+    calc(50% + var(--symbol-width) / 2) var(--symbol-padding),
+    calc(50% + var(--symbol-width) / 2) calc(50% - var(--symbol-width) / 2),
+    calc(100% - var(--symbol-padding)) calc(50% - var(--symbol-width) / 2),
+    calc(100% - var(--symbol-padding)) calc(50% + var(--symbol-width) / 2),
+    calc(50% + var(--symbol-width) / 2) calc(50% + var(--symbol-width) / 2),
+    calc(50% + var(--symbol-width) / 2) calc(100% - var(--symbol-padding)),
+    calc(50% - var(--symbol-width) / 2) calc(100% - var(--symbol-padding)),
+    calc(50% - var(--symbol-width) / 2) calc(50% + var(--symbol-width) / 2),
+    var(--symbol-padding) calc(50% + var(--symbol-width) / 2));
+}
+
+.lancer-license-rank.collapsed > *:not(:first-child) {
+  display: none;
+}
+
+.lancer-licenses-page-selector {
+  height: 0.75em;
+  flex: 0 0 calc(1.5em * 3.25 + 0.2em * 2);
+  display: flex;
+  flex-direction: row;
+  gap: 0.2em;
+}
+
+.lancer-license-page-selector-level {
+  flex: 1 0 0;
+  height: 100%;
+  background-color: white;
+  --border-width: 0.1em;
+}
+
+.lancer-license-page-selector-level:last-child {
+  flex: 1.25 0 0;
+}
+
+.lancer-license-rank-1 {
+  filter: saturate(0);
+}
+
+.lancer-licenses-page-license-level-1 .lancer-license-rank-1,
+.lancer-licenses-page-license-level-2 .lancer-license-rank-1,
+.lancer-licenses-page-license-level-3 .lancer-license-rank-1 {
+  filter: saturate(1);
+}
+
+.lancer-license-rank-2 {
+  filter: saturate(0);
+}
+
+.lancer-licenses-page-license-level-2 .lancer-license-rank-2,
+.lancer-licenses-page-license-level-3 .lancer-license-rank-2 {
+  filter: saturate(1);
+}
+
+.lancer-license-rank-3 {
+  filter: saturate(0);
+}
+
+.lancer-licenses-page-license-level-3 .lancer-license-rank-3 {
+  filter: saturate(1);
+}
+
+.lancer-licenses-page-license-level-1 .lancer-license-page-selector-level:nth-child(1) > *,
+.lancer-licenses-page-license-level-2 .lancer-license-page-selector-level:nth-child(1) > *,
+.lancer-licenses-page-license-level-3 .lancer-license-page-selector-level:nth-child(1) > * {
+  background: repeating-linear-gradient(45deg, white, white 0.2em, var(--color-red) 0.2em, var(--color-red) 0.4em);
+}
+
+.lancer-licenses-page-license-level-2 .lancer-license-page-selector-level:nth-child(2) > *,
+.lancer-licenses-page-license-level-3 .lancer-license-page-selector-level:nth-child(2) > * {
+  background: repeating-linear-gradient(45deg, white, white 0.2em, var(--color-red) 0.2em, var(--color-red) 0.4em);
+}
+
+.lancer-licenses-page-license-level-3 .lancer-license-page-selector-level:nth-child(3) > * {
+  background: repeating-linear-gradient(45deg, white, white 0.2em, var(--color-red) 0.2em, var(--color-red) 0.4em);
+}
+
+.lancer-license-page-selector-level > * {
+  width: 100%;
+  height: 100%;
+  background-color: var(--color-red);
+}
+
+.lancer-license-page-selector-level:not(:last-child) > * {
+  clip-path: polygon(
+    var(--border-width) var(--border-width),
+    calc(100% - var(--border-width)) var(--border-width),
+    calc(100% - var(--border-width)) calc(100% - var(--border-width)),
+    var(--border-width) calc(100% - var(--border-width)));
+}
+
+.lancer-license-page-selector-level:last-child {
+  clip-path: polygon(
+    0% 0%,
+    100% 0%,
+    calc(100% - 0.75em) 100%,
+    0% 100%);
+}
+
+.lancer-license-page-selector-level:last-child > * {
+  clip-path: polygon(
+    var(--border-width) var(--border-width),
+    calc(100% - var(--border-width) / tan(22.5deg)) var(--border-width),
+    calc(100% - 0.75em - var(--border-width) / tan(67.5deg)) calc(100% - var(--border-width)),
+    var(--border-width) calc(100% - var(--border-width)));
+}
+
+.lancer-license {
+  margin-bottom: 4em;
+}
+
+.lancer-license.collapsed {
+  margin-bottom: 1em;
+}
+
+#lancer-licenses-page-search-container {
+  font-family: 'Helvetica Neue';
+  padding: 0.4em;
+  --cutin-1: 0;
+  --cutin-2: 0;
+  --cutin-3: 1.5em;
+  --cutin-4: 0;
+  --thickness: 0.1em;
+  --color: #E0E3E6;
+  display: flex;
+  flex-direction: column;
+  gap: 0.8em;
+}
+
+#lancer-licenses-page-search-container input {
+  font-family: 'Helvetica Neue';
+}
+
+
+
+#lancer-licenses-page-search-container > :first-child {
+  --cutin-1: 0.75em;
+  --cutin-2: 0;
+  --cutin-3: 0.75em;
+  --cutin-4: 0;
+  --color: var(--color-black);
+}
+
+#lancer-licenses-page-search-container > :first-child .string-search-input {
+  border-width: 0;
+  padding: 0.42em 0.75em;
+}
+
+.diagonal-border {
+  --cutin-1: 0.5em;
+  --cutin-2: 0.5em;
+  --cutin-3: 0.5em;
+  --cutin-4: 0.5em;
+  --thickness: 1px;
+  --color: black;
+  position: relative;
+}
+
+.diagonal-border::after {
+  display: inline-block;
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  --a: calc(var(--thickness) / tan(67.5deg));
+  background-color: var(--color);
+  clip-path: polygon(
+    calc(  0% + var(--cutin-1) * 1) calc(  0% + var(--cutin-1) * 0),
+    calc(100% - var(--cutin-2) * 1) calc(  0% + var(--cutin-2) * 0),
+    calc(100% - var(--cutin-2) * 0) calc(  0% + var(--cutin-2) * 1),
+    calc(100% - var(--cutin-3) * 0) calc(100% - var(--cutin-3) * 1),
+    calc(100% - var(--cutin-3) * 1) calc(100% - var(--cutin-3) * 0),
+    calc(  0% + var(--cutin-4) * 1) calc(100% - var(--cutin-4) * 0),
+    calc(  0% + var(--cutin-4) * 0) calc(100% - var(--cutin-4) * 1),
+    calc(  0% + var(--cutin-1) * 0) calc(  0% + var(--cutin-1) * 1),
+    calc(  0% + var(--cutin-1) * 1) calc(  0% + var(--cutin-1) * 0),
+    
+    calc(  0% + var(--cutin-1) * 1 + var(--a) * 1 + var(--thickness) * 0) calc(  0% + var(--cutin-1) * 0 + var(--a) * 0 + var(--thickness) * 1),
+    calc(  0% + var(--cutin-1) * 0 + var(--a) * 0 + var(--thickness) * 1) calc(  0% + var(--cutin-1) * 1 + var(--a) * 1 + var(--thickness) * 0),
+    calc(  0% + var(--cutin-4) * 0 + var(--a) * 0 + var(--thickness) * 1) calc(100% - var(--cutin-4) * 1 - var(--a) * 1 - var(--thickness) * 0),
+    calc(  0% + var(--cutin-4) * 1 + var(--a) * 1 + var(--thickness) * 0) calc(100% - var(--cutin-4) * 0 - var(--a) * 0 - var(--thickness) * 1),
+    calc(100% - var(--cutin-3) * 1 - var(--a) * 1 - var(--thickness) * 0) calc(100% - var(--cutin-3) * 0 - var(--a) * 0 - var(--thickness) * 1),
+    calc(100% - var(--cutin-3) * 0 - var(--a) * 0 - var(--thickness) * 1) calc(100% - var(--cutin-3) * 1 - var(--a) * 1 - var(--thickness) * 0),
+    calc(100% - var(--cutin-2) * 0 - var(--a) * 0 - var(--thickness) * 1) calc(  0% + var(--cutin-2) * 1 + var(--a) * 1 + var(--thickness) * 0),
+    calc(100% - var(--cutin-2) * 1 - var(--a) * 1 - var(--thickness) * 0) calc(  0% + var(--cutin-2) * 0 + var(--a) * 0 + var(--thickness) * 1),
+    calc(  0% + var(--cutin-1) * 1 + var(--a) * 1 + var(--thickness) * 0) calc(  0% + var(--cutin-1) * 0 + var(--a) * 0 + var(--thickness) * 1));
+}
+
+#lancer-licenses-page-rewards-add {
+  height: 2.5em;
+  margin: 0 0.4em 0.4em 0.4em;
+  background-color: #E11A21FF;
+  cursor: pointer;
+  --cutin-1: 0em;
+  --cutin-2: 0.75em;
+  clip-path: polygon(
+    var(--cutin-1) 0%,
+    100% 0%,
+    100% calc(100% - var(--cutin-2)),
+    calc(100% - var(--cutin-2)) 100%,
+    0% 100%,
+    0% var(--cutin-1));
+  transition: --cutin-1 0.075s ease-in-out,
+              --cutin-2 0.075s ease-in-out,
+              background-color 0.075s ease-in-out;
+}
+
+#lancer-licenses-page-rewards-add:hover {
+  background-color: #EF3D2FFF;
+  --cutin-1: 1.25em;
+  --cutin-2: 1.25em;
+}
+
+#lancer-licenses-page-rewards-add::after {
+  content: '';
+  display: inline-block;
+  width: 100%;
+  height: 100%;
+  background-color: white;
+
+  --lancer-licenses-page-rewards-add-size: 1.5em;
+  --lancer-licenses-page-rewards-add-thickness: 0.375em;
+
+  clip-path: polygon(
+    calc(50% - var(--lancer-licenses-page-rewards-add-thickness) / 2) calc(50% - var(--lancer-licenses-page-rewards-add-size) / 2),
+    calc(50% + var(--lancer-licenses-page-rewards-add-thickness) / 2) calc(50% - var(--lancer-licenses-page-rewards-add-size) / 2),
+    calc(50% + var(--lancer-licenses-page-rewards-add-thickness) / 2) calc(50% - var(--lancer-licenses-page-rewards-add-thickness) / 2),
+    calc(50% + var(--lancer-licenses-page-rewards-add-size) / 2) calc(50% - var(--lancer-licenses-page-rewards-add-thickness) / 2),
+    calc(50% + var(--lancer-licenses-page-rewards-add-size) / 2) calc(50% + var(--lancer-licenses-page-rewards-add-thickness) / 2),
+    calc(50% + var(--lancer-licenses-page-rewards-add-thickness) / 2) calc(50% + var(--lancer-licenses-page-rewards-add-thickness) / 2),
+    calc(50% + var(--lancer-licenses-page-rewards-add-thickness) / 2) calc(50% + var(--lancer-licenses-page-rewards-add-size) / 2),
+    calc(50% - var(--lancer-licenses-page-rewards-add-thickness) / 2) calc(50% + var(--lancer-licenses-page-rewards-add-size) / 2),
+    calc(50% - var(--lancer-licenses-page-rewards-add-thickness) / 2) calc(50% + var(--lancer-licenses-page-rewards-add-thickness) / 2),
+    calc(50% - var(--lancer-licenses-page-rewards-add-size) / 2) calc(50% + var(--lancer-licenses-page-rewards-add-thickness) / 2),
+    calc(50% - var(--lancer-licenses-page-rewards-add-size) / 2) calc(50% - var(--lancer-licenses-page-rewards-add-thickness) / 2),
+    calc(50% - var(--lancer-licenses-page-rewards-add-thickness) / 2) calc(50% - var(--lancer-licenses-page-rewards-add-thickness) / 2));
+}
+
+#lancer-licenses-page-rewards-container {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4em;
+}
+
+.lancer-licenses-reward-body {
+  display: flex;
+  flex-direction: row;
+  gap: 0.4em;
+  flex-wrap: wrap;
+}
+
+.lancer-licenses-reward {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4em;
+  padding: 0.4em;
+  margin: 0.4em;
+  border: 0.1em solid black;
+}
