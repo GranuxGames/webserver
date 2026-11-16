@@ -50,7 +50,7 @@ class IndexServer extends _SERVER.Server {
       return result.status(409).json({ ok: false, error: error });
     });
 
-    expressServer.post('/api/logout', async (request, result) => {
+    expressServer.all('/api/logout', async (request, result) => {
       await UserDatabase.instance.logout(request, result);
     });
 

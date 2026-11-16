@@ -251,9 +251,13 @@ class DNDCreatureHeaderStats {
         return a[0].localeCompare(b[0]);
       }).map((entry) => {
         var out = '';
-        if (entry[0] != 'move')
+        if (entry[0] == 'hover')
+          out += 'fly ';
+        else if (entry[0] != 'move')
           out += entry[0] + ' ';
-        out += entry[1];
+        out += entry[1].speed + ' ' + entry[1].unit + '.';
+        if (entry[0] == 'hover')
+          out += ' (hover)';
         return out;
       }).join(', ')));
   }
@@ -498,7 +502,9 @@ class DNDCreatureHeaderSkills {
     var senses = [];
     senses = Object.entries(json.senses).map((entry) => {
       var out = '';
-      out += entry[0] + ' ' + entry[1];
+      out += entry[0] + ' ' + entry[1].range + ' ' + entry[1].unit + '.';
+      if (entry[1].blind)
+        out += ' (blind beyond this radius)'
       return out;
     });
     senses.push('passive Perception ' + (10 + (Object.keys(json.skills).includes('Perception')?(json.skills['Perception']):(Math.floor((json.stats.wis - 10) / 2)))));
@@ -528,9 +534,11 @@ function rechargeToString(recharge) {
 
   var out = ' (';
   if (recharge.type == 'daily')
-    out += recharge.count + '/day';
-  if (recharge.type == 'turn')
+    out += recharge.count + '/Day';
+  if (recharge.type == 'roll')
     out += 'Recharge ' + recharge.count + '–' + 6;
+  if (recharge.type == 'turn')
+    out += recharge.count + '/Turn';
 
   return out + ')';
 }
@@ -658,12 +666,13 @@ class DNDCreatureAction {
     this.name.innerHTML = '';
     this.name.appendChild(document.createTextNode(json.name + rechargeToString(json.recharge) + '. '));
 
+    var description = structuredClone(json.description);
     if (json.type == 'attack') {
-      if (json.description.length <= 0)
-        json.description.push('');
-      json.description[0] = '*' + json.attack_type + ':* ' + json.attack + ' *Hit:* ' + json.description[0];
+      if (description.length <= 0)
+        description.push('');
+      description[0] = '*' + json.attack_type + ':* ' + json.attack + ' *Hit:* ' + description[0];
     }
-    this.text.loadJSON(json.description);
+    this.text.loadJSON(description);
 
     if (this.text.getHTML().children.length <= 0) {
       this.text.getHTML().appendChild(this.name);
@@ -733,12 +742,13 @@ class DNDCreatureBonusAction {
     this.name.innerHTML = '';
     this.name.appendChild(document.createTextNode(json.name + rechargeToString(json.recharge) + '. '));
 
+    var description = structuredClone(json.description);
     if (json.type == 'attack') {
-      if (json.description.length <= 0)
-        json.description.push('');
-      json.description[0] = '*' + json.attack_type + ':* ' + json.attack + ' *Hit:* ' + json.description[0];
+      if (description.length <= 0)
+        description.push('');
+      description[0] = '*' + json.attack_type + ':* ' + json.attack + ' *Hit:* ' + description[0];
     }
-    this.text.loadJSON(json.description);
+    this.text.loadJSON(description);
 
     if (this.text.getHTML().children.length <= 0) {
       this.text.getHTML().appendChild(this.name);

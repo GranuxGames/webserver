@@ -5,3 +5,326 @@
 .dnd-object {
   margin: auto;
 }
+
+#switch-mode-buttons {
+  width: 100%;
+}
+
+#switch-mode-buttons > div {
+  display: flex;
+  flex-direction: row;
+  gap: 0.5em;
+  width: 100%;
+}
+
+.switch-mode-button {
+  padding: 0.5em;
+  background-color: #952000ff;
+  color: #fcf1ddff;
+  font-weight: bold;
+  border-radius: 0.5em;
+  cursor: pointer;
+  text-align: center;
+  flex: 1 0 0;
+}
+
+
+#dnd-modify-inputs {
+  box-shadow: 0 0 5px #0007;
+  padding: 0.5em;
+}
+
+#dnd-modify-inputs > :first-child {
+  margin-top: 0;
+}
+
+#dnd-modify-inputs > :last-child {
+  margin-bottom: 0;
+}
+
+/* MODIFICATION STUFF */
+.dnd-modify-input {
+  margin: 0.5em 0;
+  display: flex;
+  flex-direction: row;
+  gap: 0.5em;
+  align-items: center;
+}
+
+.custom-input-header {
+  font-weight: bold;
+  flex: 0 1 1;
+}
+
+.dnd-modify-input > .custom-input {
+  flex: 1 0 0;
+}
+
+.dnd-speed-input,
+.dnd-save-input,
+.dnd-skill-input,
+.dnd-sense-input {
+  gap: 0.25em;
+}
+
+.dnd-speed-input .custom-string-input,
+.dnd-save-input .custom-string-input,
+.dnd-skill-input .custom-string-input,
+.dnd-sense-input .custom-string-input {
+  flex: 1 0 0;
+}
+
+.dnd-speed-input .custom-dropdown-input,
+.dnd-sense-input .custom-dropdown-input {
+  flex: 0 0 3em;
+}
+
+.dnd-ability-score-input {
+  flex: 1 0 0;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  margin: 0;
+  min-width: 0;
+}
+
+.dnd-ability-score-input .custom-input-header {
+  width: 100%;
+  text-align: center;
+  min-width: 0;
+}
+
+.dnd-ability-score-input .custom-string-input {
+  width: 100%;
+  text-align: center !important;
+}
+
+.dnd-vertical-input-container {
+  flex-direction: column;
+}
+
+.dnd-vertical-input-container > * {
+  width: 100%;
+}
+
+/* STRING INPUT */
+
+.custom-string-input {
+  overflow-x: hidden;
+  overflow-y: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  outline: none;
+  border-radius: 0.25em;
+  padding: 0.25em;
+  border: 1px solid #0005;
+}
+
+.custom-string-input:not(:focus) {
+  direction: ltr;
+  text-align: left;
+}
+
+.custom-string-input:is(:empty, :has(> br:only-child)):not(:focus):before {
+  content: attr(placeholder);
+  color: #999;
+  pointer-events: none;
+}
+
+/* MULTI SELECT INPUT */
+
+.custom-multi-select-input-values {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 0.25em;
+}
+
+.custom-multi-select-input-value {
+  padding: 0.25em;
+  border: 1px solid #0005;
+  border-radius: 0.25em;
+  user-select: none;
+  cursor: pointer;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.custom-multi-select-input-value:hover {
+  background-color: #0001;
+}
+
+.custom-multi-select-input-value:after {
+  content: '';
+  margin-left: 0.25em;
+  display: inline-block;
+  background-color: black;
+  width: 1em;
+  height: 1em;
+  clip-path: polygon(
+    20% 0%,
+    50% 30%,
+    80% 0%,
+    100% 20%,
+    70% 50%,
+    100% 80%,
+    80% 100%,
+    50% 70%,
+    20% 100%,
+    0% 80%,
+    30% 50%,
+    0% 20%);
+}
+
+/* BUTTON INPUT */
+
+.custom-button-input {
+  cursor: pointer;
+  padding: 0.25em;
+  user-select: none;
+  border: 1px solid #0005;
+  border-radius: 0.25em;
+}
+
+.custom-button-input:hover {
+  background-color: #0001;
+}
+
+/* CHECKBOX INPUT */
+
+.custom-checkbox-input {
+  width: 0.75em;
+  aspect-ratio: 1;
+}
+
+.custom-checkbox-input.checked:after {
+  content: '';
+  width: 100%;
+  height: 100%;
+  background-color: black;
+  display: block;
+  clip-path: polygon(
+    20% 0%,
+    50% 30%,
+    80% 0%,
+    100% 20%,
+    70% 50%,
+    100% 80%,
+    80% 100%,
+    50% 70%,
+    20% 100%,
+    0% 80%,
+    30% 50%,
+    0% 20%);
+}
+
+/* LIST INPUT */
+
+.custom-list-input-value {
+  flex: 0 1 100%;
+  padding: 0.25em;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+/* STRING INPUT WITH SUGGESTIONS */
+
+.custom-string-input-with-suggestions {
+  border-radius: 0.25em;
+  padding: 0.25em;
+  border: 1px solid #0005;
+  position: relative;
+}
+
+.custom-string-input-with-suggestions > .custom-string-input {
+  border-radius: 0;
+  padding: 0;
+  border: none;
+}
+
+.custom-string-input-with-suggestions.open {
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
+}
+
+.custom-string-input-with-suggestions-elements {
+  position: absolute;
+  width: 100%;
+  background-color: white;
+  top: 100%;
+  left: -1px;
+  border: 1px solid #0005;
+  border-radius: 0 0 0.25em 0.25em;
+  overflow-y: auto;
+  max-height: 25em;
+  z-index: 1;
+}
+
+.custom-string-input-with-suggestions-elements:empty {
+  padding: 0.5em 0;
+}
+
+.custom-string-input-with-suggestions-element {
+  padding: 0.25em;
+  cursor: pointer;
+}
+
+.custom-string-input-with-suggestions-element.selected {
+  background-color: #0001;
+}
+
+/* DROPDOWN INPUT */
+
+.custom-dropdown-input {
+  user-select: none;
+  cursor: pointer;
+  position: relative;
+  outline: none;
+  border-radius: 0.25em;
+  padding: 0.25em;
+  border: 1px solid #0005;
+}
+
+.custom-dropdown-input:before {
+  content: '';
+  display: block;
+  width: 1em;
+  height: 0.75em;
+  background-color: #000;
+  position: absolute;
+  right: 0.25em;
+  top: 50%;
+  transform: translateY(-50%);
+  clip-path: polygon(
+    0 0,
+    100% 0,
+    50% 100%);
+}
+
+.custom-dropdown-input.open {
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
+}
+
+.custom-dropdown-input-elements {
+  position: absolute;
+  width: 100%;
+  background-color: white;
+  top: 100%;
+  left: -1px;
+  border: 1px solid #0005;
+  border-radius: 0 0 0.25em 0.25em;
+  overflow-y: auto;
+  max-height: 25em;
+  z-index: 1;
+}
+
+.custom-dropdown-input-element {
+  padding: 0.25em;
+}
+
+.custom-dropdown-input-element:hover {
+  background-color: #0001;
+}
